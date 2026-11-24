@@ -107,19 +107,24 @@ in Mes mots › Phrases.
    the first that matches the theme or its category and wasn't used recently, otherwise the next in
    rotation. It opens in Spotify.
 
-## 3d. Progress log for VERA (new)
+## 3d. Practice log, read by VERA (new)
 
-ÉLISE tells VERA when you practised, through VERA's **existing** web API, so VERA's code does not change:
+ÉLISE **writes its own log**, and VERA **reads it**. ÉLISE holds no VERA token and never calls VERA.
 
-- On the **first open of each day**, ÉLISE calls VERA's `life_practice_log` for the Growth goal in
-  `Config › vera_goal_id` (`GOAL-20260309-02`, "🇫🇷 Improve French fluency (>B1)") with the day and a
-  note such as `ÉLISE · Les soldes · dépensier`. That marks the day in VERA's Growth strip and Habits grid.
-- When a session ends, the app sends the minutes spent; VERA adds same-day logs together, so the day
-  shows the real total.
-- VERA's web app URL and token are stored only as ÉLISE **Script Properties** (`VERA_URL`, `VERA_TOKEN`),
-  set by you in the Apps Script editor; never in the repo, the Sheet or a chat.
-- If VERA can't be reached, the day is marked "not sent" in `Visits` and retried on the next open.
-- Needs the `script.external_request` scope.
+- ÉLISE keeps a `Practice` tab, one row per day:
+  `date | language | minutes | sessions | new_items | reviewed | theme | note | updated_at`.
+  The first open of a day creates the row; later sessions update `minutes`, `sessions` and the counts.
+- The same format is used by any later language app (German…), each in its own Sheet with its own
+  `language` code, so VERA needs one reader for all of them.
+- VERA's side is a small nightly reader (`docs/vera/PracticeLogs.js`), proposed as an issue on the VERA
+  repository (`docs/vera/ISSUE.md`). It maps each log to a Growth goal through VERA's own Config
+  (`practice_logs`); for French, `GOAL-20260309-02`.
+
+## 3e. Ready for other languages (new)
+
+ÉLISE stays a French app, but anything language-specific is a setting, so a German edition can be a
+copy with its own Sheet and library rather than a rewrite: `Config › language` (`fr`), the speech voice
+(`fr-FR`), the `language` column in the practice log. One app for several languages is a later decision.
 
 ## 4. ÉLISE calendar: the theme weeks (new)
 
