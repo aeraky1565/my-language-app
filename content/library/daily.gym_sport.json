@@ -1,0 +1,529 @@
+{
+  "theme": "daily.gym_sport",
+  "entries": [
+    {
+      "id": "daily.gym_sport.01",
+      "theme": "daily.gym_sport",
+      "level": "B1",
+      "word": "un abonnement",
+      "pos": "nom masc.",
+      "fem": null,
+      "ipa": "/œ̃.n‿a.bɔn.mɑ̃/",
+      "def_fr": "Contrat qui permet d'utiliser un service pendant une période, contre un paiement régulier.",
+      "def_en": "A membership; a subscription.",
+      "example_fr": "Mon abonnement à la salle coûte trente euros par mois.",
+      "example_en": "My gym membership costs thirty euros a month.",
+      "phrase_fr": "Il y a des frais d'inscription ?",
+      "phrase_en": "Is there a joining fee?",
+      "register": "vous · à l'accueil",
+      "register_note": "« Les frais d'inscription » = joining fee. « Sans engagement » = no minimum contract ; « résilier » = cancel.",
+      "dialogue": [
+        {
+          "who": "A",
+          "fr": "Bonjour, l'abonnement est à combien ? Il y a des frais d'inscription ?",
+          "en": "Hello, how much is membership? Is there a joining fee?"
+        },
+        {
+          "who": "B",
+          "fr": "Trente euros par mois, et cinquante euros de frais d'inscription.",
+          "en": "Thirty euros a month, and a fifty-euro joining fee."
+        },
+        {
+          "who": "A",
+          "fr": "Et je peux résilier quand je veux ?",
+          "en": "And can I cancel whenever I want?"
+        },
+        {
+          "who": "B",
+          "fr": "Oui, c'est sans engagement. Vous voulez faire une séance d'essai ?",
+          "en": "Yes, there's no minimum contract. Would you like a trial session?"
+        }
+      ]
+    },
+    {
+      "id": "daily.gym_sport.02",
+      "theme": "daily.gym_sport",
+      "level": "B1",
+      "word": "une séance",
+      "pos": "nom fém.",
+      "fem": null,
+      "ipa": "/yn se.ɑ̃s/",
+      "def_fr": "Période pendant laquelle on fait une activité : sport, cours, soin.",
+      "def_en": "A session; a workout.",
+      "example_fr": "Après la séance, je suis toujours de meilleure humeur.",
+      "example_en": "After a workout, I'm always in a better mood.",
+      "phrase_fr": "Tu fais combien de séances par semaine ?",
+      "phrase_en": "How many sessions a week do you do?",
+      "register": "tu · entre amis",
+      "register_note": "On dit aussi « un entraînement ». « La muscu » = les poids ; « le cardio » = course, vélo, rameur…",
+      "dialogue": [
+        {
+          "who": "A",
+          "fr": "Tu fais combien de séances par semaine ?",
+          "en": "How many sessions a week do you do?"
+        },
+        {
+          "who": "B",
+          "fr": "Trois, en général : deux de muscu et une de cardio.",
+          "en": "Three, usually: two weights and one cardio."
+        },
+        {
+          "who": "A",
+          "fr": "Et tu y vas le matin ou le soir ?",
+          "en": "And do you go in the morning or the evening?"
+        },
+        {
+          "who": "B",
+          "fr": "Le matin, avant le boulot. Après, je n'ai plus le courage.",
+          "en": "In the morning, before work. Afterwards, I can't face it."
+        }
+      ]
+    },
+    {
+      "id": "daily.gym_sport.03",
+      "theme": "daily.gym_sport",
+      "level": "B1",
+      "word": "s'échauffer",
+      "pos": "verbe pron.",
+      "fem": null,
+      "ipa": "/se.ʃo.fe/",
+      "def_fr": "Préparer son corps avec des mouvements doux avant un effort.",
+      "def_en": "To warm up.",
+      "example_fr": "Il faut bien s'échauffer avant de courir.",
+      "example_en": "You need to warm up properly before running.",
+      "phrase_fr": "J'ai mal au dos depuis hier.",
+      "phrase_en": "My back has been hurting since yesterday.",
+      "register": "tu · entre amis",
+      "register_note": "« Avoir mal à » + partie du corps : au dos, au genou, aux jambes. « Depuis » + moment = since. « Zapper » = sauter, oublier (fam.).",
+      "dialogue": [
+        {
+          "who": "A",
+          "fr": "Ça va ? Tu as l'air de souffrir.",
+          "en": "Are you OK? You look like you're in pain."
+        },
+        {
+          "who": "B",
+          "fr": "J'ai mal au dos depuis hier. Je ne me suis pas échauffé…",
+          "en": "My back's been hurting since yesterday. I didn't warm up…"
+        },
+        {
+          "who": "A",
+          "fr": "Il faut toujours s'échauffer avant, surtout pour soulever des poids.",
+          "en": "You always need to warm up first, especially to lift weights."
+        },
+        {
+          "who": "B",
+          "fr": "Je sais. La prochaine fois, je ne zapperai pas.",
+          "en": "I know. Next time, I won't skip it."
+        }
+      ]
+    },
+    {
+      "id": "daily.gym_sport.04",
+      "theme": "daily.gym_sport",
+      "level": "B1",
+      "word": "un vestiaire",
+      "pos": "nom masc.",
+      "fem": null,
+      "ipa": "/œ̃ vɛs.tjɛʁ/",
+      "def_fr": "Pièce où l'on se change et où l'on laisse ses affaires.",
+      "def_en": "A changing room; a locker room.",
+      "example_fr": "J'ai oublié mon cadenas au vestiaire.",
+      "example_en": "I left my padlock in the changing room.",
+      "phrase_fr": "Il y a des casiers ?",
+      "phrase_en": "Are there lockers?",
+      "register": "vous · à l'accueil",
+      "register_note": "« Un casier » = a locker ; « un cadenas » = a padlock. Dans beaucoup de salles en France, il faut apporter son propre cadenas.",
+      "dialogue": [
+        {
+          "who": "A",
+          "fr": "Excusez-moi, il y a des casiers ?",
+          "en": "Excuse me, are there lockers?"
+        },
+        {
+          "who": "B",
+          "fr": "Oui, dans le vestiaire, mais il faut votre propre cadenas.",
+          "en": "Yes, in the changing room, but you need your own padlock."
+        },
+        {
+          "who": "A",
+          "fr": "Ah, je n'en ai pas…",
+          "en": "Oh, I don't have one…"
+        },
+        {
+          "who": "B",
+          "fr": "On en vend à l'accueil, trois euros.",
+          "en": "We sell them at reception, three euros."
+        }
+      ]
+    },
+    {
+      "id": "daily.gym_sport.05",
+      "theme": "daily.gym_sport",
+      "level": "B1",
+      "word": "un footing",
+      "pos": "nom masc.",
+      "fem": null,
+      "ipa": "/œ̃ fu.tiŋ/",
+      "def_fr": "Course à pied à rythme tranquille, pour le plaisir ou la forme.",
+      "def_en": "A jog; a run.",
+      "example_fr": "Tous les dimanches, je fais un footing au bord de la Seine.",
+      "example_en": "Every Sunday, I go for a jog along the Seine.",
+      "phrase_fr": "Tu cours à quel rythme ?",
+      "phrase_en": "What pace do you run at?",
+      "register": "tu · entre amis",
+      "register_note": "Faux ami : en France, « un footing » = un jogging. On dit aussi « aller courir ».",
+      "dialogue": [
+        {
+          "who": "A",
+          "fr": "On fait un footing ensemble dimanche ?",
+          "en": "Shall we go for a jog together on Sunday?"
+        },
+        {
+          "who": "B",
+          "fr": "Avec plaisir. Tu cours à quel rythme ?",
+          "en": "With pleasure. What pace do you run at?"
+        },
+        {
+          "who": "A",
+          "fr": "Tranquille : six minutes au kilomètre.",
+          "en": "Easy: six minutes per kilometre."
+        },
+        {
+          "who": "B",
+          "fr": "Parfait, c'est mon rythme aussi.",
+          "en": "Perfect, that's my pace too."
+        }
+      ]
+    },
+    {
+      "id": "daily.gym_sport.06",
+      "theme": "daily.gym_sport",
+      "level": "B1",
+      "word": "les courbatures",
+      "pos": "nom fém. plur.",
+      "fem": null,
+      "ipa": "/le kuʁ.ba.tyʁ/",
+      "def_fr": "Douleurs dans les muscles, le lendemain d'un effort inhabituel.",
+      "def_en": "Muscle aches; stiffness (after exercise).",
+      "example_fr": "Après mon premier cours de yoga, j'avais des courbatures partout !",
+      "example_en": "After my first yoga class, I ached all over!",
+      "phrase_fr": "Je ne peux plus monter les escaliers !",
+      "phrase_en": "I can't even climb the stairs anymore!",
+      "register": "tu · entre amis",
+      "register_note": "Phrase typique, avec humour, le lendemain du sport. « Ça passe » = ça disparaît.",
+      "dialogue": [
+        {
+          "who": "A",
+          "fr": "Alors, ce premier cours de CrossFit ?",
+          "en": "So, that first CrossFit class?"
+        },
+        {
+          "who": "B",
+          "fr": "Je ne peux plus monter les escaliers ! J'ai des courbatures partout.",
+          "en": "I can't even climb the stairs anymore! I ache all over."
+        },
+        {
+          "who": "A",
+          "fr": "C'est normal, ça passe en deux ou trois jours.",
+          "en": "That's normal, it goes in two or three days."
+        },
+        {
+          "who": "B",
+          "fr": "Deux ou trois jours ? Je vais vivre au rez-de-chaussée, alors.",
+          "en": "Two or three days? I'll live on the ground floor, then."
+        }
+      ]
+    },
+    {
+      "id": "daily.gym_sport.07",
+      "theme": "daily.gym_sport",
+      "level": "B1",
+      "word": "un coach sportif",
+      "pos": "nom masc.",
+      "fem": null,
+      "ipa": "/œ̃ kotʃ spɔʁ.tif/",
+      "def_fr": "Personne qui accompagne quelqu'un dans le sport et prépare des exercices adaptés.",
+      "def_en": "A personal trainer.",
+      "example_fr": "Mon coach sportif me fait faire des exercices que je déteste !",
+      "example_en": "My personal trainer makes me do exercises I hate!",
+      "phrase_fr": "Je voudrais me remettre en forme.",
+      "phrase_en": "I'd like to get back in shape.",
+      "register": "vous · avec un professionnel",
+      "register_note": "« Se remettre en forme » = retrouver une bonne condition physique. « Reprendre le sport » = recommencer après une pause.",
+      "dialogue": [
+        {
+          "who": "A",
+          "fr": "Bonjour, je voudrais me remettre en forme, mais je n'ai pas fait de sport depuis des années.",
+          "en": "Hello, I'd like to get back in shape, but I haven't exercised in years."
+        },
+        {
+          "who": "B",
+          "fr": "Pas de problème. Quel est votre objectif principal ?",
+          "en": "No problem. What's your main goal?"
+        },
+        {
+          "who": "A",
+          "fr": "Avoir plus d'énergie, et perdre un peu de ventre.",
+          "en": "Have more energy, and lose a bit of belly."
+        },
+        {
+          "who": "B",
+          "fr": "Très bien, on va commencer doucement, avec deux séances par semaine.",
+          "en": "Very good, we'll start gently, with two sessions a week."
+        }
+      ]
+    },
+    {
+      "id": "daily.gym_sport.08",
+      "theme": "daily.gym_sport",
+      "level": "B1",
+      "word": "transpirer",
+      "pos": "verbe",
+      "fem": null,
+      "ipa": "/tʁɑ̃s.pi.ʁe/",
+      "def_fr": "Avoir de l'eau qui sort de la peau quand on a chaud ou qu'on fait un effort.",
+      "def_en": "To sweat.",
+      "example_fr": "Il fait si chaud qu'on commence à transpirer avant même de courir.",
+      "example_en": "It's so hot you start sweating before you even run.",
+      "phrase_fr": "Je suis à bout de souffle !",
+      "phrase_en": "I'm completely out of breath!",
+      "register": "tu · entre amis",
+      "register_note": "« À bout de souffle » = essoufflé. « Reprendre son souffle » = to catch one's breath.",
+      "dialogue": [
+        {
+          "who": "A",
+          "fr": "Allez, encore une minute !",
+          "en": "Come on, one more minute!"
+        },
+        {
+          "who": "B",
+          "fr": "Impossible, je suis à bout de souffle !",
+          "en": "Impossible, I'm completely out of breath!"
+        },
+        {
+          "who": "A",
+          "fr": "Bon, pause. Bois un peu d'eau, tu transpires beaucoup.",
+          "en": "OK, break. Drink some water, you're sweating a lot."
+        },
+        {
+          "who": "B",
+          "fr": "Merci… Laisse-moi reprendre mon souffle.",
+          "en": "Thanks… Let me catch my breath."
+        }
+      ]
+    },
+    {
+      "id": "daily.gym_sport.09",
+      "theme": "daily.gym_sport",
+      "level": "B2",
+      "word": "se dépasser",
+      "pos": "verbe pron.",
+      "fem": null,
+      "ipa": "/sə de.pa.se/",
+      "def_fr": "Faire mieux que ce qu'on pensait pouvoir faire.",
+      "def_en": "To surpass oneself; to push one's limits.",
+      "example_fr": "Le sport m'apprend à me dépasser.",
+      "example_en": "Sport teaches me to push my limits.",
+      "phrase_fr": "Plus je m'entraîne, plus j'ai envie de m'entraîner.",
+      "phrase_en": "The more I train, the more I want to train.",
+      "register": "tu · entre amis",
+      "register_note": "Niveau + : « plus… plus… » (ou « moins… moins… ») = the more… the more… Sans « le » en français ! « Qui l'eût cru ? » = qui aurait cru ça ? (littéraire, souvent avec humour).",
+      "dialogue": [
+        {
+          "who": "A",
+          "fr": "Tu vas encore à la salle ce soir ?",
+          "en": "Off to the gym again tonight?"
+        },
+        {
+          "who": "B",
+          "fr": "Oui ! Plus je m'entraîne, plus j'ai envie de m'entraîner.",
+          "en": "Yes! The more I train, the more I want to train."
+        },
+        {
+          "who": "A",
+          "fr": "Qui l'eût cru ? Il y a un an, tu détestais le sport.",
+          "en": "Who'd have thought? A year ago, you hated exercise."
+        },
+        {
+          "who": "B",
+          "fr": "C'est vrai, mais maintenant j'adore me dépasser.",
+          "en": "True, but now I love pushing my limits."
+        }
+      ]
+    },
+    {
+      "id": "daily.gym_sport.10",
+      "theme": "daily.gym_sport",
+      "level": "B2",
+      "word": "l'endurance",
+      "pos": "nom fém.",
+      "fem": null,
+      "ipa": "/lɑ̃.dy.ʁɑ̃s/",
+      "def_fr": "Capacité à faire un effort pendant longtemps.",
+      "def_en": "Endurance; stamina.",
+      "example_fr": "Pour améliorer ton endurance, cours plus lentement mais plus longtemps.",
+      "example_en": "To improve your stamina, run slower but for longer.",
+      "phrase_fr": "Ce n'est pas tant la vitesse qui compte que la régularité.",
+      "phrase_en": "It's not so much speed that matters as consistency.",
+      "register": "vous · avec un coach",
+      "register_note": "Niveau + : « ce n'est pas tant… que… » = not so much… as… : une façon élégante de nuancer.",
+      "dialogue": [
+        {
+          "who": "A",
+          "fr": "Je n'arrive pas à courir plus de vingt minutes.",
+          "en": "I can't run for more than twenty minutes."
+        },
+        {
+          "who": "B",
+          "fr": "Ce n'est pas tant la vitesse qui compte que la régularité. Ralentissez.",
+          "en": "It's not so much speed that matters as consistency. Slow down."
+        },
+        {
+          "who": "A",
+          "fr": "Ralentir pour aller plus loin ?",
+          "en": "Slow down to go further?"
+        },
+        {
+          "who": "B",
+          "fr": "Exactement. C'est comme ça qu'on travaille l'endurance.",
+          "en": "Exactly. That's how you build stamina."
+        }
+      ]
+    },
+    {
+      "id": "daily.gym_sport.11",
+      "theme": "daily.gym_sport",
+      "level": "argot",
+      "word": "la muscu",
+      "pos": "nom fém. (fam.)",
+      "fem": null,
+      "ipa": "/la mys.ky/",
+      "def_fr": "La musculation : exercices pour développer les muscles.",
+      "def_en": "(informal) Weights; weight training.",
+      "example_fr": "Ce soir, c'est muscu ; demain, c'est repos.",
+      "example_en": "Tonight it's weights; tomorrow, rest.",
+      "phrase_fr": "Ce soir, je suis complètement HS.",
+      "phrase_en": "Tonight, I'm completely out of action.",
+      "register": "tu · familier, entre amis",
+      "register_note": "« HS » (= hors service) = épuisé, ou en panne ; « de dingue » = incroyable. En neutre : « Ce soir, je suis épuisé. »",
+      "dialogue": [
+        {
+          "who": "A",
+          "fr": "Tu viens à la muscu ce soir ?",
+          "en": "Coming to weights tonight?"
+        },
+        {
+          "who": "B",
+          "fr": "Non, ce soir, je suis complètement HS.",
+          "en": "No, tonight I'm completely out of action."
+        },
+        {
+          "who": "A",
+          "fr": "T'as fait quoi aujourd'hui ?",
+          "en": "What did you do today?"
+        },
+        {
+          "who": "B",
+          "fr": "Dix kilomètres ce matin, et une journée de boulot de dingue.",
+          "en": "Ten kilometres this morning, and a crazy day at work."
+        }
+      ]
+    },
+    {
+      "id": "daily.gym_sport.12",
+      "theme": "daily.gym_sport",
+      "level": "argot",
+      "word": "à fond",
+      "pos": "expr. (fam.)",
+      "fem": null,
+      "ipa": "/a fɔ̃/",
+      "def_fr": "Au maximum, avec beaucoup d'énergie ou d'enthousiasme.",
+      "def_en": "(informal) Flat out; all in.",
+      "example_fr": "Pendant le match, il a joué à fond jusqu'à la dernière minute.",
+      "example_en": "During the match, he played flat out until the last minute.",
+      "phrase_fr": "Je suis à fond dans le padel en ce moment.",
+      "phrase_en": "I'm really into padel at the moment.",
+      "register": "tu · familier, entre amis",
+      "register_note": "« Être à fond dans » = être passionné par (fam.) ; « trop ! » = très (fam.). En neutre : « Je suis passionné de padel en ce moment. »",
+      "dialogue": [
+        {
+          "who": "A",
+          "fr": "Tu fais toujours du tennis ?",
+          "en": "Still playing tennis?"
+        },
+        {
+          "who": "B",
+          "fr": "Non, je suis à fond dans le padel en ce moment !",
+          "en": "No, I'm really into padel at the moment!"
+        },
+        {
+          "who": "A",
+          "fr": "Ah, c'est la mode. C'est sympa ?",
+          "en": "Oh, it's all the rage. Is it fun?"
+        },
+        {
+          "who": "B",
+          "fr": "Trop ! Viens jouer avec nous samedi, on cherche un quatrième.",
+          "en": "So much fun! Come and play with us on Saturday, we need a fourth."
+        }
+      ]
+    }
+  ],
+  "idioms": [
+    {
+      "id": "daily.gym_sport.i01",
+      "theme": "daily.gym_sport",
+      "fr": "avoir la pêche",
+      "literal": "to have the peach",
+      "en": "to be full of energy",
+      "example_fr": "Après ma séance du matin, j'ai la pêche toute la journée !",
+      "example_en": "After my morning workout, I'm full of energy all day!"
+    },
+    {
+      "id": "daily.gym_sport.i02",
+      "theme": "daily.gym_sport",
+      "fr": "suer à grosses gouttes",
+      "literal": "to sweat in big drops",
+      "en": "to sweat buckets",
+      "example_fr": "Au cours de spinning, tout le monde sue à grosses gouttes.",
+      "example_en": "In spin class, everyone sweats buckets."
+    },
+    {
+      "id": "daily.gym_sport.i03",
+      "theme": "daily.gym_sport",
+      "fr": "être sur les rotules",
+      "literal": "to be on one's kneecaps",
+      "en": "to be completely worn out",
+      "example_fr": "Après le marathon, j'étais sur les rotules.",
+      "example_en": "After the marathon, I was completely worn out."
+    },
+    {
+      "id": "daily.gym_sport.i04",
+      "theme": "daily.gym_sport",
+      "fr": "avoir un poil dans la main",
+      "literal": "to have a hair in one's hand",
+      "en": "to be bone idle",
+      "example_fr": "Lui, aller à la salle ? Il a un poil dans la main !",
+      "example_en": "Him, go to the gym? He's bone idle!"
+    },
+    {
+      "id": "daily.gym_sport.i05",
+      "theme": "daily.gym_sport",
+      "fr": "garder la ligne",
+      "literal": "to keep the line",
+      "en": "to stay in shape; to stay slim",
+      "example_fr": "Je fais du vélo pour garder la ligne.",
+      "example_en": "I cycle to stay in shape."
+    },
+    {
+      "id": "daily.gym_sport.i06",
+      "theme": "daily.gym_sport",
+      "fr": "en avoir plein les jambes",
+      "literal": "to have one's legs full of it",
+      "en": "to have tired legs; to be worn out",
+      "example_fr": "Après la rando de vingt kilomètres, j'en avais plein les jambes.",
+      "example_en": "After the twenty-kilometre hike, my legs were done in."
+    }
+  ]
+}

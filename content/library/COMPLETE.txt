@@ -1,4 +1,7 @@
+daily.gym_sport
 seasonal.december_holidays
 seasonal.gifts
 seasonal.holiday_travel
+seasonal.new_year_resolutions
 seasonal.sales
+seasonal.year_review
