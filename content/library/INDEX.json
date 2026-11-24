@@ -1,6 +1,7 @@
 {
   "files": [
     "daily.grocery_market.json",
+    "daily.gym_sport.json",
     "daily.transport_metro.json",
     "errands.bank.json",
     "errands.dentist.json",
