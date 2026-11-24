@@ -1,2 +1,4 @@
+seasonal.december_holidays
 seasonal.gifts
+seasonal.holiday_travel
 seasonal.sales

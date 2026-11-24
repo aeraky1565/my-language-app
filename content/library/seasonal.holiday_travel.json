@@ -1,0 +1,529 @@
+{
+  "theme": "seasonal.holiday_travel",
+  "entries": [
+    {
+      "id": "seasonal.holiday_travel.01",
+      "theme": "seasonal.holiday_travel",
+      "level": "B1",
+      "word": "les embouteillages",
+      "pos": "nom masc. plur.",
+      "fem": null,
+      "ipa": "/le.z‿ɑ̃.bu.tɛ.jaʒ/",
+      "def_fr": "Longues files de voitures bloquées sur la route.",
+      "def_en": "Traffic jams.",
+      "example_fr": "Avec les départs en vacances, il y a des embouteillages partout sur l'autoroute.",
+      "example_en": "With everyone leaving on holiday, there are traffic jams all over the motorway.",
+      "phrase_fr": "On part tôt pour éviter les bouchons ?",
+      "phrase_en": "Shall we leave early to avoid the traffic?",
+      "register": "tu · en famille",
+      "register_note": "« Les bouchons » est le mot de tous les jours ; « les embouteillages » est un peu plus neutre. « Bison Futé » donne les prévisions de trafic en France.",
+      "dialogue": [
+        {
+          "who": "A",
+          "fr": "On part tôt pour éviter les bouchons ?",
+          "en": "Shall we leave early to avoid the traffic?"
+        },
+        {
+          "who": "B",
+          "fr": "Oui, Bison Futé annonce une journée rouge samedi.",
+          "en": "Yes, the traffic forecast says Saturday will be a red day."
+        },
+        {
+          "who": "A",
+          "fr": "Alors départ à six heures, avant les embouteillages.",
+          "en": "Then we leave at six, before the jams."
+        },
+        {
+          "who": "B",
+          "fr": "Six heures ? Bon… je prépare les sandwichs ce soir.",
+          "en": "Six o'clock? OK… I'll make the sandwiches tonight."
+        }
+      ]
+    },
+    {
+      "id": "seasonal.holiday_travel.02",
+      "theme": "seasonal.holiday_travel",
+      "level": "B1",
+      "word": "un retard",
+      "pos": "nom masc.",
+      "fem": null,
+      "ipa": "/œ̃ ʁə.taʁ/",
+      "def_fr": "Le fait d'arriver ou de partir plus tard que prévu.",
+      "def_en": "A delay.",
+      "example_fr": "Le train a deux heures de retard à cause de la neige.",
+      "example_en": "The train is two hours late because of the snow.",
+      "phrase_fr": "Il a combien de retard ?",
+      "phrase_en": "How late is it?",
+      "register": "vous · au guichet",
+      "register_note": "Question clé à la gare ou à l'aéroport. Réponses possibles : « une vingtaine de minutes », « il est annulé » (cancelled).",
+      "dialogue": [
+        {
+          "who": "A",
+          "fr": "Bonjour, le TGV pour Bordeaux, il a combien de retard ?",
+          "en": "Hello, the TGV to Bordeaux, how late is it?"
+        },
+        {
+          "who": "B",
+          "fr": "Pour l'instant, quarante-cinq minutes, à cause d'un problème technique.",
+          "en": "Forty-five minutes for now, because of a technical problem."
+        },
+        {
+          "who": "A",
+          "fr": "Je risque de rater mon bus à l'arrivée…",
+          "en": "I might miss my bus when I get there…"
+        },
+        {
+          "who": "B",
+          "fr": "Attendez l'annonce, l'horaire peut encore changer.",
+          "en": "Wait for the announcement, the time may still change."
+        }
+      ]
+    },
+    {
+      "id": "seasonal.holiday_travel.03",
+      "theme": "seasonal.holiday_travel",
+      "level": "B1",
+      "word": "le coffre",
+      "pos": "nom masc.",
+      "fem": null,
+      "ipa": "/lə kɔfʁ/",
+      "def_fr": "Partie arrière d'une voiture où l'on met les bagages.",
+      "def_en": "The boot (trunk) of a car.",
+      "example_fr": "Avec les cadeaux de tout le monde, le coffre est plein à craquer.",
+      "example_en": "With everyone's presents, the boot is packed to bursting.",
+      "phrase_fr": "Ça ne rentrera jamais !",
+      "phrase_en": "It'll never fit!",
+      "register": "tu · en famille",
+      "register_note": "« Rentrer » = tenir dans un espace. « Plein à craquer » = complètement plein.",
+      "dialogue": [
+        {
+          "who": "A",
+          "fr": "Ça ne rentrera jamais ! Tu as vu le nombre de sacs ?",
+          "en": "It'll never fit! Have you seen how many bags there are?"
+        },
+        {
+          "who": "B",
+          "fr": "Mais si : les cadeaux sous les sièges, et le reste dans le coffre.",
+          "en": "Of course it will: presents under the seats, and the rest in the boot."
+        },
+        {
+          "who": "A",
+          "fr": "Et la poussette ?",
+          "en": "And the pushchair?"
+        },
+        {
+          "who": "B",
+          "fr": "Sur le toit, comme l'an dernier !",
+          "en": "On the roof, like last year!"
+        }
+      ]
+    },
+    {
+      "id": "seasonal.holiday_travel.04",
+      "theme": "seasonal.holiday_travel",
+      "level": "B1",
+      "word": "une aire d'autoroute",
+      "pos": "nom fém.",
+      "fem": null,
+      "ipa": "/yn ɛʁ do.to.ʁut/",
+      "def_fr": "Endroit au bord de l'autoroute où l'on peut s'arrêter pour manger, faire le plein ou se reposer.",
+      "def_en": "A motorway service area; a rest stop.",
+      "example_fr": "On s'arrête sur une aire d'autoroute toutes les deux heures.",
+      "example_en": "We stop at a service area every two hours.",
+      "phrase_fr": "On fait une pause ?",
+      "phrase_en": "Shall we take a break?",
+      "register": "tu · en famille",
+      "register_note": "« Faire une pause » ou « s'arrêter ». « Faire le plein » = remplir le réservoir d'essence.",
+      "dialogue": [
+        {
+          "who": "A",
+          "fr": "On fait une pause ? Je commence à fatiguer.",
+          "en": "Shall we take a break? I'm starting to get tired."
+        },
+        {
+          "who": "B",
+          "fr": "Oui, il y a une aire d'autoroute dans dix kilomètres.",
+          "en": "Yes, there's a service area in ten kilometres."
+        },
+        {
+          "who": "A",
+          "fr": "Parfait, on fera le plein en même temps.",
+          "en": "Perfect, we'll fill up at the same time."
+        },
+        {
+          "who": "B",
+          "fr": "Et un café pour le chauffeur, bien sûr !",
+          "en": "And a coffee for the driver, of course!"
+        }
+      ]
+    },
+    {
+      "id": "seasonal.holiday_travel.05",
+      "theme": "seasonal.holiday_travel",
+      "level": "B1",
+      "word": "complet",
+      "pos": "adj.",
+      "fem": "complète",
+      "ipa": "/kɔ̃.plɛ/",
+      "def_fr": "Où il n'y a plus de place.",
+      "def_en": "Full; fully booked.",
+      "example_fr": "Le 23 décembre, tous les trains sont complets.",
+      "example_en": "On the 23rd of December, every train is fully booked.",
+      "phrase_fr": "Il reste des places pour le 22 ?",
+      "phrase_en": "Are there any seats left for the 22nd?",
+      "register": "vous · au guichet",
+      "register_note": "« Il reste… ? » = is there any… left? Réponses : « Non, c'est complet » ou « Seulement en première classe ».",
+      "dialogue": [
+        {
+          "who": "A",
+          "fr": "Bonjour, il reste des places pour le 22, vers Lyon ?",
+          "en": "Hello, are there any seats left for the 22nd, to Lyon?"
+        },
+        {
+          "who": "B",
+          "fr": "Le 22, c'est complet, malheureusement. Il reste de la place le 21 au soir.",
+          "en": "The 22nd is fully booked, unfortunately. There's still room on the evening of the 21st."
+        },
+        {
+          "who": "A",
+          "fr": "Le 21, ça m'oblige à poser un jour de congé…",
+          "en": "The 21st means I'd have to take a day off…"
+        },
+        {
+          "who": "B",
+          "fr": "Je comprends, mais ça part très vite pendant les fêtes.",
+          "en": "I understand, but seats go very fast over the holidays."
+        }
+      ]
+    },
+    {
+      "id": "seasonal.holiday_travel.06",
+      "theme": "seasonal.holiday_travel",
+      "level": "B1",
+      "word": "le covoiturage",
+      "pos": "nom masc.",
+      "fem": null,
+      "ipa": "/lə ko.vwa.ty.ʁaʒ/",
+      "def_fr": "Le fait de partager une voiture avec d'autres personnes qui font le même trajet.",
+      "def_en": "Carpooling; ride-sharing.",
+      "example_fr": "Pour rentrer à Noël, j'ai trouvé un covoiturage à vingt euros.",
+      "example_en": "To get home for Christmas, I found a ride-share for twenty euros.",
+      "phrase_fr": "Vous partez d'où, exactement ?",
+      "phrase_en": "Where exactly are you leaving from?",
+      "register": "vous · avec un inconnu",
+      "register_note": "En covoiturage, on se vouvoie souvent au début, puis on passe vite au « tu » pendant le trajet.",
+      "dialogue": [
+        {
+          "who": "A",
+          "fr": "Bonjour, c'est pour le covoiturage de demain. Vous partez d'où, exactement ?",
+          "en": "Hello, it's about tomorrow's ride-share. Where exactly are you leaving from?"
+        },
+        {
+          "who": "B",
+          "fr": "De la gare de Massy, à huit heures pile.",
+          "en": "From Massy station, at eight sharp."
+        },
+        {
+          "who": "A",
+          "fr": "Très bien. J'ai une grosse valise, ça pose problème ?",
+          "en": "Great. I have a big suitcase, is that a problem?"
+        },
+        {
+          "who": "B",
+          "fr": "Non, pas de souci, il y a de la place dans le coffre.",
+          "en": "No, no problem, there's room in the boot."
+        }
+      ]
+    },
+    {
+      "id": "seasonal.holiday_travel.07",
+      "theme": "seasonal.holiday_travel",
+      "level": "B1",
+      "word": "les chaînes",
+      "pos": "nom fém. plur.",
+      "fem": null,
+      "ipa": "/le ʃɛn/",
+      "def_fr": "Chaînes qu'on met sur les pneus pour rouler sur la neige.",
+      "def_en": "Snow chains.",
+      "example_fr": "Sans les chaînes, impossible de monter jusqu'au chalet.",
+      "example_en": "Without snow chains, there's no way to drive up to the chalet.",
+      "phrase_fr": "La route est fermée à cause de la neige.",
+      "phrase_en": "The road is closed because of the snow.",
+      "register": "vous · avec un inconnu",
+      "register_note": "Info utile en montagne. On voit aussi : « Équipements spéciaux obligatoires » (chaînes ou pneus neige).",
+      "dialogue": [
+        {
+          "who": "A",
+          "fr": "Excusez-moi, on peut passer par le col ?",
+          "en": "Excuse me, can we go over the pass?"
+        },
+        {
+          "who": "B",
+          "fr": "Non, la route est fermée à cause de la neige. Il faut faire le tour.",
+          "en": "No, the road is closed because of the snow. You have to go round."
+        },
+        {
+          "who": "A",
+          "fr": "Et par la vallée, les chaînes sont obligatoires ?",
+          "en": "And through the valley, are snow chains compulsory?"
+        },
+        {
+          "who": "B",
+          "fr": "Oui, à partir du village. Vous pouvez les mettre sur le parking, là-bas.",
+          "en": "Yes, from the village on. You can put them on in the car park over there."
+        }
+      ]
+    },
+    {
+      "id": "seasonal.holiday_travel.08",
+      "theme": "seasonal.holiday_travel",
+      "level": "B1",
+      "word": "rentrer",
+      "pos": "verbe",
+      "fem": null,
+      "ipa": "/ʁɑ̃.tʁe/",
+      "def_fr": "Revenir chez soi, ou dans sa région d'origine.",
+      "def_en": "To go (or come) back home.",
+      "example_fr": "Cette année, on va rentrer en Bretagne pour les fêtes.",
+      "example_en": "This year, we're going back to Brittany for the holidays.",
+      "phrase_fr": "Tu rentres quand ?",
+      "phrase_en": "When are you coming back?",
+      "register": "tu · entre amis",
+      "register_note": "« Rentrer » s'emploie pour le retour chez soi : « je rentre à la maison », « je rentre en France ». « Sois prudent sur la route » = drive safely.",
+      "dialogue": [
+        {
+          "who": "A",
+          "fr": "Bonnes vacances ! Tu rentres quand ?",
+          "en": "Have a good holiday! When are you coming back?"
+        },
+        {
+          "who": "B",
+          "fr": "Le 2 janvier, si tout va bien.",
+          "en": "On the 2nd of January, if all goes well."
+        },
+        {
+          "who": "A",
+          "fr": "Profite bien de ta famille, et sois prudent sur la route !",
+          "en": "Enjoy your family, and drive safely!"
+        },
+        {
+          "who": "B",
+          "fr": "Promis. Et toi, tu restes à Paris ?",
+          "en": "Promise. And you, are you staying in Paris?"
+        }
+      ]
+    },
+    {
+      "id": "seasonal.holiday_travel.09",
+      "theme": "seasonal.holiday_travel",
+      "level": "B2",
+      "word": "le chassé-croisé",
+      "pos": "nom masc.",
+      "fem": null,
+      "ipa": "/lə ʃa.se.kʁwa.ze/",
+      "def_fr": "Moment où ceux qui partent en vacances croisent ceux qui en reviennent, avec beaucoup de circulation.",
+      "def_en": "The great holiday changeover (when departing and returning traffic cross).",
+      "example_fr": "Le samedi 27, c'est le grand chassé-croisé sur les routes.",
+      "example_en": "Saturday the 27th is the big holiday changeover on the roads.",
+      "phrase_fr": "À moins qu'il neige, on sera là pour le déjeuner.",
+      "phrase_en": "Unless it snows, we'll be there for lunch.",
+      "register": "tu · en famille",
+      "register_note": "Niveau + : « à moins que » + subjonctif. À l'écrit, on ajoute souvent « ne » : « à moins qu'il ne neige ».",
+      "dialogue": [
+        {
+          "who": "A",
+          "fr": "Vous arrivez à quelle heure, demain ?",
+          "en": "What time are you arriving tomorrow?"
+        },
+        {
+          "who": "B",
+          "fr": "À moins qu'il neige, on sera là pour le déjeuner.",
+          "en": "Unless it snows, we'll be there for lunch."
+        },
+        {
+          "who": "A",
+          "fr": "Attention, c'est le chassé-croisé, les routes vont être chargées.",
+          "en": "Careful, it's the big changeover, the roads will be busy."
+        },
+        {
+          "who": "B",
+          "fr": "On partira à l'aube, alors.",
+          "en": "We'll leave at dawn, then."
+        }
+      ]
+    },
+    {
+      "id": "seasonal.holiday_travel.10",
+      "theme": "seasonal.holiday_travel",
+      "level": "B2",
+      "word": "prévoyant",
+      "pos": "adj.",
+      "fem": "prévoyante",
+      "ipa": "/pʁe.vwa.jɑ̃/",
+      "def_fr": "Qui pense à l'avance aux problèmes possibles et s'organise.",
+      "def_en": "Forward-thinking; well-prepared.",
+      "example_fr": "Sois prévoyant : prends une couverture et de l'eau dans la voiture.",
+      "example_en": "Think ahead: take a blanket and some water in the car.",
+      "phrase_fr": "Au cas où on resterait bloqués, j'ai pris de quoi manger.",
+      "phrase_en": "In case we get stuck, I've brought something to eat.",
+      "register": "tu · en famille",
+      "register_note": "Niveau + : « au cas où » + conditionnel. « De quoi + infinitif » = assez pour… (de quoi manger, de quoi lire).",
+      "dialogue": [
+        {
+          "who": "A",
+          "fr": "Pourquoi tu emportes tout ça ?",
+          "en": "Why are you taking all that?"
+        },
+        {
+          "who": "B",
+          "fr": "Au cas où on resterait bloqués, j'ai pris de quoi manger.",
+          "en": "In case we get stuck, I've brought something to eat."
+        },
+        {
+          "who": "A",
+          "fr": "Tu es vraiment prévoyant… Il n'y a que trois heures de route !",
+          "en": "You really think of everything… It's only a three-hour drive!"
+        },
+        {
+          "who": "B",
+          "fr": "Avec la neige, on ne sait jamais.",
+          "en": "With the snow, you never know."
+        }
+      ]
+    },
+    {
+      "id": "seasonal.holiday_travel.11",
+      "theme": "seasonal.holiday_travel",
+      "level": "argot",
+      "word": "une galère",
+      "pos": "nom fém. (fam.)",
+      "fem": null,
+      "ipa": "/yn ɡa.lɛʁ/",
+      "def_fr": "Situation très pénible, compliquée.",
+      "def_en": "(informal) A nightmare; a real hassle.",
+      "example_fr": "Trouver un train le 23 décembre, c'est la galère !",
+      "example_en": "Finding a train on the 23rd of December is a nightmare!",
+      "phrase_fr": "On s'est tapé six heures de bouchons.",
+      "phrase_en": "We had to sit through six hours of traffic.",
+      "register": "tu · familier, entre amis",
+      "register_note": "« Se taper » = devoir supporter quelque chose de pénible (fam.) ; « les gamins » = les enfants ; « râler » = se plaindre. En neutre : « C'était très pénible. »",
+      "dialogue": [
+        {
+          "who": "A",
+          "fr": "Alors, ce voyage ?",
+          "en": "So, how was the trip?"
+        },
+        {
+          "who": "B",
+          "fr": "Une vraie galère ! On s'est tapé six heures de bouchons.",
+          "en": "A total nightmare! We had to sit through six hours of traffic."
+        },
+        {
+          "who": "A",
+          "fr": "Six heures ? Normalement, c'est trois !",
+          "en": "Six hours? It's normally three!"
+        },
+        {
+          "who": "B",
+          "fr": "Ouais, et les gamins ont râlé tout le long.",
+          "en": "Yeah, and the kids moaned the whole way."
+        }
+      ]
+    },
+    {
+      "id": "seasonal.holiday_travel.12",
+      "theme": "seasonal.holiday_travel",
+      "level": "argot",
+      "word": "crevé",
+      "pos": "adj. (fam.)",
+      "fem": "crevée",
+      "ipa": "/kʁə.ve/",
+      "def_fr": "Très fatigué.",
+      "def_en": "(informal) Exhausted; knackered.",
+      "example_fr": "Après dix heures de route, j'étais crevé.",
+      "example_en": "After ten hours on the road, I was knackered.",
+      "phrase_fr": "Je vais m'écrouler direct.",
+      "phrase_en": "I'm going to crash straight away.",
+      "register": "tu · familier, entre amis",
+      "register_note": "« Direct » = tout de suite (fam.). « Crevé » ou « naze » = épuisé. En neutre : « Je suis très fatigué, je vais me coucher tout de suite. »",
+      "dialogue": [
+        {
+          "who": "A",
+          "fr": "Ça y est, vous êtes arrivés ?",
+          "en": "So, you've arrived?"
+        },
+        {
+          "who": "B",
+          "fr": "Oui, enfin ! Je suis crevé, je vais m'écrouler direct.",
+          "en": "Yes, finally! I'm knackered, I'm going to crash straight away."
+        },
+        {
+          "who": "A",
+          "fr": "Repose-toi bien, on s'appelle demain.",
+          "en": "Get some rest, we'll talk tomorrow."
+        },
+        {
+          "who": "B",
+          "fr": "Ça marche. Bisous à tout le monde !",
+          "en": "Sounds good. Love to everyone!"
+        }
+      ]
+    }
+  ],
+  "idioms": [
+    {
+      "id": "seasonal.holiday_travel.i01",
+      "theme": "seasonal.holiday_travel",
+      "fr": "rouler à tombeau ouvert",
+      "literal": "to drive with the tomb open",
+      "en": "to drive at breakneck speed",
+      "example_fr": "Ne roule pas à tombeau ouvert, on n'est pas pressés !",
+      "example_en": "Don't drive like a maniac, we're not in a hurry!"
+    },
+    {
+      "id": "seasonal.holiday_travel.i02",
+      "theme": "seasonal.holiday_travel",
+      "fr": "prendre la poudre d'escampette",
+      "literal": "to take the running-away powder",
+      "en": "to make a run for it; to slip away",
+      "example_fr": "Dès le 20 décembre, il a pris la poudre d'escampette vers le soleil.",
+      "example_en": "On the 20th of December, he slipped off to the sun."
+    },
+    {
+      "id": "seasonal.holiday_travel.i03",
+      "theme": "seasonal.holiday_travel",
+      "fr": "arriver comme un cheveu sur la soupe",
+      "literal": "to arrive like a hair in the soup",
+      "en": "to turn up at the worst possible moment",
+      "example_fr": "Mon cousin est arrivé comme un cheveu sur la soupe, en plein repas.",
+      "example_en": "My cousin turned up at the worst moment, right in the middle of the meal."
+    },
+    {
+      "id": "seasonal.holiday_travel.i04",
+      "theme": "seasonal.holiday_travel",
+      "fr": "être dans le même bateau",
+      "literal": "to be in the same boat",
+      "en": "to be in the same situation",
+      "example_fr": "Tout le train est bloqué : on est tous dans le même bateau.",
+      "example_en": "The whole train is stuck: we're all in the same boat."
+    },
+    {
+      "id": "seasonal.holiday_travel.i05",
+      "theme": "seasonal.holiday_travel",
+      "fr": "partir sur les chapeaux de roue",
+      "literal": "to leave on the wheel caps",
+      "en": "to get off to a flying start",
+      "example_fr": "On est partis sur les chapeaux de roue, puis on a été bloqués à Lyon.",
+      "example_en": "We got off to a flying start, then got stuck at Lyon."
+    },
+    {
+      "id": "seasonal.holiday_travel.i06",
+      "theme": "seasonal.holiday_travel",
+      "fr": "au diable vauvert",
+      "literal": "at the devil's Vauvert",
+      "en": "in the middle of nowhere",
+      "example_fr": "Ses parents habitent au diable vauvert : quatre heures de route, dont deux de petites routes !",
+      "example_en": "His parents live in the middle of nowhere: four hours' drive, two of them on back roads!"
+    }
+  ]
+}
