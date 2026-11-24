@@ -1,0 +1,6 @@
+# Only the Apps Script sources in apps-script/ are pushed.
+**/**
+!appsscript.json
+!*.js
+!*.gs
+!*.html
