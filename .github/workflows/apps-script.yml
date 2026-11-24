@@ -5,8 +5,7 @@ name: Push ÉLISE Apps Script
 #
 # Needs (repo Settings › Secrets and variables › Actions):
 #   secret   CLASPRC_JSON         contents of ~/.clasprc.json after `clasp login`
-#   variable ELISE_DEPLOYMENT_ID  the web app's deployment id (optional until
-#                                 the first deployment exists)
+#   variable ELISE_DEPLOYMENT_ID  optional: overrides the web app deployment id below
 
 on:
   push:
@@ -20,6 +19,8 @@ concurrency:
 
 env:
   CLASP: npx --yes @google/clasp@3.4.1
+  # The ÉLISE web app deployment (its /exec URL). Not a secret: it is part of the URL.
+  DEFAULT_DEPLOYMENT_ID: AKfycby6G-fZW5oj01nxuXsC6AkJw28fPToJyEFTdCgqpWkE-9cEscfBPtODgzSbRTjb8wPS
 
 jobs:
   push:
@@ -53,10 +54,7 @@ jobs:
         env:
           DEPLOYMENT_ID: ${{ vars.ELISE_DEPLOYMENT_ID }}
         run: |
-          if [ -z "$DEPLOYMENT_ID" ]; then
-            echo "::notice::Code pushed. No ELISE_DEPLOYMENT_ID variable yet, so the web app was not redeployed."
-            exit 0
-          fi
+          DEPLOYMENT_ID="${DEPLOYMENT_ID:-$DEFAULT_DEPLOYMENT_ID}"
           $CLASP redeploy "$DEPLOYMENT_ID" --description "${GITHUB_SHA::7}"
 
       - name: Remove credentials

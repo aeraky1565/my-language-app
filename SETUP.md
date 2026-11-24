@@ -25,10 +25,8 @@ Total time: about 10 minutes, once.
 The code is pushed to Apps Script by GitHub Actions with **clasp**
 (`.github/workflows/apps-script.yml`), on every push to `main` that touches `apps-script/`.
 
-**a. Create the project and give Claude its id**
-1. <https://script.google.com> › **New project**. Rename it **ÉLISE**.
-2. **Project Settings** (gear) › copy the **Script ID**. Send it to Claude, who puts it in `.clasp.json`
-   (a script id is not a secret).
+**a. The project** ✅ done: **ELISE** (`1FIyyXRz…`), with its web app deployment `AKfycby6G…`.
+Both ids are in the repo (`.clasp.json` and the workflow); neither is a secret.
 
 **b. Let GitHub push with your clasp login** (skip 1–2 if clasp already works on your computer for VERA)
 1. Turn on the Apps Script API for your account: <https://script.google.com/home/usersettings> › **Google Apps Script API: On**.
@@ -46,11 +44,9 @@ puts `Code.js` and `appsscript.json` into the project.
    (Google shows "unverified app" because it's your own script: **Advanced › Go to ÉLISE**).
    It asks for Sheets (the Elise Sheet) and Calendar, read-only.
 2. **Execution log** shows your **Token**. Keep it private.
-3. **Deploy › New deployment** › type **Web app** › Execute as **Me**, access **Anyone**
-   (like VERA; every request still needs the token) › **Deploy**. Copy the **Web app URL** (ends in `/exec`).
-4. **Deploy › Manage deployments** › copy the **Deployment ID**. GitHub › **Settings › Secrets and variables ›
-   Actions › Variables › New repository variable**: name **`ELISE_DEPLOYMENT_ID`**, value: that id.
-   From then on every code push also updates the web app, same URL.
+3. The web app already exists. Every push moves it to the new code, and the manifest sets
+   Execute as **Me**, access **Anyone** (like VERA; every request still needs the token). Its URL is
+   `https://script.google.com/macros/s/AKfycby6G-fZW5oj01nxuXsC6AkJw28fPToJyEFTdCgqpWkE-9cEscfBPtODgzSbRTjb8wPS/exec`.
 
 ## 3. Install on the Pixel
 
