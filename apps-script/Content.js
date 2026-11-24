@@ -15,11 +15,13 @@ var CONTENT_TABS_ = {
   Keywords: ['keyword', 'target'],
   Entries: ['id', 'theme', 'level', 'word', 'pos', 'fem', 'ipa', 'def_fr', 'def_en', 'example_fr', 'example_en',
             'phrase_fr', 'phrase_en', 'register', 'register_note',
-            'd1_fr', 'd1_en', 'd2_fr', 'd2_en', 'd3_fr', 'd3_en', 'd4_fr', 'd4_en', 'tts']
+            'd1_fr', 'd1_en', 'd2_fr', 'd2_en', 'd3_fr', 'd3_en', 'd4_fr', 'd4_en', 'tts',
+            'idiom_fr', 'idiom_literal', 'idiom_en', 'idiom_example_fr', 'idiom_example_en']
 };
 
 var ENTRY_REQUIRED_ = ['id', 'theme', 'level', 'word', 'pos', 'ipa', 'def_fr', 'def_en', 'example_fr', 'example_en',
-                       'phrase_fr', 'phrase_en', 'register', 'register_note'];
+                       'phrase_fr', 'phrase_en', 'register', 'register_note',
+                       'idiom_fr', 'idiom_literal', 'idiom_en', 'idiom_example_fr', 'idiom_example_en'];
 
 var ENTRIES_PER_THEME_ = { min: 10, max: 14 };
 
@@ -38,6 +40,8 @@ function entryToRow_(e) {
              e.phrase_fr, e.phrase_en, e.register, e.register_note];
   for (var i = 0; i < 4; i++) row.push(d[i] ? d[i].fr : '', d[i] ? d[i].en : '');
   row.push(e.tts || '');
+  var id = e.idiom || {};
+  row.push(id.fr || '', id.literal || '', id.en || '', id.example_fr || '', id.example_en || '');
   return row;
 }
 
@@ -53,7 +57,8 @@ function rowToEntry_(r) {
     id: s(r[0]), theme: s(r[1]), level: s(r[2]), word: s(r[3]), pos: s(r[4]), fem: s(r[5]) || null, ipa: s(r[6]),
     def_fr: s(r[7]), def_en: s(r[8]), example_fr: s(r[9]), example_en: s(r[10]),
     phrase_fr: s(r[11]), phrase_en: s(r[12]), register: s(r[13]), register_note: s(r[14]),
-    dialogue: dialogue, tts: s(r[23]) || null
+    dialogue: dialogue, tts: s(r[23]) || null,
+    idiom: { fr: s(r[24]), literal: s(r[25]), en: s(r[26]), example_fr: s(r[27]), example_en: s(r[28]) }
   };
 }
 
@@ -121,11 +126,15 @@ function validateLibrary_(lib, opts) {
     if (!tags[target] && CATEGORIES_.indexOf(target) === -1) errors.push('Keywords: "' + kw + '" points to unknown ' + target);
   });
 
-  var ids = {}, words = {}, counts = {}, levels = {};
+  var ids = {}, words = {}, idioms = {}, counts = {}, levels = {};
   Object.keys(tags).forEach(function (t) { counts[t] = 0; levels[t] = { B1: 0, B2: 0, argot: 0 }; });
   (lib.entries || []).forEach(function (e, i) {
     var where = 'Entries row ' + (i + 2) + ' (' + (e.id || '?') + ')';
-    ENTRY_REQUIRED_.forEach(function (f) { if (!e[f]) errors.push(where + ': missing ' + f); });
+    var flat = Object.assign({}, e);
+    var idm = e.idiom || {};
+    flat.idiom_fr = idm.fr; flat.idiom_literal = idm.literal; flat.idiom_en = idm.en;
+    flat.idiom_example_fr = idm.example_fr; flat.idiom_example_en = idm.example_en;
+    ENTRY_REQUIRED_.forEach(function (f) { if (!flat[f]) errors.push(where + ': missing ' + f); });
     if (!tags[e.theme]) { errors.push(where + ': unknown theme ' + e.theme); return; }
     counts[e.theme]++;
     if (LEVELS_.indexOf(e.level) === -1) errors.push(where + ': level must be B1, B2 or argot');
@@ -137,6 +146,12 @@ function validateLibrary_(lib, opts) {
     var l = lemma_(e.word);
     if (words[l]) errors.push(where + ': word "' + e.word + '" already used by ' + words[l]);
     words[l] = e.id;
+
+    if (idm.fr) {
+      var ik = norm_(idm.fr);
+      if (idioms[ik]) errors.push(where + ': idiom "' + idm.fr + '" already used by ' + idioms[ik]);
+      idioms[ik] = e.id;
+    }
 
     if (!e.dialogue || e.dialogue.length !== 4 || e.dialogue.some(function (d) { return !d.fr || !d.en; })) {
       errors.push(where + ': needs 4 dialogue lines, each in French and English');

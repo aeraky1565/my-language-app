@@ -54,7 +54,7 @@ seeding from `content/*.json`, **the Sheet is the master copy.**
 | `Themes` | tag, category, name_fr, name_en, related | 65 themes. `related` is comma-separated; the **first** one is the even-year swap and the first cooldown fallback |
 | `DefaultCalendar` | week, tag | ISO weeks 1–53 |
 | `Keywords` | keyword, target | target is a theme tag, or a category (→ that category's first theme not in cooldown) |
-| `Entries` | id, theme, word, pos, fem, ipa, def_fr, def_en, example_fr, example_en, phrase_fr, phrase_en, register, register_note, d1_fr … d4_en, tts | Dialogue speakers alternate A, B, A, B. `tts` is optional: what to speak when the word mispronounces |
+| `Entries` | id, theme, level, word, pos, fem, ipa, def_fr, def_en, example_fr, example_en, phrase_fr, phrase_en, register, register_note, d1_fr … d4_en, tts, idiom_fr, idiom_literal, idiom_en, idiom_example_fr, idiom_example_en | Dialogue speakers alternate A, B, A, B. `tts` is optional: what to speak when the word mispronounces. Every entry has an idiom, tied to its theme where possible; no idiom is used twice |
 
 `validateContent()` (Apps Script, `Content.js`) and `node --test tests/*.test.js` apply the same rules:
 10–14 entries per theme (`validateContent(true)` once the library is complete), no duplicate words
@@ -64,6 +64,13 @@ in its example (a conjugated verb, say) is a warning, not an error.
 
 Keyword categories beyond the original four: daily and seasonal keywords exist too. Category order
 when several events match: **travel > social > errands > work > daily > seasonal**, then the earliest date.
+
+## 3a. Expression du jour (new)
+
+Under the word card, the Today screen shows the day's **idiom**: the expression (with a speaker button), its
+word-for-word translation ("Mot à mot : to throw money out of the windows"), its real meaning (blurred until
+tapped), and an example sentence (English blurred until tapped). It can be bookmarked; saved idioms appear
+in Mes mots › Phrases.
 
 ## 3b. The week's rhythm (replaces original §5.5)
 

@@ -58,6 +58,13 @@ var SAMPLE_ENTRY_ = {
   phrase_en: 'Do you think it’s worth it?',
   register: 'tu · entre amis',
   register_note: '« tu » — on parle à une amie. Avec un vendeur : « Vous pensez que ça vaut le coup ? »',
+  idiom: {
+    fr: 'jeter l’argent par les fenêtres',
+    literal: 'to throw money out of the windows',
+    en: 'to waste money, to throw money away',
+    example_fr: 'Un troisième manteau ? C’est jeter l’argent par les fenêtres !',
+    example_en: 'A third coat? That’s throwing money away!'
+  },
   dialogue: [
     { who: 'A', fr: 'Regarde, le manteau est à moins cinquante pour cent !', en: 'Look, the coat is fifty percent off!' },
     { who: 'B', fr: 'Tu crois que ça vaut le coup ?', en: 'Do you think it’s worth it?' },
@@ -153,6 +160,7 @@ function apiToday_() {
     entry: SAMPLE_ENTRY_,
     saved: {
       word: !!saved[SAMPLE_ENTRY_.id + ':word'],
+      idiom: !!saved[SAMPLE_ENTRY_.id + ':idiom'],
       phrase: !!saved[SAMPLE_ENTRY_.id + ':phrase']
     },
     tts_rate: config_().tts_rate

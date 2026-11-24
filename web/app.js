@@ -289,6 +289,24 @@ function renderToday() {
       <p class="hint">Touchez l’anglais flouté pour le révéler.</p>
     </section>
 
+    ${e.idiom && e.idiom.fr ? `
+    <section class="card idiom-card">
+      <div class="row-between">
+        <p class="eyebrow">Expression du jour</p>
+        <button class="icon-btn card-head ${t.saved.idiom ? 'saved' : ''}" style="${t.saved.idiom ? 'color:var(--accent)' : ''}" type="button" data-save="idiom" aria-pressed="${!!t.saved.idiom}" aria-label="${t.saved.idiom ? 'Retirer l’expression' : 'Enregistrer l’expression'}">${ICON.bookmark}</button>
+      </div>
+      <div class="word-line">
+        <h3 class="idiom">${esc(e.idiom.fr)}</h3>
+        <button class="speak ghost" type="button" data-say="idiom" aria-label="Écouter l’expression">${ICON.speaker}</button>
+      </div>
+      <p class="literal"><span>Mot à mot :</span> ${esc(e.idiom.literal)}</p>
+      ${en('idiom', e.idiom.en, 'lg')}
+      <div class="example">
+        <p class="fr">${esc(e.idiom.example_fr)}</p>
+        ${en('idiomEx', e.idiom.example_en)}
+      </div>
+    </section>` : ''}
+
     <section class="phrase-card">
       <div class="row-between">
         <p class="eyebrow coral">Phrase du jour</p>
@@ -331,6 +349,7 @@ $view.addEventListener('click', async (ev) => {
     const e = state.today.entry;
     if (el.dataset.say === 'word') return speakButton(el, e.tts || e.word);
     if (el.dataset.say === 'phrase') return speakButton(el, e.phrase_fr);
+    if (el.dataset.say === 'idiom') return speakButton(el, e.idiom.fr + '. ' + e.idiom.example_fr);
     if ('toggleDialogue' in el.dataset) { state.dialogueOpen = !state.dialogueOpen; return renderToday(); }
     if ('play' in el.dataset) return togglePlay();
     if (el.dataset.save) return toggleSave(el.dataset.save);
@@ -359,7 +378,9 @@ async function toggleSave(type) {
   const t = state.today, e = t.entry;
   const item = type === 'word'
     ? { type, entry_id: e.id, fr: e.fem ? `${e.word}, ${e.fem}` : e.word, en: e.def_en, theme: t.theme.name_fr }
-    : { type, entry_id: e.id, fr: e.phrase_fr, en: e.phrase_en, theme: t.theme.name_fr };
+    : type === 'idiom'
+      ? { type, entry_id: e.id, fr: e.idiom.fr, en: e.idiom.en, theme: t.theme.name_fr }
+      : { type, entry_id: e.id, fr: e.phrase_fr, en: e.phrase_en, theme: t.theme.name_fr };
   t.saved[type] = !t.saved[type]; // optimistic
   renderToday();
   try {
@@ -389,7 +410,7 @@ function renderWords() {
   $view.className = '';
   const all = state.saved;
   const words = (all || []).filter((x) => x.type === 'word');
-  const phrases = (all || []).filter((x) => x.type === 'phrase');
+  const phrases = (all || []).filter((x) => x.type === 'phrase' || x.type === 'idiom');
   const q = state.query.trim().toLowerCase();
   let items = (state.tab === 'word' ? words : phrases).filter((x) => !q || `${x.fr} ${x.en}`.toLowerCase().includes(q));
 
@@ -400,7 +421,7 @@ function renderWords() {
     body = `<div class="empty">
       <div class="empty-icon">${ICON.bookmark}</div>
       <h2>Rien pour l’instant</h2>
-      <p>Touchez le marque-page sur le mot ou la phrase du jour pour les retrouver ici.</p>
+      <p>Touchez le marque-page sur le mot, l’expression ou la phrase du jour pour les retrouver ici.</p>
       <button class="btn btn-solid" type="button" data-go="today">Voir le mot du jour</button>
     </div>`;
   } else if (!items.length) {

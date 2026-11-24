@@ -36,7 +36,14 @@
         "fr": "Oui, ils sont enregistrés jusqu'à Lyon. Vous n'avez rien à faire.",
         "en": "Yes, they're checked through to Lyon. You don't need to do anything."
       }
-    ]
+    ],
+    "idiom": {
+      "fr": "mettre les voiles",
+      "literal": "to set the sails",
+      "en": "to head off, to leave",
+      "example_fr": "Bon, mon vol est à sept heures, je mets les voiles !",
+      "example_en": "Right, my flight's at seven, I'm off!"
+    }
   },
   {
     "id": "errands.dentist.01",
@@ -75,7 +82,14 @@
         "fr": "D'accord. Ça va faire mal ? Je suis un peu douillet.",
         "en": "OK. Will it hurt? I'm a bit of a wimp."
       }
-    ]
+    ],
+    "idiom": {
+      "fr": "serrer les dents",
+      "literal": "to squeeze one's teeth",
+      "en": "to grit one's teeth (and bear it)",
+      "example_fr": "Pendant la piqûre, j'ai serré les dents.",
+      "example_en": "During the injection, I gritted my teeth."
+    }
   },
   {
     "id": "social.hosting_dinner.01",
@@ -114,7 +128,14 @@
         "fr": "Ça marche. J'arrive vers vingt heures.",
         "en": "Deal. I'll be there around eight."
       }
-    ]
+    ],
+    "idiom": {
+      "fr": "mettre les petits plats dans les grands",
+      "literal": "to put the small dishes in the big ones",
+      "en": "to go all out (for guests)",
+      "example_fr": "Pour ses beaux-parents, elle a mis les petits plats dans les grands.",
+      "example_en": "For her in-laws, she went all out."
+    }
   },
   {
     "id": "work.meetings.01",
@@ -153,7 +174,14 @@
         "fr": "Super, comme ça je pourrai préparer mes chiffres.",
         "en": "Great, that way I can get my numbers ready."
       }
-    ]
+    ],
+    "idiom": {
+      "fr": "tourner autour du pot",
+      "literal": "to turn around the pot",
+      "en": "to beat around the bush",
+      "example_fr": "Arrête de tourner autour du pot : qu'est-ce qui ne va pas avec le budget ?",
+      "example_en": "Stop beating around the bush: what's wrong with the budget?"
+    }
   },
   {
     "id": "daily.grocery_market.01",
@@ -192,7 +220,14 @@
         "fr": "Parfait. Ce sera tout, merci. Je vous dois combien ?",
         "en": "Perfect. That's all, thanks. How much do I owe you?"
       }
-    ]
+    ],
+    "idiom": {
+      "fr": "pour une bouchée de pain",
+      "literal": "for a mouthful of bread",
+      "en": "for next to nothing",
+      "example_fr": "En fin de marché, j'ai eu trois kilos de pommes pour une bouchée de pain.",
+      "example_en": "At the end of the market, I got three kilos of apples for next to nothing."
+    }
   },
   {
     "id": "seasonal.december_holidays.01",
@@ -231,7 +266,14 @@
         "fr": "C'est bien aussi, c'est plus reposant ! Bonnes fêtes, alors.",
         "en": "That's nice too, it's more restful! Happy holidays, then."
       }
-    ]
+    ],
+    "idiom": {
+      "fr": "se mettre sur son trente et un",
+      "literal": "to put oneself on one's thirty-one",
+      "en": "to get dressed up to the nines",
+      "example_fr": "Pour le réveillon, tout le monde s'était mis sur son trente et un.",
+      "example_en": "For Christmas Eve, everyone was dressed up to the nines."
+    }
   },
   {
     "id": "errands.bank.01",
@@ -270,7 +312,14 @@
         "fr": "Exactement. La prochaine fois, choisissez le virement instantané.",
         "en": "Exactly. Next time, choose an instant transfer."
       }
-    ]
+    ],
+    "idiom": {
+      "fr": "avoir des fins de mois difficiles",
+      "literal": "to have difficult ends of the month",
+      "en": "to struggle to make ends meet",
+      "example_fr": "Avec le loyer qui augmente, beaucoup de gens ont des fins de mois difficiles.",
+      "example_en": "With rents going up, lots of people struggle to make ends meet."
+    }
   },
   {
     "id": "social.neighbours.01",
@@ -309,7 +358,14 @@
         "fr": "C'est gentil. Bonne journée, et bon anniversaire au petit !",
         "en": "That's kind. Have a good day, and happy birthday to the little one!"
       }
-    ]
+    ],
+    "idiom": {
+      "fr": "ne pas fermer l'œil de la nuit",
+      "literal": "not to close one's eye all night",
+      "en": "not to sleep a wink",
+      "example_fr": "Avec la fête du troisième, je n'ai pas fermé l'œil de la nuit.",
+      "example_en": "With the party on the third floor, I didn't sleep a wink."
+    }
   },
   {
     "id": "daily.transport_metro.01",
@@ -348,7 +404,14 @@
         "fr": "Aucune idée, mais la rame suivante a dix minutes de retard.",
         "en": "No idea, but the next train is ten minutes late."
       }
-    ]
+    ],
+    "idiom": {
+      "fr": "être serrés comme des sardines",
+      "literal": "to be squeezed like sardines",
+      "en": "to be packed in like sardines",
+      "example_fr": "Sur la ligne 13 à huit heures, on est serrés comme des sardines.",
+      "example_en": "On line 13 at eight o'clock, we're packed in like sardines."
+    }
   },
   {
     "id": "seasonal.sales.01",
@@ -387,7 +450,14 @@
         "fr": "Bon, vas-y… mais ne sois pas trop dépensière cette fois !",
         "en": "OK, go for it… but don't go overboard this time!"
       }
-    ]
+    ],
+    "idiom": {
+      "fr": "jeter l'argent par les fenêtres",
+      "literal": "to throw money out of the windows",
+      "en": "to waste money, to throw money away",
+      "example_fr": "Un troisième manteau ? C'est jeter l'argent par les fenêtres !",
+      "example_en": "A third coat? That's throwing money away!"
+    }
   },
   {
     "id": "seasonal.sales.02",
@@ -426,7 +496,14 @@
         "fr": "Et il me semble qu'il est soldé aussi. Demandons au vendeur.",
         "en": "And I think it's on sale too. Let's ask the salesperson."
       }
-    ]
+    ],
+    "idiom": {
+      "fr": "faire d'une pierre deux coups",
+      "literal": "to make two hits with one stone",
+      "en": "to kill two birds with one stone",
+      "example_fr": "En achetant les cadeaux pendant les soldes, j'ai fait d'une pierre deux coups.",
+      "example_en": "By buying the presents in the sales, I killed two birds with one stone."
+    }
   },
   {
     "id": "seasonal.sales.03",
@@ -465,6 +542,13 @@
         "fr": "Non, non, c'est fini. Je suis à sec jusqu'à la fin du mois.",
         "en": "No, no, I'm done. I'm broke until the end of the month."
       }
-    ]
+    ],
+    "idiom": {
+      "fr": "être fauché comme les blés",
+      "literal": "to be mown down like wheat",
+      "en": "to be flat broke",
+      "example_fr": "Après les soldes, je suis fauché comme les blés.",
+      "example_en": "After the sales, I'm flat broke."
+    }
   }
 ]

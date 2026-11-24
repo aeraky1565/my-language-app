@@ -84,6 +84,11 @@ h1, h2, h3, p { margin: 0; }
 .example mark { background: none; color: var(--accent-text); font-weight: 600; }
 .hint { font-size: 12px; color: var(--muted); }
 
+/* Idiom card */
+.idiom { font-family: var(--serif); font-weight: 600; font-size: 26px; line-height: 1.2; flex: 1; }
+.literal { font-size: 14px; font-style: italic; color: var(--muted); margin-top: -8px; }
+.literal span { font-style: normal; font-weight: 600; }
+
 /* Tap-to-reveal English */
 .en { display: block; margin: 0; padding: 2px 0; border: 0; background: none; text-align: left; font-size: 14px; line-height: 1.45; color: var(--muted); transition: filter .2s; }
 .en.lg { font-size: 15px; }
