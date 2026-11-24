@@ -36,7 +36,7 @@ Both ids are in the repo (`.clasp.json` and the workflow); neither is a secret.
    name **`CLASPRC_JSON`**, value: the whole file. **Never paste it in a chat.**
 
 Once the script id is in `.clasp.json` and the secret exists, the **Push ÉLISE Apps Script** action
-puts `Code.js` and `appsscript.json` into the project.
+puts every file in `apps-script/` (`Code.js`, `Content.js`, `appsscript.json`) into the project.
 
 **c. Run setup and deploy (once, in the Apps Script editor)**
 1. Open the ÉLISE project. In the function menu choose **setup** › **Run**. It fills your **Elise** Sheet

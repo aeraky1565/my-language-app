@@ -1,0 +1,182 @@
+[
+  {
+    "id": "travel.airport.01", "theme": "travel.airport",
+    "word": "la correspondance", "pos": "nom fém.", "fem": null, "ipa": "/la kɔ.ʁɛs.pɔ̃.dɑ̃s/",
+    "def_fr": "Deuxième vol (ou train) qu'on prend pour continuer son trajet après une escale.",
+    "def_en": "A connection (connecting flight or train).",
+    "example_fr": "J'ai seulement cinquante minutes pour attraper ma correspondance à Roissy.",
+    "example_en": "I only have fifty minutes to catch my connection at Roissy.",
+    "phrase_fr": "Je risque de rater ma correspondance, vous pouvez m'aider ?",
+    "phrase_en": "I might miss my connection, can you help me?",
+    "register": "vous · avec le personnel",
+    "register_note": "Au comptoir, on vouvoie toujours. « Je risque de… » est plus doux que « Je vais rater… » et attire la sympathie.",
+    "dialogue": [
+      { "who": "A", "fr": "Excusez-moi, je risque de rater ma correspondance, vous pouvez m'aider ?", "en": "Excuse me, I might miss my connection, can you help me?" },
+      { "who": "B", "fr": "Montrez-moi votre carte d'embarquement… Lyon ? Pas d'inquiétude, on vous met sur le vol suivant.", "en": "Show me your boarding pass… Lyon? Don't worry, we'll put you on the next flight." },
+      { "who": "A", "fr": "Et mes bagages, ils suivent automatiquement ?", "en": "And my bags, do they follow automatically?" },
+      { "who": "B", "fr": "Oui, ils sont enregistrés jusqu'à Lyon. Vous n'avez rien à faire.", "en": "Yes, they're checked through to Lyon. You don't need to do anything." }
+    ]
+  },
+  {
+    "id": "errands.dentist.01", "theme": "errands.dentist",
+    "word": "une carie", "pos": "nom fém.", "fem": null, "ipa": "/yn ka.ʁi/",
+    "def_fr": "Petit trou dans une dent, causé par les bactéries et le sucre.",
+    "def_en": "A cavity (in a tooth).",
+    "example_fr": "Le dentiste a trouvé une carie, il faut que j'y retourne mardi.",
+    "example_en": "The dentist found a cavity, I have to go back on Tuesday.",
+    "phrase_fr": "J'ai mal quand je bois quelque chose de froid.",
+    "phrase_en": "It hurts when I drink something cold.",
+    "register": "vous · chez le dentiste",
+    "register_note": "On vouvoie le dentiste. « J'ai mal quand… » marche pour tous les symptômes : « quand je mâche », « quand je me penche ».",
+    "dialogue": [
+      { "who": "A", "fr": "Alors, qu'est-ce qui vous amène aujourd'hui ?", "en": "So, what brings you in today?" },
+      { "who": "B", "fr": "J'ai mal quand je bois quelque chose de froid, surtout à gauche.", "en": "It hurts when I drink something cold, especially on the left." },
+      { "who": "A", "fr": "Je regarde… Oui, vous avez une petite carie. On peut la soigner tout de suite.", "en": "Let me look… Yes, you have a small cavity. We can treat it right away." },
+      { "who": "B", "fr": "D'accord. Ça va faire mal ? Je suis un peu douillet.", "en": "OK. Will it hurt? I'm a bit of a wimp." }
+    ]
+  },
+  {
+    "id": "social.hosting_dinner.01", "theme": "social.hosting_dinner",
+    "word": "un apéro", "pos": "nom masc. (fam.)", "fem": null, "ipa": "/œ̃.n‿a.pe.ʁo/",
+    "def_fr": "Moment où l'on boit un verre et grignote avant le repas, souvent entre amis.",
+    "def_en": "Pre-dinner drinks and nibbles (informal for apéritif).",
+    "example_fr": "Venez vers dix-neuf heures, on commence par un apéro sur le balcon.",
+    "example_en": "Come around seven, we'll start with drinks on the balcony.",
+    "phrase_fr": "Qu'est-ce que je peux apporter ?",
+    "phrase_en": "What can I bring?",
+    "register": "tu · entre amis",
+    "register_note": "Entre amis, on dit aussi « Je ramène quoi ? ». Chez des gens qu'on connaît peu : « Est-ce que je peux apporter quelque chose ? »",
+    "dialogue": [
+      { "who": "A", "fr": "Ça te dit de venir dîner samedi ? On fait un apéro d'abord.", "en": "Fancy coming for dinner on Saturday? We'll have drinks first." },
+      { "who": "B", "fr": "Avec plaisir ! Qu'est-ce que je peux apporter ?", "en": "I'd love to! What can I bring?" },
+      { "who": "A", "fr": "Rien du tout… Bon, si tu insistes, une bouteille de rouge.", "en": "Nothing at all… Well, if you insist, a bottle of red." },
+      { "who": "B", "fr": "Ça marche. J'arrive vers vingt heures.", "en": "Deal. I'll be there around eight." }
+    ]
+  },
+  {
+    "id": "work.meetings.01", "theme": "work.meetings",
+    "word": "l'ordre du jour", "pos": "nom masc.", "fem": null, "ipa": "/lɔʁ.dʁə dy ʒuʁ/",
+    "def_fr": "Liste des sujets à traiter pendant une réunion.",
+    "def_en": "The agenda (of a meeting).",
+    "example_fr": "Tu peux m'envoyer l'ordre du jour avant la réunion de lundi ?",
+    "example_en": "Can you send me the agenda before Monday's meeting?",
+    "phrase_fr": "On peut faire un point rapide demain matin ?",
+    "phrase_en": "Can we have a quick catch-up tomorrow morning?",
+    "register": "tu · entre collègues",
+    "register_note": "Beaucoup de collègues se tutoient en France. « Faire un point » = une courte réunion pour voir où on en est. Avec un client : « Pourrions-nous faire un point demain matin ? »",
+    "dialogue": [
+      { "who": "A", "fr": "On peut faire un point rapide demain matin ? J'ai besoin de ton avis sur le budget.", "en": "Can we have a quick catch-up tomorrow morning? I need your opinion on the budget." },
+      { "who": "B", "fr": "Oui, mais pas avant dix heures, j'ai une réunion d'équipe.", "en": "Yes, but not before ten, I have a team meeting." },
+      { "who": "A", "fr": "Parfait. Je t'envoie l'ordre du jour ce soir.", "en": "Perfect. I'll send you the agenda tonight." },
+      { "who": "B", "fr": "Super, comme ça je pourrai préparer mes chiffres.", "en": "Great, that way I can get my numbers ready." }
+    ]
+  },
+  {
+    "id": "daily.grocery_market.01", "theme": "daily.grocery_market",
+    "word": "une barquette", "pos": "nom fém.", "fem": null, "ipa": "/yn baʁ.kɛt/",
+    "def_fr": "Petit récipient en carton ou en plastique dans lequel on vend des fruits, de la viande…",
+    "def_en": "A punnet; a small tray (of fruit, meat…).",
+    "example_fr": "Je vais vous prendre une barquette de fraises, s'il vous plaît.",
+    "example_en": "I'll take a punnet of strawberries, please.",
+    "phrase_fr": "Et avec ceci ?",
+    "phrase_en": "Anything else?",
+    "register": "vous · au marché",
+    "register_note": "C'est la question rituelle du commerçant. On répond « Ce sera tout, merci » ou « C'est tout pour aujourd'hui ».",
+    "dialogue": [
+      { "who": "A", "fr": "Voilà vos tomates. Et avec ceci ?", "en": "Here are your tomatoes. Anything else?" },
+      { "who": "B", "fr": "Une barquette de fraises, s'il vous plaît. Elles viennent d'où ?", "en": "A punnet of strawberries, please. Where are they from?" },
+      { "who": "A", "fr": "De Plougastel, en Bretagne. Elles sont superbes cette semaine.", "en": "From Plougastel, in Brittany. They're gorgeous this week." },
+      { "who": "B", "fr": "Parfait. Ce sera tout, merci. Je vous dois combien ?", "en": "Perfect. That's all, thanks. How much do I owe you?" }
+    ]
+  },
+  {
+    "id": "seasonal.december_holidays.01", "theme": "seasonal.december_holidays",
+    "word": "le réveillon", "pos": "nom masc.", "fem": null, "ipa": "/lə ʁe.vɛ.jɔ̃/",
+    "def_fr": "Grand repas de fête le soir du 24 ou du 31 décembre.",
+    "def_en": "The Christmas Eve or New Year's Eve dinner (and party).",
+    "example_fr": "Cette année, on fait le réveillon chez mes beaux-parents.",
+    "example_en": "This year we're having Christmas Eve dinner at my in-laws'.",
+    "phrase_fr": "Vous faites quoi pour les fêtes ?",
+    "phrase_en": "What are you doing for the holidays?",
+    "register": "vous · avec un collègue ou un voisin",
+    "register_note": "La question de décembre. Entre amis : « Tu fais quoi pour les fêtes ? ». « En petit comité » = avec seulement quelques proches.",
+    "dialogue": [
+      { "who": "A", "fr": "Vous faites quoi pour les fêtes ?", "en": "What are you doing for the holidays?" },
+      { "who": "B", "fr": "On part dans le Sud-Ouest, chez ma sœur. Et vous ?", "en": "We're going to the South-West, to my sister's. And you?" },
+      { "who": "A", "fr": "On reste ici, on fait le réveillon en petit comité.", "en": "We're staying here, Christmas Eve with just a few close family." },
+      { "who": "B", "fr": "C'est bien aussi, c'est plus reposant ! Bonnes fêtes, alors.", "en": "That's nice too, it's more restful! Happy holidays, then." }
+    ]
+  },
+  {
+    "id": "errands.bank.01", "theme": "errands.bank",
+    "word": "un virement", "pos": "nom masc.", "fem": null, "ipa": "/œ̃ viʁ.mɑ̃/",
+    "def_fr": "Transfert d'argent d'un compte bancaire à un autre.",
+    "def_en": "A bank transfer.",
+    "example_fr": "Je t'ai fait un virement pour le loyer, tu devrais le recevoir demain.",
+    "example_en": "I sent you a transfer for the rent, you should get it tomorrow.",
+    "phrase_fr": "Mon virement n'est toujours pas arrivé.",
+    "phrase_en": "My transfer still hasn't arrived.",
+    "register": "vous · avec le conseiller",
+    "register_note": "Le « conseiller » ou la « conseillère » gère votre compte. « Toujours pas » = still not ; très utile pour se plaindre poliment.",
+    "dialogue": [
+      { "who": "A", "fr": "Bonjour, mon virement n'est toujours pas arrivé, ça fait trois jours.", "en": "Hello, my transfer still hasn't arrived, it's been three days." },
+      { "who": "B", "fr": "Je regarde… Il a été fait vendredi soir, donc il sera traité aujourd'hui.", "en": "Let me check… It was made on Friday evening, so it'll be processed today." },
+      { "who": "A", "fr": "Ah, à cause du week-end ? Je ne savais pas.", "en": "Oh, because of the weekend? I didn't know." },
+      { "who": "B", "fr": "Exactement. La prochaine fois, choisissez le virement instantané.", "en": "Exactly. Next time, choose an instant transfer." }
+    ]
+  },
+  {
+    "id": "social.neighbours.01", "theme": "social.neighbours",
+    "word": "le palier", "pos": "nom masc.", "fem": null, "ipa": "/lə pa.lje/",
+    "def_fr": "Espace devant les portes des appartements, à chaque étage d'un immeuble.",
+    "def_en": "The landing (in a block of flats).",
+    "example_fr": "J'ai croisé la nouvelle voisine sur le palier, elle a l'air sympa.",
+    "example_en": "I ran into the new neighbour on the landing, she seems nice.",
+    "phrase_fr": "Désolé pour le bruit hier soir.",
+    "phrase_en": "Sorry about the noise last night.",
+    "register": "vous · avec un voisin qu'on connaît peu",
+    "register_note": "Entre voisins, on se vouvoie au début. On peut aussi prévenir : « On fait une petite fête samedi, désolés d'avance pour le bruit ! »",
+    "dialogue": [
+      { "who": "A", "fr": "Bonjour ! Désolé pour le bruit hier soir, on fêtait l'anniversaire de mon fils.", "en": "Hello! Sorry about the noise last night, we were celebrating my son's birthday." },
+      { "who": "B", "fr": "Oh, ce n'est rien, je n'ai presque rien entendu.", "en": "Oh, it's nothing, I barely heard a thing." },
+      { "who": "A", "fr": "Tant mieux. La prochaine fois, je mettrai un mot dans le hall.", "en": "Good. Next time I'll put a note up in the hall." },
+      { "who": "B", "fr": "C'est gentil. Bonne journée, et bon anniversaire au petit !", "en": "That's kind. Have a good day, and happy birthday to the little one!" }
+    ]
+  },
+  {
+    "id": "daily.transport_metro.01", "theme": "daily.transport_metro",
+    "word": "une rame", "pos": "nom fém.", "fem": null, "ipa": "/yn ʁam/",
+    "def_fr": "Ensemble des voitures d'un métro ou d'un train qui roulent ensemble.",
+    "def_en": "A train (the set of carriages), especially on the metro.",
+    "example_fr": "La rame était tellement pleine que j'ai attendu la suivante.",
+    "example_en": "The train was so packed that I waited for the next one.",
+    "phrase_fr": "Pardon, je descends à la prochaine !",
+    "phrase_en": "Excuse me, I'm getting off at the next stop!",
+    "register": "vous · avec des inconnus",
+    "register_note": "« Pardon » suffit pour se frayer un chemin. « La prochaine » = la prochaine station. Avec des inconnus, on vouvoie toujours.",
+    "dialogue": [
+      { "who": "A", "fr": "Pardon, je descends à la prochaine !", "en": "Excuse me, I'm getting off at the next stop!" },
+      { "who": "B", "fr": "Allez-y, je me pousse.", "en": "Go ahead, I'll move." },
+      { "who": "A", "fr": "Merci. Ils annoncent un incident sur la ligne 4, vous savez ce qui se passe ?", "en": "Thanks. They're announcing an incident on line 4, do you know what's going on?" },
+      { "who": "B", "fr": "Aucune idée, mais la rame suivante a dix minutes de retard.", "en": "No idea, but the next train is ten minutes late." }
+    ]
+  },
+  {
+    "id": "seasonal.sales.01", "theme": "seasonal.sales",
+    "word": "dépensier", "pos": "adj.", "fem": "dépensière", "ipa": "/de.pɑ̃.sje/",
+    "def_fr": "Qui aime dépenser son argent, parfois un peu trop.",
+    "def_en": "Free-spending; someone who spends easily, sometimes too much.",
+    "example_fr": "Pendant les soldes, je deviens vraiment dépensier.",
+    "example_en": "During the sales, I get really spendy.",
+    "phrase_fr": "Tu crois que ça vaut le coup ?",
+    "phrase_en": "Do you think it's worth it?",
+    "register": "tu · entre amis",
+    "register_note": "« tu » — on parle à une amie. Avec un vendeur : « Vous pensez que ça vaut le coup ? »",
+    "dialogue": [
+      { "who": "A", "fr": "Regarde, le manteau est à moins cinquante pour cent !", "en": "Look, the coat is fifty percent off!" },
+      { "who": "B", "fr": "Tu crois que ça vaut le coup ?", "en": "Do you think it's worth it?" },
+      { "who": "A", "fr": "Franchement, oui. Il était hors de prix avant.", "en": "Honestly, yes. It was way overpriced before." },
+      { "who": "B", "fr": "Bon, vas-y… mais ne sois pas trop dépensière cette fois !", "en": "OK, go for it… but don't go overboard this time!" }
+    ]
+  }
+]

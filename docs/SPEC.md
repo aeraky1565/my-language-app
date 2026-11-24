@@ -44,11 +44,26 @@ Time zone: America/New_York (from the default calendar at runtime).
 - Streak: a missed day resets quietly to 1. No onboarding screen: calendar access is granted once
   when `setup()` runs.
 
-## 3. Content additions (adds to original §3)
+## 3. Content (adds to original §3)
 
-- Optional `tts` field per entry: the text to speak when the written word mispronounces.
-- The library lives in the Sheet (`Themes` and `Entries` tabs) so entries can be fixed by hand. A
-  `validate()` function checks 10–14 entries per theme, no duplicate words, and required fields.
+The library lives in the **Elise** Sheet, so you can fix anything by hand. After the first
+seeding from `content/*.json`, **the Sheet is the master copy.**
+
+| Tab | Columns | Notes |
+|---|---|---|
+| `Themes` | tag, category, name_fr, name_en, related | 65 themes. `related` is comma-separated; the **first** one is the even-year swap and the first cooldown fallback |
+| `DefaultCalendar` | week, tag | ISO weeks 1–53 |
+| `Keywords` | keyword, target | target is a theme tag, or a category (→ that category's first theme not in cooldown) |
+| `Entries` | id, theme, word, pos, fem, ipa, def_fr, def_en, example_fr, example_en, phrase_fr, phrase_en, register, register_note, d1_fr … d4_en, tts | Dialogue speakers alternate A, B, A, B. `tts` is optional: what to speak when the word mispronounces |
+
+`validateContent()` (Apps Script, `Content.js`) and `node --test tests/*.test.js` apply the same rules:
+10–14 entries per theme (`validateContent(true)` once the library is complete), no duplicate words
+(ignoring the article), required fields, phrase in dialogue line 1 or 2, register starting with
+`tu` or `vous`, related tags and keywords pointing to real themes. A word that doesn't appear as-is
+in its example (a conjugated verb, say) is a warning, not an error.
+
+Keyword categories beyond the original four: daily and seasonal keywords exist too. Category order
+when several events match: **travel > social > errands > work > daily > seasonal**, then the earliest date.
 
 ## 4. ÉLISE calendar: the theme weeks (new)
 
