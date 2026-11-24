@@ -46,8 +46,11 @@ Time zone: America/New_York (from the default calendar at runtime).
 
 ## 3. Content (adds to original §3)
 
-The library lives in the **Elise** Sheet, so you can fix anything by hand. After the first
-seeding from `content/*.json`, **the Sheet is the master copy.**
+The library lives in the **Elise** Sheet, so you can fix anything by hand; **the Sheet is the master
+copy.** New themes are written in the repo (`content/library/<tag>.json`, listed in `INDEX.json`) and
+brought in with **`importNewContent()`** (run from the Apps Script editor): it adds only entries and
+idioms whose id isn't in the Sheet yet, never changes an existing row, then runs the validator.
+`content/library/COMPLETE.txt` lists the finished themes; tests hold those to the full rules.
 
 | Tab | Columns | Notes |
 |---|---|---|

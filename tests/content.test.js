@@ -14,8 +14,9 @@ const { validateLibrary_, entryToRow_, rowToEntry_, themeToRow_, rowToTheme_, id
 
 const CONTENT = path.join(__dirname, '../content');
 const read = (f) => JSON.parse(fs.readFileSync(path.join(CONTENT, f), 'utf8'));
-const libraryFiles = () => fs.readdirSync(path.join(CONTENT, 'library')).filter((f) => f.endsWith('.json')).sort()
-  .map((f) => read('library/' + f));
+const themeFileNames = () => fs.readdirSync(path.join(CONTENT, 'library'))
+  .filter((f) => f.endsWith('.json') && f !== 'INDEX.json').sort();
+const libraryFiles = () => themeFileNames().map((f) => read('library/' + f));
 const library = () => {
   const files = libraryFiles();
   return {
@@ -39,6 +40,10 @@ test('the content in the repo has no errors', () => {
 
 test('the content in the repo has no warnings', () => {
   assert.deepEqual([...validateLibrary_(library(), {}).warnings], []);
+});
+
+test('content/library/INDEX.json lists exactly the theme files (the Sheet importer reads it)', () => {
+  assert.deepEqual(read('library/INDEX.json').files, themeFileNames());
 });
 
 test('each library file holds only its own theme', () => {
