@@ -4,7 +4,7 @@
 
 | Part | Where it lives | What it does |
 |---|---|---|
-| **API** | A standalone Apps Script project (`apps-script/`) | Reads your calendars, keeps state in the **ÉLISE** Google Sheet, answers only requests carrying your token |
+| **API** | A standalone Apps Script project (`apps-script/`) | Reads your calendars, keeps state in the **Elise** Google Sheet, answers only requests carrying your token |
 | **App** | GitHub Pages (`web/`) | The screens. Installed on the Pixel as a home-screen app, full-screen with its own icon |
 
 Total time: about 10 minutes, once.
@@ -28,10 +28,11 @@ Total time: about 10 minutes, once.
    - open `appsscript.json`, replace everything with the contents of [`apps-script/appsscript.json`](apps-script/appsscript.json);
    - open `Code.gs`, replace everything with the contents of [`apps-script/Code.js`](apps-script/Code.js).
    - Save (Ctrl/Cmd + S).
-4. In the function menu at the top choose **setup** › **Run**. Approve the permissions
+4. In the function menu at the top choose **setup** › **Run**. It fills your existing **Elise** Sheet
+   (adds the `Config`, `Visits` and `Saved` tabs and removes the empty `Sheet1`). Approve the permissions
    (Google shows "unverified app" because it's your own script: **Advanced › Go to ÉLISE**).
-   It asks for: Sheets (to create and use the ÉLISE Sheet) and Calendar, read-only.
-5. Open **Execution log**. It shows the ÉLISE Sheet link and your **Token**. Keep the token private.
+   It asks for: Sheets (to use the Elise Sheet) and Calendar, read-only.
+5. Open **Execution log**. It shows the Elise Sheet link and your **Token**. Keep the token private.
 6. **Deploy › New deployment** › type **Web app**:
    - Execute as: **Me**
    - Who has access: **Anyone** (like VERA; every request still needs the token)
