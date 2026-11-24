@@ -120,3 +120,20 @@ test('every default week has a usable even-year swap (its first related tag)', (
   const byTag = Object.fromEntries(lib.themes.map((t) => [t.tag, t]));
   for (const tag of Object.values(lib.calendar)) assert.ok(byTag[byTag[tag].related[0]]);
 });
+
+test('a level other than B1, B2 or argot is an error', () => {
+  const lib = library();
+  lib.entries[0].level = 'C1';
+  assert.ok(validateLibrary_(lib).errors.some((m) => m.includes('level must be B1, B2 or argot')));
+});
+
+test('complete mode requires 2 B2 and 2 argot entries per theme', () => {
+  const errs = [...validateLibrary_(library(), { complete: true }).errors];
+  assert.ok(errs.includes('Theme seasonal.sales: 1 B2 entries (min 2)'));
+  assert.ok(errs.includes('Theme seasonal.sales: 1 argot entries (min 2)'));
+});
+
+test('the samples include one of each level', () => {
+  const levels = new Set(read('entries.json').map((e) => e.level));
+  assert.deepEqual([...levels].sort(), ['B1', 'B2', 'argot']);
+});
