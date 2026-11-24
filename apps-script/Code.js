@@ -4,8 +4,9 @@
 // A standalone Apps Script project that serves a JSON API to the ÉLISE web
 // app on GitHub Pages (the same shape as VERA).
 //
-//   - Data lives in the ÉLISE Google Sheet. Its id is the one Script Property
-//     the code needs before anything else: ELISE_SHEET_ID.
+//   - Data lives in the "Elise" Google Sheet (DEFAULT_SHEET_ID_ below). setup()
+//     records it in the Script Property ELISE_SHEET_ID, which wins if it is
+//     ever changed. The id alone gives no access: the Sheet stays private.
 //   - Settings live in that Sheet's Config tab (key | value).
 //   - Every request must carry the token kept in the Script Property
 //     ELISE_TOKEN. No token, no data.
@@ -16,6 +17,8 @@
 // phrases, settings with the calendar list. The content library, the theme
 // engine and the daily ÉLISE calendar event come in later steps.
 // ============================================================
+
+var DEFAULT_SHEET_ID_ = '17faT__UTAeGHRUu5Nya2lhm62IUYSrOwRpTRZ6A7WeA';
 
 var TABS_ = {
   Config: ['key', 'value'],
@@ -63,20 +66,20 @@ var SAMPLE_ENTRY_ = {
 // ---- Setup -----------------------------------------------------------------
 
 /**
- * Run once, by hand, from the Apps Script editor. Creates the ÉLISE Sheet (or
- * reuses the one already recorded), its tabs and defaults, and the access
- * token. Logs the token and what to do next; never logs anything else.
+ * Run once, by hand, from the Apps Script editor. Sets up the Elise Sheet
+ * (its tabs and defaults; creates a new Sheet only if no id is known) and the
+ * access token. Logs the token and what to do next; never logs anything else.
  */
 function setup() {
   var props = PropertiesService.getScriptProperties();
-  var id = props.getProperty('ELISE_SHEET_ID');
+  var id = props.getProperty('ELISE_SHEET_ID') || DEFAULT_SHEET_ID_;
   var ss;
   if (id) {
     ss = SpreadsheetApp.openById(id);
   } else {
-    ss = SpreadsheetApp.create('ÉLISE');
-    props.setProperty('ELISE_SHEET_ID', ss.getId());
+    ss = SpreadsheetApp.create('Elise');
   }
+  props.setProperty('ELISE_SHEET_ID', ss.getId());
   Object.keys(TABS_).forEach(function (name) { sheet_(name, ss); });
   var blank = ss.getSheetByName('Sheet1') || ss.getSheetByName('Feuille 1');
   if (blank && ss.getSheets().length > 1) ss.deleteSheet(blank);
@@ -93,7 +96,7 @@ function setup() {
   }
   CalendarApp.getDefaultCalendar().getTimeZone(); // covers the calendar authorization now
 
-  Logger.log('ÉLISE Sheet: ' + ss.getUrl());
+  Logger.log('Elise Sheet: ' + ss.getUrl());
   Logger.log('Token: ' + token);
   Logger.log('Next: Deploy › New deployment › Web app, then open the web app with');
   Logger.log('  https://aeraky1565.github.io/my-language-app/#api=<WEB APP URL>&token=' + token);
@@ -272,8 +275,7 @@ var _ss_ = null;
 
 function ss_() {
   if (_ss_) return _ss_;
-  var id = PropertiesService.getScriptProperties().getProperty('ELISE_SHEET_ID');
-  if (!id) throw new Error('ELISE_SHEET_ID is not set: run setup() once from the editor');
+  var id = PropertiesService.getScriptProperties().getProperty('ELISE_SHEET_ID') || DEFAULT_SHEET_ID_;
   _ss_ = SpreadsheetApp.openById(id);
   return _ss_;
 }
