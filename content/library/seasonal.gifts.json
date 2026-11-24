@@ -1,0 +1,529 @@
+{
+  "theme": "seasonal.gifts",
+  "entries": [
+    {
+      "id": "seasonal.gifts.01",
+      "theme": "seasonal.gifts",
+      "level": "B1",
+      "word": "un paquet cadeau",
+      "pos": "nom masc.",
+      "fem": null,
+      "ipa": "/œ̃ pa.kɛ ka.do/",
+      "def_fr": "Emballage décoratif autour d'un cadeau, souvent fait en magasin.",
+      "def_en": "Gift wrapping; a gift-wrapped present.",
+      "example_fr": "La vendeuse m'a fait un joli paquet cadeau avec un ruban.",
+      "example_en": "The shop assistant gift-wrapped it nicely with a ribbon.",
+      "phrase_fr": "Vous pouvez me faire un paquet cadeau ?",
+      "phrase_en": "Could you gift-wrap it for me?",
+      "register": "vous · avec un vendeur",
+      "register_note": "Souvent gratuit en France. On peut aussi demander « un ticket cadeau » : un ticket sans le prix, pour que la personne puisse échanger.",
+      "dialogue": [
+        {
+          "who": "A",
+          "fr": "C'est pour offrir. Vous pouvez me faire un paquet cadeau ?",
+          "en": "It's a present. Could you gift-wrap it for me?"
+        },
+        {
+          "who": "B",
+          "fr": "Avec plaisir. Je vous mets aussi un ticket cadeau, sans le prix ?",
+          "en": "With pleasure. Shall I add a gift receipt, without the price?"
+        },
+        {
+          "who": "A",
+          "fr": "Oui, bonne idée, au cas où la taille n'irait pas.",
+          "en": "Yes, good idea, in case the size isn't right."
+        },
+        {
+          "who": "B",
+          "fr": "Voilà. J'ai ajouté une petite carte pour écrire un mot.",
+          "en": "There you go. I've added a little card so you can write a message."
+        }
+      ]
+    },
+    {
+      "id": "seasonal.gifts.02",
+      "theme": "seasonal.gifts",
+      "level": "B1",
+      "word": "offrir",
+      "pos": "verbe",
+      "fem": null,
+      "ipa": "/ɔ.fʁiʁ/",
+      "def_fr": "Donner quelque chose à quelqu'un comme cadeau.",
+      "def_en": "To give (as a present).",
+      "example_fr": "Je ne sais jamais quoi offrir à mon beau-père.",
+      "example_en": "I never know what to give my father-in-law.",
+      "phrase_fr": "Tu as une idée de cadeau ?",
+      "phrase_en": "Do you have any gift ideas?",
+      "register": "tu · en famille",
+      "register_note": "« Une idée de cadeau » est l'expression courante. Réponse classique : « Aucune idée, il a déjà tout ! »",
+      "dialogue": [
+        {
+          "who": "A",
+          "fr": "Noël approche… Tu as une idée de cadeau pour ton père ?",
+          "en": "Christmas is coming… Do you have a gift idea for your dad?"
+        },
+        {
+          "who": "B",
+          "fr": "Aucune idée, il a déjà tout ! Je ne sais jamais quoi lui offrir.",
+          "en": "No idea, he already has everything! I never know what to give him."
+        },
+        {
+          "who": "A",
+          "fr": "Pourquoi pas une expérience ? Un cours de cuisine, par exemple.",
+          "en": "Why not an experience? A cooking class, for example."
+        },
+        {
+          "who": "B",
+          "fr": "Pas bête ! En plus, il adore cuisiner.",
+          "en": "Not a bad idea! And he loves cooking."
+        }
+      ]
+    },
+    {
+      "id": "seasonal.gifts.03",
+      "theme": "seasonal.gifts",
+      "level": "B1",
+      "word": "un bon d'achat",
+      "pos": "nom masc.",
+      "fem": null,
+      "ipa": "/œ̃ bɔ̃ da.ʃa/",
+      "def_fr": "Carte ou papier qui permet d'acheter ce qu'on veut dans un magasin, jusqu'à une certaine somme.",
+      "def_en": "A gift voucher; a gift card.",
+      "example_fr": "Quand on n'a pas d'idée, un bon d'achat, c'est pratique.",
+      "example_en": "When you're out of ideas, a gift voucher is handy.",
+      "phrase_fr": "Il est valable jusqu'à quand ?",
+      "phrase_en": "How long is it valid for?",
+      "register": "vous · à la caisse",
+      "register_note": "On dit aussi « une carte cadeau ». « Valable » = valid. Réponse type : « Un an à partir d'aujourd'hui. »",
+      "dialogue": [
+        {
+          "who": "A",
+          "fr": "Voilà votre bon d'achat de cinquante euros.",
+          "en": "Here's your fifty-euro gift voucher."
+        },
+        {
+          "who": "B",
+          "fr": "Merci. Il est valable jusqu'à quand ?",
+          "en": "Thanks. How long is it valid for?"
+        },
+        {
+          "who": "A",
+          "fr": "Un an à partir d'aujourd'hui, dans tous nos magasins.",
+          "en": "A year from today, in all our shops."
+        },
+        {
+          "who": "B",
+          "fr": "Parfait, comme ça elle aura le temps de choisir.",
+          "en": "Perfect, that way she'll have time to choose."
+        }
+      ]
+    },
+    {
+      "id": "seasonal.gifts.04",
+      "theme": "seasonal.gifts",
+      "level": "B1",
+      "word": "un emballage",
+      "pos": "nom masc.",
+      "fem": null,
+      "ipa": "/œ̃.n‿ɑ̃.ba.laʒ/",
+      "def_fr": "Papier, carton ou plastique qui entoure un objet.",
+      "def_en": "Packaging; wrapping.",
+      "example_fr": "Les enfants déchirent l'emballage en deux secondes !",
+      "example_en": "The kids rip the wrapping off in two seconds!",
+      "phrase_fr": "Il ne fallait pas !",
+      "phrase_en": "You shouldn't have!",
+      "register": "tu · en famille",
+      "register_note": "La réponse polie quand on reçoit un cadeau. Avec des gens qu'on vouvoie : « Il ne fallait pas, c'est trop gentil ! »",
+      "dialogue": [
+        {
+          "who": "A",
+          "fr": "Tiens, c'est un petit quelque chose pour toi.",
+          "en": "Here, it's a little something for you."
+        },
+        {
+          "who": "B",
+          "fr": "Oh, il ne fallait pas ! Je peux l'ouvrir maintenant ?",
+          "en": "Oh, you shouldn't have! Can I open it now?"
+        },
+        {
+          "who": "A",
+          "fr": "Bien sûr ! Attention, l'emballage est un peu compliqué.",
+          "en": "Of course! Careful, the wrapping is a bit tricky."
+        },
+        {
+          "who": "B",
+          "fr": "Une écharpe ! Elle est magnifique, merci beaucoup.",
+          "en": "A scarf! It's gorgeous, thank you so much."
+        }
+      ]
+    },
+    {
+      "id": "seasonal.gifts.05",
+      "theme": "seasonal.gifts",
+      "level": "B1",
+      "word": "faire plaisir",
+      "pos": "expr. verbale",
+      "fem": null,
+      "ipa": "/fɛʁ plɛ.ziʁ/",
+      "def_fr": "Rendre quelqu'un content.",
+      "def_en": "To please someone; to make someone happy.",
+      "example_fr": "Ce petit cadeau va vraiment lui faire plaisir.",
+      "example_en": "This little present will really make her happy.",
+      "phrase_fr": "Ça me fait vraiment plaisir.",
+      "phrase_en": "I'm really touched.",
+      "register": "tu · entre amis",
+      "register_note": "Pour remercier avec chaleur. Plus familier : « Tu m'as fait super plaisir ! »",
+      "dialogue": [
+        {
+          "who": "A",
+          "fr": "J'ai vu ce livre et j'ai pensé à toi.",
+          "en": "I saw this book and thought of you."
+        },
+        {
+          "who": "B",
+          "fr": "C'est adorable ! Ça me fait vraiment plaisir.",
+          "en": "That's so sweet! I'm really touched."
+        },
+        {
+          "who": "A",
+          "fr": "Tu m'avais dit que tu voulais lire cet auteur.",
+          "en": "You told me you wanted to read this author."
+        },
+        {
+          "who": "B",
+          "fr": "Tu t'en es souvenu ? Tu es un amour.",
+          "en": "You remembered? You're a sweetheart."
+        }
+      ]
+    },
+    {
+      "id": "seasonal.gifts.06",
+      "theme": "seasonal.gifts",
+      "level": "B1",
+      "word": "une liste d'envies",
+      "pos": "nom fém.",
+      "fem": null,
+      "ipa": "/yn list dɑ̃.vi/",
+      "def_fr": "Liste des choses qu'on aimerait recevoir.",
+      "def_en": "A wish list.",
+      "example_fr": "Envoie-moi ta liste d'envies, ce sera plus simple pour tout le monde.",
+      "example_en": "Send me your wish list, it'll be easier for everyone.",
+      "phrase_fr": "Tu as besoin de quelque chose ?",
+      "phrase_en": "Is there anything you need?",
+      "register": "tu · en famille",
+      "register_note": "Façon discrète de chercher une idée de cadeau. Plus direct : « Qu'est-ce qui te ferait plaisir ? »",
+      "dialogue": [
+        {
+          "who": "A",
+          "fr": "Dis-moi, pour les fêtes… tu as besoin de quelque chose ?",
+          "en": "Tell me, for the holidays… is there anything you need?"
+        },
+        {
+          "who": "B",
+          "fr": "Pas vraiment. Mais je peux te faire une liste d'envies, si tu veux.",
+          "en": "Not really. But I can make you a wish list, if you like."
+        },
+        {
+          "who": "A",
+          "fr": "Oui, ça m'arrangerait ! Je n'ai aucune inspiration cette année.",
+          "en": "Yes, that would help! I've got no inspiration this year."
+        },
+        {
+          "who": "B",
+          "fr": "D'accord, je te l'envoie ce soir par message.",
+          "en": "OK, I'll text it to you tonight."
+        }
+      ]
+    },
+    {
+      "id": "seasonal.gifts.07",
+      "theme": "seasonal.gifts",
+      "level": "B1",
+      "word": "une cagnotte",
+      "pos": "nom fém.",
+      "fem": null,
+      "ipa": "/yn ka.ɲɔt/",
+      "def_fr": "Somme d'argent que plusieurs personnes mettent en commun, souvent pour un cadeau.",
+      "def_en": "A kitty; a whip-round (pooled money).",
+      "example_fr": "Au bureau, on a fait une cagnotte pour le départ de Marie.",
+      "example_en": "At work, we had a whip-round for Marie's leaving present.",
+      "phrase_fr": "On se cotise pour lui offrir quelque chose ?",
+      "phrase_en": "Shall we chip in to get her something?",
+      "register": "tu · entre collègues",
+      "register_note": "« Se cotiser » = donner chacun un peu d'argent. Très courant au travail pour un départ, une naissance ou un anniversaire.",
+      "dialogue": [
+        {
+          "who": "A",
+          "fr": "C'est l'anniversaire de Julie vendredi. On se cotise pour lui offrir quelque chose ?",
+          "en": "It's Julie's birthday on Friday. Shall we chip in to get her something?"
+        },
+        {
+          "who": "B",
+          "fr": "Bonne idée ! Tu crées une cagnotte en ligne ?",
+          "en": "Good idea! Will you set up an online kitty?"
+        },
+        {
+          "who": "A",
+          "fr": "Je m'en occupe. Disons dix euros chacun ?",
+          "en": "I'll handle it. Say ten euros each?"
+        },
+        {
+          "who": "B",
+          "fr": "Parfait. Et on lui prend quoi ?",
+          "en": "Perfect. And what shall we get her?"
+        }
+      ]
+    },
+    {
+      "id": "seasonal.gifts.08",
+      "theme": "seasonal.gifts",
+      "level": "B1",
+      "word": "déballer",
+      "pos": "verbe",
+      "fem": null,
+      "ipa": "/de.ba.le/",
+      "def_fr": "Enlever l'emballage d'un cadeau ou d'un colis.",
+      "def_en": "To unwrap; to unpack.",
+      "example_fr": "Les enfants avaient hâte de déballer leurs cadeaux.",
+      "example_en": "The kids couldn't wait to unwrap their presents.",
+      "phrase_fr": "Je l'ouvre maintenant ou plus tard ?",
+      "phrase_en": "Shall I open it now or later?",
+      "register": "tu · en famille",
+      "register_note": "En France, on ouvre souvent un cadeau devant la personne qui l'offre. Demander, c'est simplement poli.",
+      "dialogue": [
+        {
+          "who": "A",
+          "fr": "Tiens, c'est de notre part à tous les deux.",
+          "en": "Here, it's from both of us."
+        },
+        {
+          "who": "B",
+          "fr": "Merci ! Je l'ouvre maintenant ou plus tard ?",
+          "en": "Thank you! Shall I open it now or later?"
+        },
+        {
+          "who": "A",
+          "fr": "Maintenant, bien sûr ! On veut voir ta tête.",
+          "en": "Now, of course! We want to see your face."
+        },
+        {
+          "who": "B",
+          "fr": "Bon, je déballe… Oh, des places de concert ! Génial !",
+          "en": "OK, unwrapping… Oh, concert tickets! Brilliant!"
+        }
+      ]
+    },
+    {
+      "id": "seasonal.gifts.09",
+      "theme": "seasonal.gifts",
+      "level": "B2",
+      "word": "un cadeau empoisonné",
+      "pos": "nom masc.",
+      "fem": null,
+      "ipa": "/œ̃ ka.do ɑ̃.pwa.zɔ.ne/",
+      "def_fr": "Cadeau ou avantage qui, en réalité, apporte surtout des problèmes.",
+      "def_en": "A poisoned chalice; a gift that mostly brings trouble.",
+      "example_fr": "Ce chiot pour les enfants, c'est un peu un cadeau empoisonné pour les parents.",
+      "example_en": "That puppy for the kids is a bit of a poisoned chalice for the parents.",
+      "phrase_fr": "Je n'aurais pas dû lui offrir ça.",
+      "phrase_en": "I shouldn't have given him that.",
+      "register": "tu · entre amis",
+      "register_note": "Niveau + : « J'aurais dû / Je n'aurais pas dû » + infinitif = le regret, au conditionnel passé.",
+      "dialogue": [
+        {
+          "who": "A",
+          "fr": "Tu as offert une batterie à ton neveu ? Ses parents doivent t'adorer…",
+          "en": "You gave your nephew a drum kit? His parents must love you…"
+        },
+        {
+          "who": "B",
+          "fr": "Je sais… Je n'aurais pas dû lui offrir ça. C'est un vrai cadeau empoisonné.",
+          "en": "I know… I shouldn't have given him that. It's a real poisoned chalice."
+        },
+        {
+          "who": "A",
+          "fr": "Bah, ça aurait pu être pire : une trompette !",
+          "en": "Well, it could have been worse: a trumpet!"
+        },
+        {
+          "who": "B",
+          "fr": "Surtout, ne leur donne pas d'idées !",
+          "en": "Whatever you do, don't give them ideas!"
+        }
+      ]
+    },
+    {
+      "id": "seasonal.gifts.10",
+      "theme": "seasonal.gifts",
+      "level": "B2",
+      "word": "gâter",
+      "pos": "verbe",
+      "fem": null,
+      "ipa": "/ɡɑ.te/",
+      "def_fr": "Faire beaucoup de cadeaux ou d'attentions à quelqu'un.",
+      "def_en": "To spoil (someone, with gifts or attention).",
+      "example_fr": "Mes parents adorent gâter leurs petits-enfants.",
+      "example_en": "My parents love spoiling their grandchildren.",
+      "phrase_fr": "Vous n'auriez pas dû vous donner tant de mal.",
+      "phrase_en": "You shouldn't have gone to so much trouble.",
+      "register": "vous · avec des hôtes",
+      "register_note": "Niveau + : formule élégante pour remercier quand le cadeau ou l'accueil est très soigné. « Se donner du mal » = faire beaucoup d'efforts.",
+      "dialogue": [
+        {
+          "who": "A",
+          "fr": "Voilà, un petit quelque chose de notre part.",
+          "en": "Here's a little something from us."
+        },
+        {
+          "who": "B",
+          "fr": "Oh ! Vous n'auriez pas dû vous donner tant de mal.",
+          "en": "Oh! You shouldn't have gone to so much trouble."
+        },
+        {
+          "who": "A",
+          "fr": "Ce n'est rien, ça nous fait plaisir de vous gâter.",
+          "en": "It's nothing, we enjoy spoiling you."
+        },
+        {
+          "who": "B",
+          "fr": "Eh bien, on est vraiment gâtés cette année !",
+          "en": "Well, we're truly spoiled this year!"
+        }
+      ]
+    },
+    {
+      "id": "seasonal.gifts.11",
+      "theme": "seasonal.gifts",
+      "level": "argot",
+      "word": "refourguer",
+      "pos": "verbe (fam.)",
+      "fem": null,
+      "ipa": "/ʁə.fuʁ.ɡe/",
+      "def_fr": "Donner ou vendre à quelqu'un une chose dont on ne veut plus.",
+      "def_en": "(informal) To offload; to palm something off (e.g. to regift).",
+      "example_fr": "Tu ne vas quand même pas refourguer ce vase à ta belle-sœur ?",
+      "example_en": "You're not seriously going to palm that vase off on your sister-in-law?",
+      "phrase_fr": "Entre nous, il est un peu moche.",
+      "phrase_en": "Between us, it's a bit ugly.",
+      "register": "tu · familier, entre amis",
+      "register_note": "« Moche » = laid (fam., très courant). « Refourguer » se dit aussi pour vendre quelque chose de mauvais. En neutre : « donner », « revendre ».",
+      "dialogue": [
+        {
+          "who": "A",
+          "fr": "Tu as vu le vase de tante Odile ? Entre nous, il est un peu moche.",
+          "en": "Did you see Aunt Odile's vase? Between us, it's a bit ugly."
+        },
+        {
+          "who": "B",
+          "fr": "Un peu ? Il est horrible ! Tu vas le garder ?",
+          "en": "A bit? It's hideous! Are you keeping it?"
+        },
+        {
+          "who": "A",
+          "fr": "Je pensais le refourguer à quelqu'un à Noël…",
+          "en": "I was thinking of palming it off on someone at Christmas…"
+        },
+        {
+          "who": "B",
+          "fr": "Attention, pas à quelqu'un de la famille, elle va le reconnaître !",
+          "en": "Careful, not to someone in the family, she'll recognise it!"
+        }
+      ]
+    },
+    {
+      "id": "seasonal.gifts.12",
+      "theme": "seasonal.gifts",
+      "level": "argot",
+      "word": "être à la ramasse",
+      "pos": "expr. (fam.)",
+      "fem": null,
+      "ipa": "/ɛtʁ a la ʁa.mas/",
+      "def_fr": "Être en retard, dépassé, ne pas suivre.",
+      "def_en": "(informal) To be way behind; to be all over the place.",
+      "example_fr": "Être à la ramasse le 23 décembre, c'est un classique !",
+      "example_en": "Being way behind on the 23rd of December is a classic!",
+      "phrase_fr": "Je vais lui prendre un petit truc, rien de fou.",
+      "phrase_en": "I'll get him a little something, nothing crazy.",
+      "register": "tu · familier, entre amis",
+      "register_note": "« Un truc » = une chose ; « rien de fou » = rien d'extraordinaire ; « grave » = carrément. Familier : à éviter au travail. En neutre : « Je suis très en retard », « un petit quelque chose ».",
+      "dialogue": [
+        {
+          "who": "A",
+          "fr": "T'as fini tes cadeaux ?",
+          "en": "Done your presents?"
+        },
+        {
+          "who": "B",
+          "fr": "Non, je suis à la ramasse. Pour mon frère, je vais lui prendre un petit truc, rien de fou.",
+          "en": "No, I'm way behind. For my brother, I'll get him a little something, nothing crazy."
+        },
+        {
+          "who": "A",
+          "fr": "Moi pareil. Il reste une semaine, on y va ensemble samedi ?",
+          "en": "Same here. There's a week left, shall we go together on Saturday?"
+        },
+        {
+          "who": "B",
+          "fr": "Grave, mais on part tôt, sinon c'est la folie dans les magasins.",
+          "en": "Totally, but let's go early, otherwise the shops are mad."
+        }
+      ]
+    }
+  ],
+  "idioms": [
+    {
+      "id": "seasonal.gifts.i01",
+      "theme": "seasonal.gifts",
+      "fr": "c'est l'intention qui compte",
+      "literal": "it's the intention that counts",
+      "en": "it's the thought that counts",
+      "example_fr": "Le pull est un peu grand, mais c'est l'intention qui compte.",
+      "example_en": "The jumper's a bit big, but it's the thought that counts."
+    },
+    {
+      "id": "seasonal.gifts.i02",
+      "theme": "seasonal.gifts",
+      "fr": "à cheval donné, on ne regarde pas les dents",
+      "literal": "you don't look at the teeth of a gifted horse",
+      "en": "don't look a gift horse in the mouth",
+      "example_fr": "Il est d'occasion, mais à cheval donné, on ne regarde pas les dents !",
+      "example_en": "It's second-hand, but don't look a gift horse in the mouth!"
+    },
+    {
+      "id": "seasonal.gifts.i03",
+      "theme": "seasonal.gifts",
+      "fr": "en mettre plein la vue",
+      "literal": "to fill someone's eyes with it",
+      "en": "to dazzle; to show off",
+      "example_fr": "Avec ce cadeau, il a voulu nous en mettre plein la vue.",
+      "example_en": "With that present, he wanted to dazzle us."
+    },
+    {
+      "id": "seasonal.gifts.i04",
+      "theme": "seasonal.gifts",
+      "fr": "les petits ruisseaux font les grandes rivières",
+      "literal": "little streams make big rivers",
+      "en": "every little bit helps",
+      "example_fr": "Dix euros chacun… Les petits ruisseaux font les grandes rivières : on a pu lui offrir un vélo !",
+      "example_en": "Ten euros each… Every little bit helps: we were able to get her a bike!"
+    },
+    {
+      "id": "seasonal.gifts.i05",
+      "theme": "seasonal.gifts",
+      "fr": "se mettre en quatre",
+      "literal": "to put oneself in four",
+      "en": "to bend over backwards",
+      "example_fr": "Elle s'est mise en quatre pour trouver le cadeau parfait.",
+      "example_en": "She bent over backwards to find the perfect present."
+    },
+    {
+      "id": "seasonal.gifts.i06",
+      "theme": "seasonal.gifts",
+      "fr": "mettre les pieds dans le plat",
+      "literal": "to put one's feet in the dish",
+      "en": "to put one's foot in it",
+      "example_fr": "J'ai mis les pieds dans le plat en parlant du cadeau devant lui : la surprise est gâchée !",
+      "example_en": "I put my foot in it by mentioning the present in front of him: the surprise is ruined!"
+    }
+  ]
+}

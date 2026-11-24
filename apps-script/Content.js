@@ -238,3 +238,37 @@ function validateContent(complete) {
   res.warnings.forEach(function (m) { Logger.log('warning ' + m); });
   return res;
 }
+
+// ---- Import from the repo (Apps Script only) -------------------------------
+
+var CONTENT_BASE_URL_ = 'https://raw.githubusercontent.com/aeraky1565/my-language-app/main/content/library/';
+
+/**
+ * Run from the editor: adds entries and idioms from the repo's content/library
+ * whose id is not already in the Sheet. Never changes or deletes an existing
+ * row, so edits made by hand in the Sheet are kept. Then validates the library.
+ */
+function importNewContent() {
+  var index = JSON.parse(UrlFetchApp.fetch(CONTENT_BASE_URL_ + 'INDEX.json').getContentText());
+  var added = { Entries: 0, Idioms: 0 };
+  var existing = function (tab) {
+    var ids = {};
+    sheet_(tab).getDataRange().getValues().slice(1).forEach(function (r) { if (r[0]) ids[String(r[0]).trim()] = true; });
+    return ids;
+  };
+  var have = { Entries: existing('Entries'), Idioms: existing('Idioms') };
+  var rows = { Entries: [], Idioms: [] };
+  index.files.forEach(function (f) {
+    var lib = JSON.parse(UrlFetchApp.fetch(CONTENT_BASE_URL_ + encodeURIComponent(f)).getContentText());
+    (lib.entries || []).forEach(function (e) { if (!have.Entries[e.id]) rows.Entries.push(entryToRow_(e)); });
+    (lib.idioms || []).forEach(function (i) { if (!have.Idioms[i.id]) rows.Idioms.push(idiomToRow_(i)); });
+  });
+  ['Entries', 'Idioms'].forEach(function (tab) {
+    if (!rows[tab].length) return;
+    var sh = sheet_(tab);
+    sh.getRange(sh.getLastRow() + 1, 1, rows[tab].length, rows[tab][0].length).setNumberFormat('@').setValues(rows[tab]);
+    added[tab] = rows[tab].length;
+  });
+  Logger.log('Added ' + added.Entries + ' entries and ' + added.Idioms + ' idioms.');
+  return validateContent();
+}

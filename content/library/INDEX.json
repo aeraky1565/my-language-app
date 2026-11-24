@@ -1,0 +1,15 @@
+{
+  "files": [
+    "daily.grocery_market.json",
+    "daily.transport_metro.json",
+    "errands.bank.json",
+    "errands.dentist.json",
+    "seasonal.december_holidays.json",
+    "seasonal.gifts.json",
+    "seasonal.sales.json",
+    "social.hosting_dinner.json",
+    "social.neighbours.json",
+    "travel.airport.json",
+    "work.meetings.json"
+  ]
+}
