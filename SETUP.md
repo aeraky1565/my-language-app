@@ -36,7 +36,7 @@ Both ids are in the repo (`.clasp.json` and the workflow); neither is a secret.
    name **`CLASPRC_JSON`**, value: the whole file. **Never paste it in a chat.**
 
 Once the script id is in `.clasp.json` and the secret exists, the **Push ÉLISE Apps Script** action
-puts every file in `apps-script/` (`Code.js`, `Content.js`, `appsscript.json`) into the project.
+puts every file in `apps-script/` (`Code.js`, `Content.js`, `Engine.js`, `appsscript.json`) into the project.
 
 **c. Run setup and deploy (once, in the Apps Script editor)**
 1. Open the ÉLISE project. In the function menu choose **setup** › **Run**. It fills your **Elise** Sheet
@@ -44,6 +44,8 @@ puts every file in `apps-script/` (`Code.js`, `Content.js`, `appsscript.json`) i
    (Google shows "unverified app" because it's your own script: **Advanced › Go to ÉLISE**).
    It asks for Sheets (the Elise Sheet) and Calendar, read-only.
 2. **Execution log** shows your **Token**. Keep it private.
+   Then run, once each: **importNewContent** (brings the content library into the Sheet) and
+   **installTriggers** (the Sunday 21:00 theme pick). Approve the extra permissions when asked.
 3. The web app already exists. Every push moves it to the new code, and the manifest sets
    Execute as **Me**, access **Anyone** (like VERA; every request still needs the token). Its URL is
    `https://script.google.com/macros/s/AKfycby6G-fZW5oj01nxuXsC6AkJw28fPToJyEFTdCgqpWkE-9cEscfBPtODgzSbRTjb8wPS/exec`.
