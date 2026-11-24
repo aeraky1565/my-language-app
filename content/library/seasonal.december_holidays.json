@@ -39,6 +39,435 @@
           "en": "That's nice too, it's more restful! Happy holidays, then."
         }
       ]
+    },
+    {
+      "id": "seasonal.december_holidays.02",
+      "theme": "seasonal.december_holidays",
+      "level": "B1",
+      "word": "le sapin",
+      "pos": "nom masc.",
+      "fem": null,
+      "ipa": "/lə sa.pɛ̃/",
+      "def_fr": "Arbre qu'on décore pour Noël (le sapin de Noël).",
+      "def_en": "The Christmas tree; a fir tree.",
+      "example_fr": "On a acheté le sapin au marché, et les enfants l'ont décoré.",
+      "example_en": "We bought the tree at the market, and the kids decorated it.",
+      "phrase_fr": "On fait le sapin ce week-end ?",
+      "phrase_en": "Shall we put up the tree this weekend?",
+      "register": "tu · en famille",
+      "register_note": "« Faire le sapin » = l'installer et le décorer. Les décorations : « les guirlandes » (lumineuses), « les boules », « l'étoile ».",
+      "dialogue": [
+        {
+          "who": "A",
+          "fr": "On fait le sapin ce week-end ?",
+          "en": "Shall we put up the tree this weekend?"
+        },
+        {
+          "who": "B",
+          "fr": "Oui ! Il faut juste racheter des guirlandes, la moitié ne marche plus.",
+          "en": "Yes! We just need new lights, half of them don't work anymore."
+        },
+        {
+          "who": "A",
+          "fr": "Et les enfants veulent mettre l'étoile tout en haut.",
+          "en": "And the kids want to put the star right at the top."
+        },
+        {
+          "who": "B",
+          "fr": "D'accord, mais cette fois, c'est moi qui tiens l'échelle !",
+          "en": "OK, but this time I'm holding the ladder!"
+        }
+      ]
+    },
+    {
+      "id": "seasonal.december_holidays.03",
+      "theme": "seasonal.december_holidays",
+      "level": "B1",
+      "word": "la bûche de Noël",
+      "pos": "nom fém.",
+      "fem": null,
+      "ipa": "/la byʃ də nɔ.ɛl/",
+      "def_fr": "Gâteau roulé en forme de bûche de bois, le dessert traditionnel de Noël.",
+      "def_en": "The Yule log (Christmas cake).",
+      "example_fr": "Ma grand-mère prépare la bûche de Noël au chocolat tous les ans.",
+      "example_en": "My grandmother makes the chocolate Yule log every year.",
+      "phrase_fr": "Je m'occupe du dessert.",
+      "phrase_en": "I'll take care of dessert.",
+      "register": "tu · en famille",
+      "register_note": "Pour proposer son aide au repas. On peut préciser : « Je m'occupe de l'entrée / du fromage / du vin ».",
+      "dialogue": [
+        {
+          "who": "A",
+          "fr": "Pour le 24, qui fait quoi ?",
+          "en": "For the 24th, who's doing what?"
+        },
+        {
+          "who": "B",
+          "fr": "Je m'occupe du dessert : une bûche de Noël maison.",
+          "en": "I'll take care of dessert: a homemade Yule log."
+        },
+        {
+          "who": "A",
+          "fr": "Super ! Moi, je m'occupe du foie gras et du vin.",
+          "en": "Great! I'll do the foie gras and the wine."
+        },
+        {
+          "who": "B",
+          "fr": "Et ta mère apporte la dinde, comme d'habitude ?",
+          "en": "And your mum's bringing the turkey, as usual?"
+        }
+      ]
+    },
+    {
+      "id": "seasonal.december_holidays.04",
+      "theme": "seasonal.december_holidays",
+      "level": "B1",
+      "word": "les vœux",
+      "pos": "nom masc. plur.",
+      "fem": null,
+      "ipa": "/le vø/",
+      "def_fr": "Souhaits de bonheur qu'on adresse aux autres pour la nouvelle année.",
+      "def_en": "(New Year) wishes; greetings.",
+      "example_fr": "En janvier, on envoie ses vœux à ses collègues et à sa famille.",
+      "example_en": "In January, you send your New Year wishes to colleagues and family.",
+      "phrase_fr": "Je te souhaite de bonnes fêtes !",
+      "phrase_en": "Happy holidays to you!",
+      "register": "tu · entre amis",
+      "register_note": "Avant le 25 : « Joyeux Noël » ; avant le 1er : « Bonnes fêtes » ou « Bon réveillon ». En janvier : « Bonne année, meilleurs vœux ! » On présente ses vœux jusqu'à fin janvier.",
+      "dialogue": [
+        {
+          "who": "A",
+          "fr": "Bon, je file. Je te souhaite de bonnes fêtes !",
+          "en": "Right, I'm off. Happy holidays!"
+        },
+        {
+          "who": "B",
+          "fr": "Merci, toi aussi ! Tu pars où ?",
+          "en": "Thanks, you too! Where are you going?"
+        },
+        {
+          "who": "A",
+          "fr": "Chez mes parents, en Normandie. On se revoit en janvier ?",
+          "en": "To my parents', in Normandy. See you in January?"
+        },
+        {
+          "who": "B",
+          "fr": "Oui, et je t'enverrai mes vœux d'ici là !",
+          "en": "Yes, and I'll send you my New Year wishes before then!"
+        }
+      ]
+    },
+    {
+      "id": "seasonal.december_holidays.05",
+      "theme": "seasonal.december_holidays",
+      "level": "B1",
+      "word": "le foie gras",
+      "pos": "nom masc.",
+      "fem": null,
+      "ipa": "/lə fwa ɡʁa/",
+      "def_fr": "Préparation de foie de canard ou d'oie, plat de fête typique en France.",
+      "def_en": "Foie gras.",
+      "example_fr": "À Noël, on sert souvent le foie gras avec du pain d'épices.",
+      "example_en": "At Christmas, foie gras is often served with gingerbread.",
+      "phrase_fr": "Ressers-toi, il en reste !",
+      "phrase_en": "Help yourself to more, there's plenty left!",
+      "register": "tu · en famille",
+      "register_note": "« Se resservir » = reprendre d'un plat. Pour refuser poliment : « Non merci, je n'en peux plus ! » (I'm full).",
+      "dialogue": [
+        {
+          "who": "A",
+          "fr": "Ressers-toi, il en reste !",
+          "en": "Help yourself to more, there's plenty left!"
+        },
+        {
+          "who": "B",
+          "fr": "Non merci, je n'en peux plus. Le foie gras était délicieux.",
+          "en": "No thanks, I'm full. The foie gras was delicious."
+        },
+        {
+          "who": "A",
+          "fr": "Tu es sûr ? Il y a encore le fromage et la bûche…",
+          "en": "Are you sure? There's still the cheese and the Yule log…"
+        },
+        {
+          "who": "B",
+          "fr": "Bon, juste un petit morceau de fromage, alors.",
+          "en": "OK, just a little bit of cheese, then."
+        }
+      ]
+    },
+    {
+      "id": "seasonal.december_holidays.06",
+      "theme": "seasonal.december_holidays",
+      "level": "B1",
+      "word": "le jour de l'An",
+      "pos": "nom masc.",
+      "fem": null,
+      "ipa": "/lə ʒuʁ də lɑ̃/",
+      "def_fr": "Le 1er janvier, premier jour de l'année.",
+      "def_en": "New Year's Day.",
+      "example_fr": "Le jour de l'An, presque tout est fermé et on se repose.",
+      "example_en": "On New Year's Day, almost everything is closed and people rest.",
+      "phrase_fr": "On fête le Nouvel An chez nous, tu viens ?",
+      "phrase_en": "We're celebrating New Year's Eve at ours, want to come?",
+      "register": "tu · entre amis",
+      "register_note": "« Le Nouvel An » = la fête du 31 au soir ; « le jour de l'An » = le 1er janvier. À minuit, on s'embrasse et on dit « Bonne année ! ».",
+      "dialogue": [
+        {
+          "who": "A",
+          "fr": "On fête le Nouvel An chez nous, tu viens ?",
+          "en": "We're celebrating New Year's Eve at ours, want to come?"
+        },
+        {
+          "who": "B",
+          "fr": "Avec plaisir ! J'apporte le champagne pour minuit.",
+          "en": "I'd love to! I'll bring the champagne for midnight."
+        },
+        {
+          "who": "A",
+          "fr": "Parfait. Et prévois de dormir sur place, on finira tard.",
+          "en": "Perfect. And plan to stay over, it'll be a late one."
+        },
+        {
+          "who": "B",
+          "fr": "Ça me va. Le jour de l'An, je ne compte rien faire de toute façon !",
+          "en": "Suits me. I'm not planning to do anything on New Year's Day anyway!"
+        }
+      ]
+    },
+    {
+      "id": "seasonal.december_holidays.07",
+      "theme": "seasonal.december_holidays",
+      "level": "B1",
+      "word": "un marché de Noël",
+      "pos": "nom masc.",
+      "fem": null,
+      "ipa": "/œ̃ maʁ.ʃe də nɔ.ɛl/",
+      "def_fr": "Marché en plein air, en décembre, avec des chalets qui vendent des décorations, des cadeaux et du vin chaud.",
+      "def_en": "A Christmas market.",
+      "example_fr": "Le marché de Noël de Strasbourg est le plus célèbre de France.",
+      "example_en": "Strasbourg's Christmas market is the most famous in France.",
+      "phrase_fr": "Ça te dit, un vin chaud ?",
+      "phrase_en": "Fancy a mulled wine?",
+      "register": "tu · entre amis",
+      "register_note": "« Ça te dit… ? » = tu as envie de… ? Très courant pour proposer quelque chose. Au vouvoiement : « Ça vous dit ? »",
+      "dialogue": [
+        {
+          "who": "A",
+          "fr": "Il fait un froid de canard ! Ça te dit, un vin chaud ?",
+          "en": "It's freezing! Fancy a mulled wine?"
+        },
+        {
+          "who": "B",
+          "fr": "Carrément ! Après, on fait un tour du marché de Noël ?",
+          "en": "Absolutely! Then shall we have a wander round the Christmas market?"
+        },
+        {
+          "who": "A",
+          "fr": "Oui, je cherche encore des décorations pour le sapin.",
+          "en": "Yes, I'm still looking for decorations for the tree."
+        },
+        {
+          "who": "B",
+          "fr": "Et moi, je veux goûter le pain d'épices maison.",
+          "en": "And I want to try the homemade gingerbread."
+        }
+      ]
+    },
+    {
+      "id": "seasonal.december_holidays.08",
+      "theme": "seasonal.december_holidays",
+      "level": "B1",
+      "word": "les restes",
+      "pos": "nom masc. plur.",
+      "fem": null,
+      "ipa": "/le ʁɛst/",
+      "def_fr": "Ce qui reste d'un repas et qu'on mange plus tard.",
+      "def_en": "Leftovers.",
+      "example_fr": "Le 26, on mange les restes du réveillon toute la journée.",
+      "example_en": "On the 26th, we eat the leftovers from Christmas Eve all day.",
+      "phrase_fr": "Tu veux emporter des restes ?",
+      "phrase_en": "Do you want to take some leftovers?",
+      "register": "tu · en famille",
+      "register_note": "En fin de repas, l'hôte propose souvent d'emporter des restes. « Emporter » = prendre avec soi. « Pour un régiment » = beaucoup trop (fam.).",
+      "dialogue": [
+        {
+          "who": "A",
+          "fr": "Tu veux emporter des restes ? Il y a de la dinde pour un régiment !",
+          "en": "Do you want to take some leftovers? There's enough turkey for an army!"
+        },
+        {
+          "who": "B",
+          "fr": "Volontiers, comme ça je ne cuisine pas demain.",
+          "en": "Gladly, that way I won't have to cook tomorrow."
+        },
+        {
+          "who": "A",
+          "fr": "Je te mets aussi une part de bûche.",
+          "en": "I'll put in a slice of Yule log too."
+        },
+        {
+          "who": "B",
+          "fr": "Tu es un ange. Merci pour cette super soirée !",
+          "en": "You're an angel. Thanks for a great evening!"
+        }
+      ]
+    },
+    {
+      "id": "seasonal.december_holidays.09",
+      "theme": "seasonal.december_holidays",
+      "level": "B2",
+      "word": "la trêve des confiseurs",
+      "pos": "nom fém.",
+      "fem": null,
+      "ipa": "/la tʁɛv de kɔ̃.fi.zœʁ/",
+      "def_fr": "Période calme entre Noël et le jour de l'An, quand l'activité (politique, travail) ralentit.",
+      "def_en": "The quiet spell between Christmas and New Year.",
+      "example_fr": "Pendant la trêve des confiseurs, le bureau est presque vide.",
+      "example_en": "During the lull between Christmas and New Year, the office is almost empty.",
+      "phrase_fr": "Pourvu qu'il n'y ait pas de dispute cette année !",
+      "phrase_en": "Let's hope there's no argument this year!",
+      "register": "tu · en famille",
+      "register_note": "Niveau + : « Pourvu que » + subjonctif = on espère vivement. Très utile avant les repas de famille…",
+      "dialogue": [
+        {
+          "who": "A",
+          "fr": "Toute la famille vient le 24, même l'oncle Gérard.",
+          "en": "The whole family's coming on the 24th, even Uncle Gérard."
+        },
+        {
+          "who": "B",
+          "fr": "Oh là là… Pourvu qu'il n'y ait pas de dispute cette année !",
+          "en": "Oh dear… Let's hope there's no argument this year!"
+        },
+        {
+          "who": "A",
+          "fr": "On évitera la politique : c'est la trêve des confiseurs !",
+          "en": "We'll steer clear of politics: it's the Christmas truce!"
+        },
+        {
+          "who": "B",
+          "fr": "Bonne chance pour ça…",
+          "en": "Good luck with that…"
+        }
+      ]
+    },
+    {
+      "id": "seasonal.december_holidays.10",
+      "theme": "seasonal.december_holidays",
+      "level": "B2",
+      "word": "convivial",
+      "pos": "adj.",
+      "fem": "conviviale",
+      "ipa": "/kɔ̃.vi.vjal/",
+      "def_fr": "Chaleureux, où l'on se sent bien ensemble.",
+      "def_en": "Friendly; warm and sociable (of an event or place).",
+      "example_fr": "On a passé un réveillon simple mais très convivial.",
+      "example_en": "We had a simple but really warm Christmas Eve together.",
+      "phrase_fr": "Quoi qu'on fasse, l'essentiel, c'est d'être ensemble.",
+      "phrase_en": "Whatever we do, the main thing is being together.",
+      "register": "tu · en famille",
+      "register_note": "Niveau + : « quoi que » (en deux mots) + subjonctif = whatever. À ne pas confondre avec « quoique » (= bien que).",
+      "dialogue": [
+        {
+          "who": "A",
+          "fr": "Cette année, pas de grand repas : on fait juste une raclette.",
+          "en": "This year, no big meal: we're just doing raclette."
+        },
+        {
+          "who": "B",
+          "fr": "Très bien ! Quoi qu'on fasse, l'essentiel, c'est d'être ensemble.",
+          "en": "Great! Whatever we do, the main thing is being together."
+        },
+        {
+          "who": "A",
+          "fr": "Et puis une raclette, c'est toujours convivial.",
+          "en": "And raclette is always so sociable."
+        },
+        {
+          "who": "B",
+          "fr": "Exactement, et beaucoup moins de vaisselle !",
+          "en": "Exactly, and much less washing-up!"
+        }
+      ]
+    },
+    {
+      "id": "seasonal.december_holidays.11",
+      "theme": "seasonal.december_holidays",
+      "level": "argot",
+      "word": "se goinfrer",
+      "pos": "verbe pron. (fam.)",
+      "fem": null,
+      "ipa": "/sə ɡwɛ̃.fʁe/",
+      "def_fr": "Manger énormément, avec avidité.",
+      "def_en": "(informal) To stuff one's face; to pig out.",
+      "example_fr": "Arrête de te goinfrer de chocolats, on passe à table dans une heure !",
+      "example_en": "Stop stuffing yourself with chocolates, we're eating in an hour!",
+      "phrase_fr": "Je suis calé, je ne peux plus rien avaler !",
+      "phrase_en": "I'm stuffed, I can't eat another thing!",
+      "register": "tu · familier, en famille",
+      "register_note": "« Être calé » = avoir trop mangé (fam.). « Se goinfrer » est un peu moqueur. En neutre : « J'ai trop mangé », « Je n'ai plus faim ».",
+      "dialogue": [
+        {
+          "who": "A",
+          "fr": "Encore un peu de dinde ?",
+          "en": "A bit more turkey?"
+        },
+        {
+          "who": "B",
+          "fr": "Non, je suis calé, je ne peux plus rien avaler !",
+          "en": "No, I'm stuffed, I can't eat another thing!"
+        },
+        {
+          "who": "A",
+          "fr": "Pourtant, tu n'arrêtes pas de te goinfrer de chocolats depuis ce matin…",
+          "en": "And yet you've been stuffing yourself with chocolates since this morning…"
+        },
+        {
+          "who": "B",
+          "fr": "Justement ! C'est pour ça que je n'ai plus de place.",
+          "en": "Exactly! That's why I've got no room left."
+        }
+      ]
+    },
+    {
+      "id": "seasonal.december_holidays.12",
+      "theme": "seasonal.december_holidays",
+      "level": "argot",
+      "word": "la gueule de bois",
+      "pos": "nom fém. (fam.)",
+      "fem": null,
+      "ipa": "/la ɡœl də bwa/",
+      "def_fr": "Mal de tête et fatigue le lendemain d'une soirée où l'on a trop bu.",
+      "def_en": "(informal) A hangover.",
+      "example_fr": "Le 1er janvier, la moitié de la France a la gueule de bois.",
+      "example_en": "On the 1st of January, half of France has a hangover.",
+      "phrase_fr": "On a fait la fête jusqu'à cinq heures du mat'.",
+      "phrase_en": "We partied until five in the morning.",
+      "register": "tu · familier, entre amis",
+      "register_note": "« Du mat' » = du matin (fam.). « Faire la fête » est neutre ; « la gueule de bois » est familier (« gueule » = bouche, visage). En neutre : « J'ai mal à la tête, j'ai trop bu hier. »",
+      "dialogue": [
+        {
+          "who": "A",
+          "fr": "T'as une petite mine… Bonne année quand même !",
+          "en": "You look a bit rough… Happy New Year anyway!"
+        },
+        {
+          "who": "B",
+          "fr": "Merci… On a fait la fête jusqu'à cinq heures du mat'.",
+          "en": "Thanks… We partied until five in the morning."
+        },
+        {
+          "who": "A",
+          "fr": "Ah, je vois : la gueule de bois du jour de l'An !",
+          "en": "Ah, I see: the New Year's Day hangover!"
+        },
+        {
+          "who": "B",
+          "fr": "Chut, parle moins fort, s'il te plaît…",
+          "en": "Shh, not so loud, please…"
+        }
+      ]
     }
   ],
   "idioms": [
@@ -50,6 +479,51 @@
       "en": "to get dressed up to the nines",
       "example_fr": "Pour le réveillon, tout le monde s'était mis sur son trente et un.",
       "example_en": "For Christmas Eve, everyone was dressed up to the nines."
+    },
+    {
+      "id": "seasonal.december_holidays.i02",
+      "theme": "seasonal.december_holidays",
+      "fr": "Noël au balcon, Pâques au tison",
+      "literal": "Christmas on the balcony, Easter by the embers",
+      "en": "a mild Christmas means a cold Easter",
+      "example_fr": "Quinze degrés le 25… Noël au balcon, Pâques au tison, comme dit ma grand-mère !",
+      "example_en": "Fifteen degrees on the 25th… Mild Christmas, cold Easter, as my grandmother says!"
+    },
+    {
+      "id": "seasonal.december_holidays.i03",
+      "theme": "seasonal.december_holidays",
+      "fr": "mettre les bouchées doubles",
+      "literal": "to take double mouthfuls",
+      "en": "to double one's efforts",
+      "example_fr": "Il reste deux jours avant le réveillon, il faut mettre les bouchées doubles !",
+      "example_en": "Two days to go before Christmas Eve, we need to double our efforts!"
+    },
+    {
+      "id": "seasonal.december_holidays.i04",
+      "theme": "seasonal.december_holidays",
+      "fr": "faire le pont",
+      "literal": "to make the bridge",
+      "en": "to take the extra day off between a public holiday and the weekend",
+      "example_fr": "Noël tombe un jeudi, alors je fais le pont vendredi.",
+      "example_en": "Christmas falls on a Thursday, so I'm taking Friday off too."
+    },
+    {
+      "id": "seasonal.december_holidays.i05",
+      "theme": "seasonal.december_holidays",
+      "fr": "avoir les yeux plus gros que le ventre",
+      "literal": "to have eyes bigger than one's belly",
+      "en": "to take more food than you can eat",
+      "example_fr": "J'ai rempli mon assiette, mais j'avais les yeux plus gros que le ventre…",
+      "example_en": "I filled my plate, but my eyes were bigger than my stomach…"
+    },
+    {
+      "id": "seasonal.december_holidays.i06",
+      "theme": "seasonal.december_holidays",
+      "fr": "être aux petits soins pour quelqu'un",
+      "literal": "to be in little cares for someone",
+      "en": "to wait on someone hand and foot",
+      "example_fr": "Pendant les fêtes, ma mère est aux petits soins pour tout le monde.",
+      "example_en": "Over the holidays, my mum waits on everyone hand and foot."
     }
   ]
 }
