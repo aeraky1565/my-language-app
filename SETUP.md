@@ -74,7 +74,7 @@ puts `Code.js` and `appsscript.json` into the project.
 - [ ] English lines are blurred and reveal on tap.
 - [ ] The speakers and **Écouter** (dialogue) speak French; the dialogue highlights each line.
 - [ ] Bookmark the word and the phrase: they appear in **Mes mots** and in the Sheet's **Saved** tab.
-- [ ] **Réglages** lists your calendars and finds `Vera · French`.
+- [ ] **Réglages** lists your calendars; Joint Chaos is on, Holidays / Bills / VERA are off.
 
 ## Updating later
 
