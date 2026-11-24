@@ -519,15 +519,7 @@ function renderSettings() {
     </div>
     ${!s ? '<div class="skeleton" style="height:140px"></div><div class="skeleton" style="height:240px"></div>' : `
     <section class="section">
-      <h2>Agenda de Vera</h2>
-      <div class="panel pad">
-        <label for="vera">Nom exact de l’agenda</label>
-        <input class="field" id="vera" value="${esc(s.vera_calendar_name)}">
-        <p class="status ${s.vera_found ? 'ok' : 'warn'}">${s.vera_found ? ICON.check + 'Agenda trouvé' : ICON.alert + 'Aucun agenda à ce nom'}</p>
-      </div>
-    </section>
-    <section class="section">
-      <h2>Mes agendas · détection de mots-clés</h2>
+      <h2>Agendas lus pour choisir le thème</h2>
       <div class="panel">
         ${s.calendars.map((c) => `
           <div class="cal">
@@ -557,10 +549,6 @@ function renderSettings() {
     </section>`}`;
 
   if (!s) return;
-  const vera = document.getElementById('vera');
-  vera.addEventListener('change', async () => {
-    try { state.settings = await api('save_settings', { vera_calendar_name: vera.value }); renderSettings(); toast('Enregistré'); } catch (err) { fail(err); }
-  });
   const rate = document.getElementById('rate');
   rate.addEventListener('input', () => { document.getElementById('rate-v').textContent = Number(rate.value).toFixed(2) + '×'; if (state.today) state.today.tts_rate = Number(rate.value); });
   rate.addEventListener('change', async () => {

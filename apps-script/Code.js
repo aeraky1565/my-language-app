@@ -26,8 +26,11 @@ var TABS_ = {
   Saved: ['id', 'type', 'fr', 'en', 'theme', 'entry_id', 'saved_at']
 };
 
+// ÉLISE's own calendar: one all-day event per theme week (written in a later
+// step). Never read as an input.
+var ELISE_CALENDAR_NAME_ = 'ÉLISE';
+
 var DEFAULT_CONFIG_ = {
-  vera_calendar_name: 'Vera · French',
   excluded_calendars: '[]',
   tts_rate: '0.9'
 };
@@ -190,20 +193,17 @@ function apiListSaved_() {
 function apiSettings_() {
   var c = config_();
   var calendars = CalendarApp.getAllCalendars()
-    .filter(function (cal) { return cal.getName() !== c.vera_calendar_name; })
+    .filter(function (cal) { return cal.getName() !== ELISE_CALENDAR_NAME_; })
     .map(function (cal) {
       return { id: cal.getId(), name: cal.getName(), color: cal.getColor(), included: c.excluded_calendars.indexOf(cal.getId()) === -1 };
     });
   return {
-    vera_calendar_name: c.vera_calendar_name,
-    vera_found: CalendarApp.getCalendarsByName(c.vera_calendar_name).length > 0,
     tts_rate: c.tts_rate,
     calendars: calendars
   };
 }
 
 function apiSaveSettings_(patch) {
-  if ('vera_calendar_name' in patch) writeConfig_('vera_calendar_name', String(patch.vera_calendar_name).trim());
   if ('tts_rate' in patch) writeConfig_('tts_rate', String(Number(patch.tts_rate) || 0.9));
   if (patch.calendar) {
     var excluded = config_().excluded_calendars.filter(function (id) { return id !== patch.calendar.id; });
@@ -317,7 +317,7 @@ function config_() {
   var c = Object.assign({}, DEFAULT_CONFIG_, readConfig_());
   var excluded = [];
   try { excluded = JSON.parse(c.excluded_calendars); } catch (e) {}
-  return { vera_calendar_name: c.vera_calendar_name, excluded_calendars: excluded, tts_rate: Number(c.tts_rate) || 0.9 };
+  return { excluded_calendars: excluded, tts_rate: Number(c.tts_rate) || 0.9 };
 }
 
 function savedIndex_() {

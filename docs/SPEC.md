@@ -2,8 +2,9 @@
 
 This file records what changed from [`original-spec.md`](original-spec.md) (the first brief) after
 the design and platform decisions of 24 Nov 2026. **Where the two disagree, this file wins.**
-Sections not mentioned here (content model §3, theme library §4, weekly theme selection §5,
-default calendar §6) still apply as written, with "the device" read as "the Apps Script API".
+Sections not mentioned here (content model §3, theme library §4, default calendar §6) still apply
+as written, with "the device" read as "the Apps Script API". §5 (weekly theme selection) applies
+with the change in §5 below: **no Vera source**.
 
 Design canvas: <https://claude.ai/artifact/H2ZSgRooxsmPRhwDmmJJAW>
 
@@ -16,7 +17,7 @@ Built like VERA, not as a native Android app.
 | Front end | Kotlin / Compose APK, sideloaded | Installable web app (PWA) on GitHub Pages, added to the Pixel home screen; opens full-screen with its own icon |
 | Logic + scheduling | On device, WorkManager | Standalone **Apps Script** project: JSON API (`doGet`, token-gated) + time-driven triggers |
 | Storage | Room / DataStore | The **ÉLISE** Google Sheet: `Config` (key/value settings), `Visits`, `Saved`, later `Themes`, `Entries`, `ThemeWeeks`, `Shown` |
-| Calendars | `CalendarContract` on the phone | `CalendarApp` on the server, read-only for your calendars and Vera's |
+| Calendars | `CalendarContract` on the phone | `CalendarApp` on the server: reads the calendars switched on in Réglages; writes only to its own ÉLISE calendar |
 | Speech | Android `TextToSpeech` | Chrome `speechSynthesis`, `fr-FR`. On a Pixel this is Speech Services by Google, the same voices |
 | Secrets | none | `ELISE_SHEET_ID` and `ELISE_TOKEN` in Script Properties; the phone keeps the API URL and token in local storage |
 | CI | Signed APK build | GitHub Actions deploys `web/` to Pages on push to `main` |
@@ -37,7 +38,7 @@ Time zone: America/New_York (from the default calendar at runtime).
   French voices when two exist.
 - **Mes mots:** Mots / Phrases tabs, search, a **Récents / Par thème** switch (default Récents), English
   blurred until tapped, swipe left to reveal "Supprimer".
-- **Réglages:** Vera calendar name (with found / not found), on/off per calendar for keyword detection,
+- **Réglages:** on/off per calendar for keyword detection,
   speech speed (default 0.9×) with a test button, "Recalculer le thème de la semaine".
 - **Empty state** for Mes mots and a **missing French voice** sheet.
 - Streak: a missed day resets quietly to 1. No onboarding screen: calendar access is granted once
@@ -49,21 +50,35 @@ Time zone: America/New_York (from the default calendar at runtime).
 - The library lives in the Sheet (`Themes` and `Entries` tabs) so entries can be fixed by hand. A
   `validate()` function checks 10–14 entries per theme, no duplicate words, and required fields.
 
-## 4. Daily calendar event (new)
+## 4. ÉLISE calendar: the theme weeks (new)
 
-Each morning a trigger writes one event with the word and phrase to a **separate "ÉLISE" calendar**
-that ÉLISE creates. It never writes to your calendars or Vera's. (This relaxes the original
-"never write to calendars" rule, and needs the full calendar scope from that step on.)
+ÉLISE creates its own calendar, **ÉLISE**, and writes **one all-day event per theme week (Monday to
+Sunday)** when the week is locked, e.g. `FR · Voyage — à l'aéroport`. The description holds why it
+was picked ("Dentist on Mar 3" / "Default, week 14") and the week's seven words. It lets you see past
+and upcoming themes at a glance in Google Calendar. ÉLISE never reads this calendar back, and never
+writes to any other calendar. (This relaxes the original "never write to calendars" rule and needs
+the full calendar scope from that step on.)
 
-## 5. Widget: on hold
+## 5. Theme sources (replaces original §5.1–5.2)
+
+**Vera plays no part.** VERA is not changed and writes nothing for ÉLISE. Sources, in priority order:
+
+1. **Your calendars**: keyword detection (original §5.3) on every calendar switched on in Réglages,
+   mainly **AE&VV - Our Joint Chaos**. Off by default: Holidays in United States, Bills, VERA,
+   and the ÉLISE calendar itself (never listed).
+2. **Default calendar**: the seasonal list by ISO week (original §6), from the Sheet.
+
+Cooldown (§5.4) applies to both; the "priority: high" override is gone with Vera.
+
+## 6. Widget: on hold
 
 No home-screen widget for now; to be revisited.
 
-## 6. Build order (replaces original §8)
+## 7. Build order (replaces original §8)
 
 1. **Scaffold:** API with sample entry, streak, saving, settings; web app installable on the Pixel. **Checkpoint 1:** [SETUP.md](../SETUP.md).
 2. **Content:** Sheet schema + validator, the 52 default-calendar themes first. **Checkpoint 2:** 10 random entries to read *and listen to* on the phone; decide whether the phone voice is good enough.
-3. **Theme engine:** Vera / keyword / default logic as pure functions with tests (run locally with Node), Sunday 21:00 trigger. **Checkpoint 3:** test report + 12-week simulation.
+3. **Theme engine:** keyword / default logic as pure functions with tests (run locally with Node), Sunday 21:00 trigger. **Checkpoint 3:** test report + 12-week simulation.
 4. **Today wired to the engine:** daily pick, seen-entries log (timestamps + counts for v2 spaced repetition).
-5. **Daily ÉLISE calendar event.**
+5. **ÉLISE calendar:** one all-day event per theme week.
 6. **Polish.**
