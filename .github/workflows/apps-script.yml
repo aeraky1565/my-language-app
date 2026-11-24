@@ -5,6 +5,7 @@ name: Push ÉLISE Apps Script
 #
 # Needs (repo Settings › Secrets and variables › Actions):
 #   secret   CLASPRC_JSON         contents of ~/.clasprc.json after `clasp login`
+#                                 (a secret named CLASP_JSON works too)
 #   variable ELISE_DEPLOYMENT_ID  optional: overrides the web app deployment id below
 
 on:
@@ -31,7 +32,7 @@ jobs:
       - name: Check project id and credentials
         id: check
         env:
-          CLASPRC_JSON: ${{ secrets.CLASPRC_JSON }}
+          CLASPRC_JSON: ${{ secrets.CLASPRC_JSON || secrets.CLASP_JSON }}
         run: |
           if grep -q 'PASTE_SCRIPT_ID_HERE' .clasp.json; then
             echo "::notice::No script id in .clasp.json yet; nothing to push."
