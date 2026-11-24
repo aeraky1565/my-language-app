@@ -23,7 +23,8 @@ var DEFAULT_SHEET_ID_ = '17faT__UTAeGHRUu5Nya2lhm62IUYSrOwRpTRZ6A7WeA';
 var TABS_ = {
   Config: ['key', 'value'],
   Visits: ['date', 'first_open'],
-  Saved: ['id', 'type', 'fr', 'en', 'theme', 'entry_id', 'saved_at']
+  Saved: ['id', 'type', 'fr', 'en', 'theme', 'entry_id', 'saved_at'],
+  Practice: ['date', 'language', 'minutes', 'sessions', 'new_items', 'reviewed', 'theme', 'note', 'updated_at']
 };
 
 // ÉLISE's own calendar: one all-day event per theme week (written in a later
@@ -32,6 +33,7 @@ var ELISE_CALENDAR_NAME_ = 'ÉLISE';
 
 var DEFAULT_CONFIG_ = {
   excluded_calendars: '[]',
+  language: 'fr',
   tts_rate: '0.9'
 };
 
@@ -130,6 +132,8 @@ function doGet(e) {
       case 'remove_saved':  return out_({ ok: true, data: apiRemoveSaved_(p.id) });
       case 'settings':      return out_({ ok: true, data: apiSettings_() });
       case 'save_settings': return out_({ ok: true, data: apiSaveSettings_(p) });
+      case 'practice':      return out_({ ok: true, data: apiPractice_(p) });
+      case 'rerun_week':    return out_({ ok: true, data: apiRerunWeek_() });
       default:              return out_({ ok: false, error: 'unknown_action' });
     }
   } catch (err) {
@@ -150,24 +154,7 @@ function out_(data) {
 // ---- Actions ---------------------------------------------------------------
 
 function apiToday_() {
-  var today = recordVisit_();
-  var visits = visitSet_();
-  var saved = savedIndex_();
-  return {
-    date: today,
-    streak: streak_(visits, today),
-    week: weekFlags_(visits, today),
-    todayIndex: weekdayIndex_(today),
-    theme: SAMPLE_THEME_,
-    entry: SAMPLE_ENTRY_,
-    idiom: SAMPLE_IDIOM_,
-    saved: {
-      word: !!saved[SAMPLE_ENTRY_.id + ':word'],
-      idiom: !!saved[SAMPLE_IDIOM_.id + ':idiom'],
-      phrase: !!saved[SAMPLE_ENTRY_.id + ':phrase']
-    },
-    tts_rate: config_().tts_rate
-  };
+  return todayPayload_();   // Today.js
 }
 
 function apiToggleSaved_(item) {
@@ -296,7 +283,7 @@ function sheet_(name, ss) {
   var sh = ss.getSheetByName(name);
   if (!sh) {
     sh = ss.insertSheet(name);
-    sh.getRange('A:A').setNumberFormat('@'); // dates and ids stay plain text
+    sh.getRange(1, 1, sh.getMaxRows(), sh.getMaxColumns()).setNumberFormat('@'); // dates and ids stay plain text
     sh.appendRow(TABS_[name] || CONTENT_TABS_[name] || ENGINE_TABS_[name]);
     sh.setFrozenRows(1);
   }
@@ -328,7 +315,7 @@ function config_() {
   var c = Object.assign({}, DEFAULT_CONFIG_, readConfig_());
   var excluded = [];
   try { excluded = JSON.parse(c.excluded_calendars); } catch (e) {}
-  return { excluded_calendars: excluded, tts_rate: Number(c.tts_rate) || 0.9 };
+  return { excluded_calendars: excluded, tts_rate: Number(c.tts_rate) || 0.9, language: c.language || 'fr' };
 }
 
 function savedIndex_() {
