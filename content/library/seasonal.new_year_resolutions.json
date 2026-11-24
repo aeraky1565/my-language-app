@@ -1,0 +1,529 @@
+{
+  "theme": "seasonal.new_year_resolutions",
+  "entries": [
+    {
+      "id": "seasonal.new_year_resolutions.01",
+      "theme": "seasonal.new_year_resolutions",
+      "level": "B1",
+      "word": "une résolution",
+      "pos": "nom fém.",
+      "fem": null,
+      "ipa": "/yn ʁe.zɔ.ly.sjɔ̃/",
+      "def_fr": "Décision qu'on prend pour changer une habitude, souvent au 1er janvier.",
+      "def_en": "A resolution.",
+      "example_fr": "Ma résolution pour cette année : me coucher avant minuit.",
+      "example_en": "My resolution for this year: go to bed before midnight.",
+      "phrase_fr": "Tu as pris de bonnes résolutions ?",
+      "phrase_en": "Have you made any New Year's resolutions?",
+      "register": "tu · entre amis",
+      "register_note": "« Prendre de bonnes résolutions » est l'expression consacrée. Réponse ironique fréquente : « Oui, comme tous les ans… »",
+      "dialogue": [
+        {
+          "who": "A",
+          "fr": "Alors, tu as pris de bonnes résolutions ?",
+          "en": "So, have you made any resolutions?"
+        },
+        {
+          "who": "B",
+          "fr": "Oui, comme tous les ans : faire du sport et manger mieux.",
+          "en": "Yes, same as every year: exercise and eat better."
+        },
+        {
+          "who": "A",
+          "fr": "Et tu tiens combien de temps, d'habitude ?",
+          "en": "And how long do you usually last?"
+        },
+        {
+          "who": "B",
+          "fr": "Deux semaines… mais cette année, c'est différent !",
+          "en": "Two weeks… but this year is different!"
+        }
+      ]
+    },
+    {
+      "id": "seasonal.new_year_resolutions.02",
+      "theme": "seasonal.new_year_resolutions",
+      "level": "B1",
+      "word": "arrêter",
+      "pos": "verbe",
+      "fem": null,
+      "ipa": "/a.ʁe.te/",
+      "def_fr": "Ne plus faire quelque chose.",
+      "def_en": "To stop; to quit.",
+      "example_fr": "Il a décidé d'arrêter de fumer le 1er janvier.",
+      "example_en": "He decided to quit smoking on the 1st of January.",
+      "phrase_fr": "Cette fois, c'est la bonne !",
+      "phrase_en": "This time's the one!",
+      "register": "tu · entre amis",
+      "register_note": "Pour dire qu'on va vraiment réussir. Souvent avec un peu d'ironie quand on a déjà essayé.",
+      "dialogue": [
+        {
+          "who": "A",
+          "fr": "J'arrête le sucre. Cette fois, c'est la bonne !",
+          "en": "I'm quitting sugar. This time's the one!"
+        },
+        {
+          "who": "B",
+          "fr": "Tu as dit la même chose l'an dernier…",
+          "en": "You said the same thing last year…"
+        },
+        {
+          "who": "A",
+          "fr": "Oui, mais cette année, j'ai un plan.",
+          "en": "Yes, but this year I've got a plan."
+        },
+        {
+          "who": "B",
+          "fr": "D'accord, on en reparle en février !",
+          "en": "OK, we'll talk about it again in February!"
+        }
+      ]
+    },
+    {
+      "id": "seasonal.new_year_resolutions.03",
+      "theme": "seasonal.new_year_resolutions",
+      "level": "B1",
+      "word": "s'inscrire",
+      "pos": "verbe pron.",
+      "fem": null,
+      "ipa": "/sɛ̃s.kʁiʁ/",
+      "def_fr": "Mettre son nom sur une liste pour participer à quelque chose : un cours, un club.",
+      "def_en": "To sign up; to enrol.",
+      "example_fr": "En janvier, je vais m'inscrire à un cours de théâtre.",
+      "example_en": "In January, I'm going to sign up for a drama class.",
+      "phrase_fr": "Il reste de la place dans le cours du mardi ?",
+      "phrase_en": "Is there still room in the Tuesday class?",
+      "register": "vous · à l'accueil",
+      "register_note": "Pour s'inscrire à une activité. On vous demandera souvent : « Vous avez déjà pratiqué ? » (Have you done it before?)",
+      "dialogue": [
+        {
+          "who": "A",
+          "fr": "Bonjour, il reste de la place dans le cours du mardi ?",
+          "en": "Hello, is there still room in the Tuesday class?"
+        },
+        {
+          "who": "B",
+          "fr": "Oui, deux places. Vous avez déjà pratiqué ?",
+          "en": "Yes, two spots. Have you done it before?"
+        },
+        {
+          "who": "A",
+          "fr": "Non, je suis complètement débutant.",
+          "en": "No, I'm a complete beginner."
+        },
+        {
+          "who": "B",
+          "fr": "Parfait, c'est un cours pour débutants. Vous pouvez vous inscrire en ligne.",
+          "en": "Perfect, it's a beginners' class. You can sign up online."
+        }
+      ]
+    },
+    {
+      "id": "seasonal.new_year_resolutions.04",
+      "theme": "seasonal.new_year_resolutions",
+      "level": "B1",
+      "word": "tenir",
+      "pos": "verbe",
+      "fem": null,
+      "ipa": "/tə.niʁ/",
+      "def_fr": "Respecter une promesse ou une décision dans le temps.",
+      "def_en": "To keep (a promise, a resolution); to stick to.",
+      "example_fr": "C'est facile de prendre des résolutions, c'est plus dur de les tenir.",
+      "example_en": "Making resolutions is easy; keeping them is harder.",
+      "phrase_fr": "Je m'y tiens depuis trois semaines.",
+      "phrase_en": "I've stuck to it for three weeks.",
+      "register": "tu · entre amis",
+      "register_note": "« S'y tenir » = respecter une décision. « Depuis » + durée = for (et ça continue).",
+      "dialogue": [
+        {
+          "who": "A",
+          "fr": "Et ta résolution de courir tous les matins ?",
+          "en": "And your resolution to run every morning?"
+        },
+        {
+          "who": "B",
+          "fr": "Eh bien, je m'y tiens depuis trois semaines !",
+          "en": "Well, I've stuck to it for three weeks!"
+        },
+        {
+          "who": "A",
+          "fr": "Chapeau ! Moi, j'ai abandonné le 4 janvier.",
+          "en": "Hats off! I gave up on the 4th of January."
+        },
+        {
+          "who": "B",
+          "fr": "Il n'est jamais trop tard pour recommencer.",
+          "en": "It's never too late to start again."
+        }
+      ]
+    },
+    {
+      "id": "seasonal.new_year_resolutions.05",
+      "theme": "seasonal.new_year_resolutions",
+      "level": "B1",
+      "word": "une habitude",
+      "pos": "nom fém.",
+      "fem": null,
+      "ipa": "/yn a.bi.tyd/",
+      "def_fr": "Chose qu'on fait régulièrement, presque sans y penser.",
+      "def_en": "A habit.",
+      "example_fr": "Prendre une nouvelle habitude demande du temps.",
+      "example_en": "Building a new habit takes time.",
+      "phrase_fr": "J'ai décidé de passer moins de temps sur mon téléphone.",
+      "phrase_en": "I've decided to spend less time on my phone.",
+      "register": "tu · entre amis",
+      "register_note": "« Décider de » + infinitif. « Prendre » une habitude = la commencer ; « perdre » une habitude = l'arrêter.",
+      "dialogue": [
+        {
+          "who": "A",
+          "fr": "Ta résolution, c'est quoi cette année ?",
+          "en": "What's your resolution this year?"
+        },
+        {
+          "who": "B",
+          "fr": "J'ai décidé de passer moins de temps sur mon téléphone.",
+          "en": "I've decided to spend less time on my phone."
+        },
+        {
+          "who": "A",
+          "fr": "Bonne idée. Comment tu vas faire ?",
+          "en": "Good idea. How are you going to do it?"
+        },
+        {
+          "who": "B",
+          "fr": "Plus d'écran au lit. C'est une mauvaise habitude que je veux perdre.",
+          "en": "No more screens in bed. It's a bad habit I want to break."
+        }
+      ]
+    },
+    {
+      "id": "seasonal.new_year_resolutions.06",
+      "theme": "seasonal.new_year_resolutions",
+      "level": "B1",
+      "word": "économiser",
+      "pos": "verbe",
+      "fem": null,
+      "ipa": "/e.kɔ.nɔ.mi.ze/",
+      "def_fr": "Garder de l'argent au lieu de le dépenser.",
+      "def_en": "To save (money).",
+      "example_fr": "Cette année, je veux économiser pour un voyage au Japon.",
+      "example_en": "This year, I want to save up for a trip to Japan.",
+      "phrase_fr": "Je me fixe un budget par mois.",
+      "phrase_en": "I'm setting myself a monthly budget.",
+      "register": "tu · entre amis",
+      "register_note": "« Se fixer » un objectif, une limite, un budget. « Les restos » = les restaurants (fam.).",
+      "dialogue": [
+        {
+          "who": "A",
+          "fr": "Cette année, je veux économiser : je me fixe un budget par mois.",
+          "en": "This year I want to save: I'm setting myself a monthly budget."
+        },
+        {
+          "who": "B",
+          "fr": "Bonne idée. Et les restos, tu les comptes dedans ?",
+          "en": "Good idea. Do restaurants count?"
+        },
+        {
+          "who": "A",
+          "fr": "Oui, deux par mois maximum.",
+          "en": "Yes, two a month max."
+        },
+        {
+          "who": "B",
+          "fr": "Courage, c'est la meilleure des résolutions !",
+          "en": "Good luck, it's the best resolution of all!"
+        }
+      ]
+    },
+    {
+      "id": "seasonal.new_year_resolutions.07",
+      "theme": "seasonal.new_year_resolutions",
+      "level": "B1",
+      "word": "la motivation",
+      "pos": "nom fém.",
+      "fem": null,
+      "ipa": "/la mɔ.ti.va.sjɔ̃/",
+      "def_fr": "Envie et énergie qui poussent à faire quelque chose.",
+      "def_en": "Motivation.",
+      "example_fr": "En janvier, la motivation est là ; en mars, c'est autre chose !",
+      "example_en": "In January, the motivation is there; by March, it's another story!",
+      "phrase_fr": "Je n'ai plus aucune motivation.",
+      "phrase_en": "I've got no motivation left at all.",
+      "register": "tu · entre amis",
+      "register_note": "« Ne… plus aucun(e) » = not any… anymore. Pour encourager : « Allez, tu vas y arriver ! »",
+      "dialogue": [
+        {
+          "who": "A",
+          "fr": "Tu viens courir avec moi ce soir ?",
+          "en": "Coming running with me tonight?"
+        },
+        {
+          "who": "B",
+          "fr": "Bof… Je n'ai plus aucune motivation.",
+          "en": "Meh… I've got no motivation left at all."
+        },
+        {
+          "who": "A",
+          "fr": "Allez, tu vas y arriver ! On fait juste trente minutes.",
+          "en": "Come on, you can do it! Just thirty minutes."
+        },
+        {
+          "who": "B",
+          "fr": "Bon, d'accord. Mais c'est toi qui choisis la musique.",
+          "en": "OK, fine. But you're choosing the music."
+        }
+      ]
+    },
+    {
+      "id": "seasonal.new_year_resolutions.08",
+      "theme": "seasonal.new_year_resolutions",
+      "level": "B1",
+      "word": "progresser",
+      "pos": "verbe",
+      "fem": null,
+      "ipa": "/pʁɔ.ɡʁɛ.se/",
+      "def_fr": "Faire des progrès, s'améliorer.",
+      "def_en": "To improve; to make progress.",
+      "example_fr": "Je veux progresser en français, alors je pratique un peu chaque jour.",
+      "example_en": "I want to improve my French, so I practise a little every day.",
+      "phrase_fr": "Petit à petit, ça vient.",
+      "phrase_en": "Little by little, it's coming along.",
+      "register": "tu · entre amis",
+      "register_note": "« Ça vient » = ça s'améliore. « Ça se voit » = it shows.",
+      "dialogue": [
+        {
+          "who": "A",
+          "fr": "Ton français, ça avance ?",
+          "en": "How's your French coming along?"
+        },
+        {
+          "who": "B",
+          "fr": "Petit à petit, ça vient. Je pratique tous les jours avec une appli.",
+          "en": "Little by little, it's coming along. I practise every day with an app."
+        },
+        {
+          "who": "A",
+          "fr": "Ça se voit ! Tu parles beaucoup plus naturellement.",
+          "en": "It shows! You sound much more natural."
+        },
+        {
+          "who": "B",
+          "fr": "Merci, ça me motive à continuer à progresser.",
+          "en": "Thanks, that motivates me to keep improving."
+        }
+      ]
+    },
+    {
+      "id": "seasonal.new_year_resolutions.09",
+      "theme": "seasonal.new_year_resolutions",
+      "level": "B2",
+      "word": "s'engager à",
+      "pos": "verbe pron.",
+      "fem": null,
+      "ipa": "/sɑ̃.ɡa.ʒe a/",
+      "def_fr": "Promettre sérieusement de faire quelque chose.",
+      "def_en": "To commit to; to pledge to.",
+      "example_fr": "Il est plus facile de s'engager à faire du sport que de le faire vraiment.",
+      "example_en": "It's easier to commit to exercising than to actually do it.",
+      "phrase_fr": "Il faudrait que je m'y mette sérieusement.",
+      "phrase_en": "I really ought to get down to it.",
+      "register": "tu · entre amis",
+      "register_note": "Niveau + : « Il faudrait que » + subjonctif = conseil ou regret doux. « S'y mettre » = commencer pour de bon.",
+      "dialogue": [
+        {
+          "who": "A",
+          "fr": "Et ton projet d'apprendre la guitare ?",
+          "en": "And your plan to learn the guitar?"
+        },
+        {
+          "who": "B",
+          "fr": "Il faudrait que je m'y mette sérieusement…",
+          "en": "I really ought to get down to it…"
+        },
+        {
+          "who": "A",
+          "fr": "Engage-toi devant moi : un quart d'heure par jour.",
+          "en": "Commit in front of me: fifteen minutes a day."
+        },
+        {
+          "who": "B",
+          "fr": "D'accord, je m'engage à jouer tous les soirs. Tu es témoin !",
+          "en": "OK, I commit to playing every evening. You're my witness!"
+        }
+      ]
+    },
+    {
+      "id": "seasonal.new_year_resolutions.10",
+      "theme": "seasonal.new_year_resolutions",
+      "level": "B2",
+      "word": "la procrastination",
+      "pos": "nom fém.",
+      "fem": null,
+      "ipa": "/la pʁɔ.kʁas.ti.na.sjɔ̃/",
+      "def_fr": "Tendance à toujours remettre à plus tard ce qu'on doit faire.",
+      "def_en": "Procrastination.",
+      "example_fr": "Ma vraie résolution : lutter contre la procrastination.",
+      "example_en": "My real resolution: fight procrastination.",
+      "phrase_fr": "Dès que j'aurai fini ce dossier, je m'y mets.",
+      "phrase_en": "As soon as I've finished this file, I'll get started.",
+      "register": "tu · entre collègues",
+      "register_note": "Niveau + : après « dès que » ou « quand » au futur, on emploie le futur antérieur : « dès que j'aurai fini ».",
+      "dialogue": [
+        {
+          "who": "A",
+          "fr": "Tu as commencé le rapport annuel ?",
+          "en": "Have you started the annual report?"
+        },
+        {
+          "who": "B",
+          "fr": "Pas encore. Dès que j'aurai fini ce dossier, je m'y mets.",
+          "en": "Not yet. As soon as I've finished this file, I'll get started."
+        },
+        {
+          "who": "A",
+          "fr": "C'est ce que tu disais la semaine dernière…",
+          "en": "That's what you said last week…"
+        },
+        {
+          "who": "B",
+          "fr": "Je sais, je sais. La procrastination, c'est mon point faible.",
+          "en": "I know, I know. Procrastination is my weak spot."
+        }
+      ]
+    },
+    {
+      "id": "seasonal.new_year_resolutions.11",
+      "theme": "seasonal.new_year_resolutions",
+      "level": "argot",
+      "word": "se bouger",
+      "pos": "verbe pron. (fam.)",
+      "fem": null,
+      "ipa": "/sə bu.ʒe/",
+      "def_fr": "Se motiver, passer à l'action, faire des efforts.",
+      "def_en": "(informal) To get moving; to get off one's backside.",
+      "example_fr": "Allez, il faut se bouger, on ne va pas passer l'hiver sur le canapé !",
+      "example_en": "Come on, we need to get moving, we're not spending the winter on the sofa!",
+      "phrase_fr": "Cette année, je me bouge !",
+      "phrase_en": "This year, I'm getting off my backside!",
+      "register": "tu · familier, entre amis",
+      "register_note": "« Se bouger » = passer à l'action (fam.). Plus fort, et un peu vulgaire : « se bouger les fesses ». En neutre : « Cette année, je vais faire des efforts. »",
+      "dialogue": [
+        {
+          "who": "A",
+          "fr": "Cette année, je me bouge ! Salle de sport trois fois par semaine.",
+          "en": "This year, I'm getting off my backside! Gym three times a week."
+        },
+        {
+          "who": "B",
+          "fr": "T'as déjà payé l'abonnement ?",
+          "en": "Have you already paid for the membership?"
+        },
+        {
+          "who": "A",
+          "fr": "Oui, et pour un an : comme ça, je n'ai pas le choix.",
+          "en": "Yes, and for a year: that way, I've got no choice."
+        },
+        {
+          "who": "B",
+          "fr": "Malin. Je vais peut-être faire pareil.",
+          "en": "Clever. I might do the same."
+        }
+      ]
+    },
+    {
+      "id": "seasonal.new_year_resolutions.12",
+      "theme": "seasonal.new_year_resolutions",
+      "level": "argot",
+      "word": "lâcher l'affaire",
+      "pos": "expr. (fam.)",
+      "fem": null,
+      "ipa": "/la.ʃe la.fɛʁ/",
+      "def_fr": "Abandonner, renoncer.",
+      "def_en": "(informal) To give up; to drop it.",
+      "example_fr": "Il ne faut pas lâcher l'affaire dès le premier échec.",
+      "example_en": "You mustn't give up at the first setback.",
+      "phrase_fr": "Franchement, c'était mort d'avance.",
+      "phrase_en": "Honestly, it was doomed from the start.",
+      "register": "tu · familier, entre amis",
+      "register_note": "« C'est mort » = c'est fichu, ça ne marchera pas (fam.). En neutre : « J'ai abandonné », « C'était voué à l'échec ».",
+      "dialogue": [
+        {
+          "who": "A",
+          "fr": "Et ton défi « zéro fromage » ?",
+          "en": "And your 'zero cheese' challenge?"
+        },
+        {
+          "who": "B",
+          "fr": "Franchement, c'était mort d'avance. On est en France !",
+          "en": "Honestly, it was doomed from the start. We're in France!"
+        },
+        {
+          "who": "A",
+          "fr": "Donc tu as lâché l'affaire ?",
+          "en": "So you gave up?"
+        },
+        {
+          "who": "B",
+          "fr": "Au bout de trois jours. Un camembert m'a regardé…",
+          "en": "After three days. A camembert looked at me…"
+        }
+      ]
+    }
+  ],
+  "idioms": [
+    {
+      "id": "seasonal.new_year_resolutions.i01",
+      "theme": "seasonal.new_year_resolutions",
+      "fr": "repartir de zéro",
+      "literal": "to leave again from zero",
+      "en": "to start again from scratch",
+      "example_fr": "Nouvelle année, nouveau départ : je repars de zéro.",
+      "example_en": "New year, fresh start: I'm starting again from scratch."
+    },
+    {
+      "id": "seasonal.new_year_resolutions.i02",
+      "theme": "seasonal.new_year_resolutions",
+      "fr": "prendre le taureau par les cornes",
+      "literal": "to take the bull by the horns",
+      "en": "to tackle a problem head-on",
+      "example_fr": "Cette année, je prends le taureau par les cornes et je cherche un nouveau travail.",
+      "example_en": "This year, I'm taking the bull by the horns and looking for a new job."
+    },
+    {
+      "id": "seasonal.new_year_resolutions.i03",
+      "theme": "seasonal.new_year_resolutions",
+      "fr": "Rome ne s'est pas faite en un jour",
+      "literal": "Rome wasn't made in one day",
+      "en": "Rome wasn't built in a day",
+      "example_fr": "Tu as raté une séance ? Rome ne s'est pas faite en un jour !",
+      "example_en": "You missed a session? Rome wasn't built in a day!"
+    },
+    {
+      "id": "seasonal.new_year_resolutions.i04",
+      "theme": "seasonal.new_year_resolutions",
+      "fr": "petit à petit, l'oiseau fait son nid",
+      "literal": "little by little, the bird builds its nest",
+      "en": "slow and steady wins the race",
+      "example_fr": "Dix minutes de français par jour… petit à petit, l'oiseau fait son nid.",
+      "example_en": "Ten minutes of French a day… slow and steady wins the race."
+    },
+    {
+      "id": "seasonal.new_year_resolutions.i05",
+      "theme": "seasonal.new_year_resolutions",
+      "fr": "jeter l'éponge",
+      "literal": "to throw the sponge",
+      "en": "to throw in the towel",
+      "example_fr": "Après une semaine de régime, il a jeté l'éponge.",
+      "example_en": "After a week of dieting, he threw in the towel."
+    },
+    {
+      "id": "seasonal.new_year_resolutions.i06",
+      "theme": "seasonal.new_year_resolutions",
+      "fr": "il n'y a que le premier pas qui coûte",
+      "literal": "only the first step costs",
+      "en": "the first step is the hardest",
+      "example_fr": "Inscris-toi au cours : il n'y a que le premier pas qui coûte !",
+      "example_en": "Sign up for the class: the first step is the hardest!"
+    }
+  ]
+}

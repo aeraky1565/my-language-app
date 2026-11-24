@@ -1,0 +1,529 @@
+{
+  "theme": "seasonal.year_review",
+  "entries": [
+    {
+      "id": "seasonal.year_review.01",
+      "theme": "seasonal.year_review",
+      "level": "B1",
+      "word": "le bilan",
+      "pos": "nom masc.",
+      "fem": null,
+      "ipa": "/lə bi.lɑ̃/",
+      "def_fr": "Résumé de ce qui s'est passé, avec le positif et le négatif.",
+      "def_en": "An assessment; a review; a summing-up.",
+      "example_fr": "En décembre, je fais toujours le bilan de mon année.",
+      "example_en": "In December, I always take stock of my year.",
+      "phrase_fr": "Quel a été ton meilleur moment de l'année ?",
+      "phrase_en": "What was your best moment of the year?",
+      "register": "tu · entre amis",
+      "register_note": "Question typique de fin d'année. On répond : « Sans hésiter, c'est… » ou « Difficile à dire, mais… ».",
+      "dialogue": [
+        {
+          "who": "A",
+          "fr": "Alors, quel a été ton meilleur moment de l'année ?",
+          "en": "So, what was your best moment of the year?"
+        },
+        {
+          "who": "B",
+          "fr": "Sans hésiter, notre voyage au Portugal. Et toi ?",
+          "en": "Without a doubt, our trip to Portugal. And you?"
+        },
+        {
+          "who": "A",
+          "fr": "Moi, c'est mon nouveau boulot. Quand je fais le bilan, c'est plutôt positif !",
+          "en": "For me, it's my new job. When I take stock, it's pretty positive!"
+        },
+        {
+          "who": "B",
+          "fr": "Tant mieux ! On trinque à ça ?",
+          "en": "Great! Shall we drink to that?"
+        }
+      ]
+    },
+    {
+      "id": "seasonal.year_review.02",
+      "theme": "seasonal.year_review",
+      "level": "B1",
+      "word": "un moment fort",
+      "pos": "nom masc.",
+      "fem": null,
+      "ipa": "/œ̃ mɔ.mɑ̃ fɔʁ/",
+      "def_fr": "Moment important, qui marque.",
+      "def_en": "A highlight; a key moment.",
+      "example_fr": "Le mariage de ma sœur a été le moment fort de l'année.",
+      "example_en": "My sister's wedding was the highlight of the year.",
+      "phrase_fr": "Ça passe tellement vite !",
+      "phrase_en": "It goes by so fast!",
+      "register": "tu · entre amis",
+      "register_note": "Phrase qu'on entend partout fin décembre. Variante : « L'année est passée à toute vitesse ! »",
+      "dialogue": [
+        {
+          "who": "A",
+          "fr": "Déjà fin décembre… Ça passe tellement vite !",
+          "en": "End of December already… It goes by so fast!"
+        },
+        {
+          "who": "B",
+          "fr": "C'est clair. Pour moi, le moment fort, c'était la naissance de ma nièce.",
+          "en": "Totally. For me, the highlight was my niece being born."
+        },
+        {
+          "who": "A",
+          "fr": "Ah oui, quelle belle nouvelle ! Elle a quel âge maintenant ?",
+          "en": "Oh yes, such lovely news! How old is she now?"
+        },
+        {
+          "who": "B",
+          "fr": "Six mois, et elle sourit tout le temps.",
+          "en": "Six months, and she smiles all the time."
+        }
+      ]
+    },
+    {
+      "id": "seasonal.year_review.03",
+      "theme": "seasonal.year_review",
+      "level": "B1",
+      "word": "regretter",
+      "pos": "verbe",
+      "fem": null,
+      "ipa": "/ʁə.ɡʁɛ.te/",
+      "def_fr": "Être triste d'avoir fait, ou de ne pas avoir fait, quelque chose.",
+      "def_en": "To regret.",
+      "example_fr": "Il ne faut rien regretter, on a fait de notre mieux.",
+      "example_en": "No regrets, we did our best.",
+      "phrase_fr": "Je n'ai pas eu le temps de tout faire.",
+      "phrase_en": "I didn't have time to do everything.",
+      "register": "tu · entre amis",
+      "register_note": "« Avoir le temps de » + infinitif. Pour relativiser : « Ce n'est pas grave, ce sera pour l'année prochaine ! »",
+      "dialogue": [
+        {
+          "who": "A",
+          "fr": "Tu as réussi tout ce que tu voulais cette année ?",
+          "en": "Did you manage everything you wanted this year?"
+        },
+        {
+          "who": "B",
+          "fr": "Pas vraiment, je n'ai pas eu le temps de tout faire.",
+          "en": "Not really, I didn't have time to do everything."
+        },
+        {
+          "who": "A",
+          "fr": "Ce n'est pas grave, ce sera pour l'année prochaine !",
+          "en": "Never mind, it'll be for next year!"
+        },
+        {
+          "who": "B",
+          "fr": "Tu as raison. Je ne vais rien regretter.",
+          "en": "You're right. I'm not going to regret anything."
+        }
+      ]
+    },
+    {
+      "id": "seasonal.year_review.04",
+      "theme": "seasonal.year_review",
+      "level": "B1",
+      "word": "fier",
+      "pos": "adj.",
+      "fem": "fière",
+      "ipa": "/fjɛʁ/",
+      "def_fr": "Content et satisfait de ce qu'on a fait.",
+      "def_en": "Proud.",
+      "example_fr": "Je suis assez fier d'avoir couru mon premier semi-marathon.",
+      "example_en": "I'm quite proud of having run my first half-marathon.",
+      "phrase_fr": "Tu peux être fier de toi !",
+      "phrase_en": "You can be proud of yourself!",
+      "register": "tu · entre amis",
+      "register_note": "Pour féliciter quelqu'un. Au féminin : « Tu peux être fière de toi ! » Au vouvoiement : « Vous pouvez être fier de vous. »",
+      "dialogue": [
+        {
+          "who": "A",
+          "fr": "Cette année, j'ai enfin eu mon permis !",
+          "en": "This year, I finally got my driving licence!"
+        },
+        {
+          "who": "B",
+          "fr": "Bravo ! Tu peux être fier de toi !",
+          "en": "Well done! You can be proud of yourself!"
+        },
+        {
+          "who": "A",
+          "fr": "Merci, c'était ma quatrième tentative…",
+          "en": "Thanks, it was my fourth attempt…"
+        },
+        {
+          "who": "B",
+          "fr": "Raison de plus ! Tu n'as pas lâché.",
+          "en": "All the more reason! You didn't give up."
+        }
+      ]
+    },
+    {
+      "id": "seasonal.year_review.05",
+      "theme": "seasonal.year_review",
+      "level": "B1",
+      "word": "un objectif",
+      "pos": "nom masc.",
+      "fem": null,
+      "ipa": "/œ̃.n‿ɔb.ʒɛk.tif/",
+      "def_fr": "But qu'on veut atteindre.",
+      "def_en": "A goal; an objective.",
+      "example_fr": "Mon objectif était de lire vingt livres ; j'en ai lu douze.",
+      "example_en": "My goal was to read twenty books; I read twelve.",
+      "phrase_fr": "Bon, c'était quand même une belle année.",
+      "phrase_en": "Well, it was a good year all the same.",
+      "register": "tu · en famille",
+      "register_note": "« Quand même » = malgré tout. Très fréquent à l'oral pour relativiser.",
+      "dialogue": [
+        {
+          "who": "A",
+          "fr": "Je n'ai pas atteint mon objectif de lecture…",
+          "en": "I didn't hit my reading goal…"
+        },
+        {
+          "who": "B",
+          "fr": "Douze livres, c'est déjà pas mal ! Bon, c'était quand même une belle année.",
+          "en": "Twelve books is pretty good! Well, it was a good year all the same."
+        },
+        {
+          "who": "A",
+          "fr": "C'est vrai. Entre le déménagement et le nouveau boulot…",
+          "en": "True. Between the move and the new job…"
+        },
+        {
+          "who": "B",
+          "fr": "Exactement. On a beaucoup changé en un an.",
+          "en": "Exactly. We've changed a lot in a year."
+        }
+      ]
+    },
+    {
+      "id": "seasonal.year_review.06",
+      "theme": "seasonal.year_review",
+      "level": "B1",
+      "word": "une rétrospective",
+      "pos": "nom fém.",
+      "fem": null,
+      "ipa": "/yn ʁe.tʁo.spɛk.tiv/",
+      "def_fr": "Présentation qui revient sur les événements passés.",
+      "def_en": "A look back; a retrospective.",
+      "example_fr": "Fin décembre, la télé passe des rétrospectives de l'année tous les soirs.",
+      "example_en": "At the end of December, TV shows year-in-review programmes every evening.",
+      "phrase_fr": "Tu te souviens de ce qu'on faisait l'an dernier à la même époque ?",
+      "phrase_en": "Do you remember what we were doing this time last year?",
+      "register": "tu · en famille",
+      "register_note": "« À la même époque » = at the same time of year. « L'an dernier » = l'année dernière.",
+      "dialogue": [
+        {
+          "who": "A",
+          "fr": "Tu te souviens de ce qu'on faisait l'an dernier à la même époque ?",
+          "en": "Do you remember what we were doing this time last year?"
+        },
+        {
+          "who": "B",
+          "fr": "On faisait les cartons pour le déménagement !",
+          "en": "We were packing boxes for the move!"
+        },
+        {
+          "who": "A",
+          "fr": "Quelle année… Regarde, mon téléphone me propose une rétrospective en photos.",
+          "en": "What a year… Look, my phone is offering me a photo look-back."
+        },
+        {
+          "who": "B",
+          "fr": "Oh, montre ! Il y a celles des vacances ?",
+          "en": "Oh, show me! Are the holiday ones in there?"
+        }
+      ]
+    },
+    {
+      "id": "seasonal.year_review.07",
+      "theme": "seasonal.year_review",
+      "level": "B1",
+      "word": "tourner la page",
+      "pos": "expr. verbale",
+      "fem": null,
+      "ipa": "/tuʁ.ne la paʒ/",
+      "def_fr": "Oublier le passé pour recommencer autrement.",
+      "def_en": "To turn the page; to move on.",
+      "example_fr": "Cette année a été difficile, il est temps de tourner la page.",
+      "example_en": "This year has been hard, it's time to move on.",
+      "phrase_fr": "Vivement l'année prochaine !",
+      "phrase_en": "Roll on next year!",
+      "register": "tu · entre amis",
+      "register_note": "« Vivement » + nom (ou « que » + subjonctif) = j'ai hâte : « Vivement les vacances ! », « Vivement que ça finisse ! »",
+      "dialogue": [
+        {
+          "who": "A",
+          "fr": "Franchement, cette année n'a pas été facile.",
+          "en": "Honestly, this year hasn't been easy."
+        },
+        {
+          "who": "B",
+          "fr": "Je sais… Vivement l'année prochaine !",
+          "en": "I know… Roll on next year!"
+        },
+        {
+          "who": "A",
+          "fr": "Oui, j'ai besoin de tourner la page.",
+          "en": "Yes, I need to move on."
+        },
+        {
+          "who": "B",
+          "fr": "Tu verras, la prochaine sera meilleure.",
+          "en": "You'll see, the next one will be better."
+        }
+      ]
+    },
+    {
+      "id": "seasonal.year_review.08",
+      "theme": "seasonal.year_review",
+      "level": "B1",
+      "word": "une bonne nouvelle",
+      "pos": "nom fém.",
+      "fem": null,
+      "ipa": "/yn bɔn nu.vɛl/",
+      "def_fr": "Information qui rend heureux.",
+      "def_en": "Good news.",
+      "example_fr": "Une bonne nouvelle pour finir l'année : j'ai eu une augmentation !",
+      "example_en": "Good news to end the year: I got a pay rise!",
+      "phrase_fr": "Devine quoi !",
+      "phrase_en": "Guess what!",
+      "register": "tu · entre amis",
+      "register_note": "Pour annoncer une nouvelle avec suspense. Réponse : « Quoi ? Dis-moi ! »",
+      "dialogue": [
+        {
+          "who": "A",
+          "fr": "Devine quoi ! J'ai eu le poste à Lyon !",
+          "en": "Guess what! I got the job in Lyon!"
+        },
+        {
+          "who": "B",
+          "fr": "C'est génial ! Quelle bonne nouvelle pour finir l'année !",
+          "en": "That's brilliant! What great news to end the year!"
+        },
+        {
+          "who": "A",
+          "fr": "Je commence en mars.",
+          "en": "I start in March."
+        },
+        {
+          "who": "B",
+          "fr": "Il faut fêter ça ! Je t'invite à dîner.",
+          "en": "We have to celebrate! Dinner's on me."
+        }
+      ]
+    },
+    {
+      "id": "seasonal.year_review.09",
+      "theme": "seasonal.year_review",
+      "level": "B2",
+      "word": "le recul",
+      "pos": "nom masc.",
+      "fem": null,
+      "ipa": "/lə ʁə.kyl/",
+      "def_fr": "Distance dans le temps qui permet de juger une situation plus calmement.",
+      "def_en": "Hindsight; perspective.",
+      "example_fr": "Avec le recul, changer de travail était la bonne décision.",
+      "example_en": "With hindsight, changing jobs was the right decision.",
+      "phrase_fr": "Si c'était à refaire, je le referais sans hésiter.",
+      "phrase_en": "If I had to do it again, I'd do it again without hesitating.",
+      "register": "tu · entre amis",
+      "register_note": "Niveau + : « Si c'était à refaire » = si je devais recommencer, suivi du conditionnel : « je le referais », « je ne le referais pas ».",
+      "dialogue": [
+        {
+          "who": "A",
+          "fr": "Tu ne regrettes pas d'avoir quitté Paris ?",
+          "en": "Don't you regret leaving Paris?"
+        },
+        {
+          "who": "B",
+          "fr": "Pas du tout. Si c'était à refaire, je le referais sans hésiter.",
+          "en": "Not at all. If I had to do it again, I'd do it again without hesitating."
+        },
+        {
+          "who": "A",
+          "fr": "Même avec le recul ?",
+          "en": "Even with hindsight?"
+        },
+        {
+          "who": "B",
+          "fr": "Surtout avec le recul ! Je vis tellement mieux.",
+          "en": "Especially with hindsight! I live so much better."
+        }
+      ]
+    },
+    {
+      "id": "seasonal.year_review.10",
+      "theme": "seasonal.year_review",
+      "level": "B2",
+      "word": "mitigé",
+      "pos": "adj.",
+      "fem": "mitigée",
+      "ipa": "/mi.ti.ʒe/",
+      "def_fr": "Ni vraiment positif, ni vraiment négatif.",
+      "def_en": "Mixed (of feelings or results).",
+      "example_fr": "Mon bilan de l'année est plutôt mitigé.",
+      "example_en": "Looking back, my year was rather mixed.",
+      "phrase_fr": "Bien que le boulot ait été compliqué, j'ai profité de ma famille.",
+      "phrase_en": "Although work was complicated, I made the most of time with my family.",
+      "register": "tu · entre amis",
+      "register_note": "Niveau + : « bien que » + subjonctif (au passé : « ait été »). À l'oral, on dit souvent « même si » + indicatif.",
+      "dialogue": [
+        {
+          "who": "A",
+          "fr": "Alors, ce bilan de l'année ?",
+          "en": "So, how does your year look?"
+        },
+        {
+          "who": "B",
+          "fr": "Mitigé. Bien que le boulot ait été compliqué, j'ai profité de ma famille.",
+          "en": "Mixed. Although work was complicated, I made the most of time with my family."
+        },
+        {
+          "who": "A",
+          "fr": "C'est déjà l'essentiel.",
+          "en": "That's what matters most."
+        },
+        {
+          "who": "B",
+          "fr": "Oui. Et l'an prochain, je me fixe des limites au travail.",
+          "en": "Yes. And next year, I'm setting limits at work."
+        }
+      ]
+    },
+    {
+      "id": "seasonal.year_review.11",
+      "theme": "seasonal.year_review",
+      "level": "argot",
+      "word": "kiffer",
+      "pos": "verbe (fam.)",
+      "fem": null,
+      "ipa": "/ki.fe/",
+      "def_fr": "Aimer beaucoup, adorer.",
+      "def_en": "(informal) To love; to be really into.",
+      "example_fr": "Cette année, je veux juste kiffer et profiter.",
+      "example_en": "This year, I just want to enjoy myself and make the most of it.",
+      "phrase_fr": "C'était une année de ouf !",
+      "phrase_en": "It was a crazy year!",
+      "register": "tu · familier, entre amis",
+      "register_note": "« De ouf » = incroyable (verlan de « fou », très courant chez les moins de quarante ans) ; « dingue » = fou, incroyable. En neutre : « C'était une année incroyable », « J'ai adoré ».",
+      "dialogue": [
+        {
+          "who": "A",
+          "fr": "Alors, ton année ?",
+          "en": "So, your year?"
+        },
+        {
+          "who": "B",
+          "fr": "C'était une année de ouf ! J'ai trop kiffé le Japon.",
+          "en": "It was a crazy year! I absolutely loved Japan."
+        },
+        {
+          "who": "A",
+          "fr": "Grave, tes photos étaient dingues.",
+          "en": "Totally, your photos were insane."
+        },
+        {
+          "who": "B",
+          "fr": "L'an prochain, je veux kiffer encore plus.",
+          "en": "Next year, I want to enjoy it even more."
+        }
+      ]
+    },
+    {
+      "id": "seasonal.year_review.12",
+      "theme": "seasonal.year_review",
+      "level": "argot",
+      "word": "bosser",
+      "pos": "verbe (fam.)",
+      "fem": null,
+      "ipa": "/bɔ.se/",
+      "def_fr": "Travailler.",
+      "def_en": "(informal) To work.",
+      "example_fr": "L'an prochain, je compte moins bosser le week-end.",
+      "example_en": "Next year, I'm planning to work less at weekends.",
+      "phrase_fr": "J'ai pas arrêté de toute l'année.",
+      "phrase_en": "I haven't stopped all year.",
+      "register": "tu · familier, entre amis",
+      "register_note": "À l'oral familier, on supprime souvent le « ne » : « J'ai pas arrêté ». « Bosser » = travailler ; « le boulot » = le travail. En neutre : « Je n'ai pas arrêté de travailler. »",
+      "dialogue": [
+        {
+          "who": "A",
+          "fr": "T'as l'air fatigué…",
+          "en": "You look tired…"
+        },
+        {
+          "who": "B",
+          "fr": "J'ai pas arrêté de toute l'année, entre le boulot et les travaux.",
+          "en": "I haven't stopped all year, between work and the renovations."
+        },
+        {
+          "who": "A",
+          "fr": "Il faut que tu lèves le pied.",
+          "en": "You need to ease off."
+        },
+        {
+          "who": "B",
+          "fr": "Promis, l'an prochain, je bosse moins et je voyage plus.",
+          "en": "Promise, next year I'll work less and travel more."
+        }
+      ]
+    }
+  ],
+  "idioms": [
+    {
+      "id": "seasonal.year_review.i01",
+      "theme": "seasonal.year_review",
+      "fr": "tirer un trait sur quelque chose",
+      "literal": "to draw a line on something",
+      "en": "to put something behind you",
+      "example_fr": "Cette année difficile, j'ai décidé de tirer un trait dessus.",
+      "example_en": "That hard year — I've decided to put it behind me."
+    },
+    {
+      "id": "seasonal.year_review.i02",
+      "theme": "seasonal.year_review",
+      "fr": "avoir du pain sur la planche",
+      "literal": "to have bread on the board",
+      "en": "to have a lot of work ahead",
+      "example_fr": "L'année prochaine, on a du pain sur la planche avec la maison !",
+      "example_en": "Next year, we've got our work cut out with the house!"
+    },
+    {
+      "id": "seasonal.year_review.i03",
+      "theme": "seasonal.year_review",
+      "fr": "c'est le jour et la nuit",
+      "literal": "it's day and night",
+      "en": "it's like night and day",
+      "example_fr": "Entre l'an dernier et cette année, c'est le jour et la nuit.",
+      "example_en": "Between last year and this year, it's like night and day."
+    },
+    {
+      "id": "seasonal.year_review.i04",
+      "theme": "seasonal.year_review",
+      "fr": "lever le pied",
+      "literal": "to lift the foot",
+      "en": "to slow down; to ease off",
+      "example_fr": "Après une année pareille, je vais lever le pied.",
+      "example_en": "After a year like that, I'm going to ease off."
+    },
+    {
+      "id": "seasonal.year_review.i05",
+      "theme": "seasonal.year_review",
+      "fr": "passer l'éponge",
+      "literal": "to pass the sponge",
+      "en": "to forgive and forget",
+      "example_fr": "Les disputes de l'année ? On passe l'éponge et on avance.",
+      "example_en": "This year's arguments? Let's forgive and forget and move on."
+    },
+    {
+      "id": "seasonal.year_review.i06",
+      "theme": "seasonal.year_review",
+      "fr": "avoir des hauts et des bas",
+      "literal": "to have highs and lows",
+      "en": "to have ups and downs",
+      "example_fr": "Comme toutes les années, on a eu des hauts et des bas.",
+      "example_en": "Like every year, we've had our ups and downs."
+    }
+  ]
+}
