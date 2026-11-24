@@ -95,6 +95,32 @@ in Mes mots › Phrases.
    speech recognition (`fr-FR`) shows what it heard under the target line. No score, no network beyond
    Chrome's own recognition.
 
+3. **Rehearsal before a real event ("Répétition"):** when the week's theme came from a calendar event,
+   the day before that event the Today screen offers a 2-minute rehearsal: the theme's 3 most useful
+   phrases, then a speak-back role-play of a dialogue where you play yourself.
+4. **Shadowing and slow mode:** in the dialogue player, each line plays, then pauses long enough for you
+   to repeat it aloud. Long-press any speaker button to replay at 0.7×.
+5. **One sentence a day ("Ta phrase"):** a prompt to write or say (speech-to-text) one French sentence
+   using the day's word. Saved to a `Sentences` tab; Sunday's review shows the week's sentences.
+6. **Weekly listening link:** the `Podcasts` tab lists French podcasts you follow on Spotify
+   (title, Spotify link, optional themes or categories, note). Each week the theme banner links to one:
+   the first that matches the theme or its category and wasn't used recently, otherwise the next in
+   rotation. It opens in Spotify.
+
+## 3d. Progress log for VERA (new)
+
+ÉLISE tells VERA when you practised, through VERA's **existing** web API, so VERA's code does not change:
+
+- On the **first open of each day**, ÉLISE calls VERA's `life_practice_log` for the Growth goal in
+  `Config › vera_goal_id` (`GOAL-20260309-02`, "🇫🇷 Improve French fluency (>B1)") with the day and a
+  note such as `ÉLISE · Les soldes · dépensier`. That marks the day in VERA's Growth strip and Habits grid.
+- When a session ends, the app sends the minutes spent; VERA adds same-day logs together, so the day
+  shows the real total.
+- VERA's web app URL and token are stored only as ÉLISE **Script Properties** (`VERA_URL`, `VERA_TOKEN`),
+  set by you in the Apps Script editor; never in the repo, the Sheet or a chat.
+- If VERA can't be reached, the day is marked "not sent" in `Visits` and retried on the next open.
+- Needs the `script.external_request` scope.
+
 ## 4. ÉLISE calendar: the theme weeks (new)
 
 ÉLISE creates its own calendar, **ÉLISE**, and writes **one all-day event per theme week (Monday to
@@ -127,6 +153,7 @@ No home-screen widget for now; to be revisited.
 2. **Content:** Sheet schema + validator, the 52 default-calendar themes first. **Checkpoint 2:** 10 random entries to read *and listen to* on the phone; decide whether the phone voice is good enough.
 3. **Theme engine:** keyword / default logic as pure functions with tests (run locally with Node), Sunday 21:00 trigger. **Checkpoint 3:** test report + 12-week simulation.
 4. **Today wired to the engine:** the week's shuffled 4 B1 / 1 B2 / 1 argot, Sunday review, seen-entries log
-   (timestamps + counts for v2 spaced repetition), listen first, speak back.
+   (timestamps + counts for v2 spaced repetition), listen first, speak back, the VERA progress log.
+   Then: rehearsal before real events, shadowing and slow mode, one sentence a day, weekly podcast link.
 5. **ÉLISE calendar:** one all-day event per theme week.
 6. **Polish.**
