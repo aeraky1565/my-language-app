@@ -92,8 +92,9 @@ in Mes mots › Phrases.
 
 ## 3c. Immersion (new; app features)
 
-1. **Listen first:** on opening Today, the phrase plays, then the dialogue; the French text appears after
-   listening (or on tap). English stays blurred until tapped.
+1. **Listen first:** the phrase card opens veiled with **"Écouter d'abord"**: the phrase plays, then the
+   dialogue, and then the French text appears (or tap "Lire le texte"). Once a day. Chrome won't play
+   speech before a tap, so it can't start by itself. English stays blurred until tapped.
 2. **Speak back ("À vous"):** a mic button on the dialogue. You say speaker B's line; Chrome's built-in French
    speech recognition (`fr-FR`) shows what it heard under the target line. No score, no network beyond
    Chrome's own recognition.
@@ -184,7 +185,7 @@ No home-screen widget for now; to be revisited.
 1. **Scaffold:** API with sample entry, streak, saving, settings; web app installable on the Pixel. **Checkpoint 1:** [SETUP.md](../SETUP.md).
 2. **Content:** Sheet schema + validator, the 52 default-calendar themes first. **Checkpoint 2:** 10 random entries to read *and listen to* on the phone; decide whether the phone voice is good enough.
 3. **Theme engine:** keyword / default logic as pure functions with tests (run locally with Node), Sunday 21:00 trigger. **Checkpoint 3:** test report + 12-week simulation.
-4. **Today wired to the engine:** the week's shuffled 4 B1 / 1 B2 / 1 argot, Sunday review, seen-entries log
+4. ✅ **Today wired to the engine** (`apps-script/Today.js`, tests in `tests/today.test.js`): the week's shuffled 4 B1 / 1 B2 / 1 argot, Sunday review, seen-entries log
    (timestamps + counts for v2 spaced repetition), listen first, speak back, the VERA progress log.
    Then: rehearsal before real events, shadowing and slow mode, one sentence a day, weekly podcast link.
 5. **ÉLISE calendar:** one all-day event per theme week.

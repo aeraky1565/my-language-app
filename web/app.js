@@ -20,7 +20,7 @@ const store = {
   history.replaceState(null, '', location.pathname + location.search);
 })();
 
-async function api(action, payload) {
+async function api(action, payload, opts = {}) {
   const base = store.get('elise.api');
   const token = store.get('elise.token');
   if (!base || !token) throw new Error('not_connected');
@@ -28,7 +28,7 @@ async function api(action, payload) {
   url.searchParams.set('action', action);
   url.searchParams.set('token', token);
   if (payload) url.searchParams.set('p', JSON.stringify(payload));
-  const res = await fetch(url.toString(), { redirect: 'follow' });
+  const res = await fetch(url.toString(), { redirect: 'follow', keepalive: !!opts.keepalive });
   const body = await res.json();
   if (!body.ok) throw new Error(body.error || 'error');
   return body.data;
@@ -48,8 +48,14 @@ const state = {
   tab: 'word',
   sort: 'recent',
   query: '',
-  settings: null
+  settings: null,
+  listenRunning: false,
+  heard: {},
+  micLine: -1
 };
+
+const SpeechRec = window.SpeechRecognition || window.webkitSpeechRecognition || null;
+const listenedToday = () => state.today && store.get('elise.listened') === state.today.date;
 
 const $view = document.getElementById('view');
 const $nav = document.getElementById('nav');
@@ -68,7 +74,8 @@ const ICON = {
   search: '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg>',
   trash: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M10 11v6M14 11v6M6 7l1 13h10l1-13M9 7V4h6v3"/></svg>',
   check: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12l5 5 9-10"/></svg>',
-  alert: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 8v5M12 16.5v.5"/><circle cx="12" cy="12" r="9"/></svg>'
+  alert: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 8v5M12 16.5v.5"/><circle cx="12" cy="12" r="9"/></svg>',
+  mic: '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/></svg>'
 };
 
 // ---------------------------------------------------------------------------
@@ -229,19 +236,11 @@ function highlight(sentence, word) {
   return w ? s.replace(new RegExp(w, 'i'), (m) => `<mark>${m}</mark>`) : s;
 }
 
-function renderToday() {
-  $view.className = '';
-  const t = state.today;
-  if (!t) {
-    $view.innerHTML = '<div class="skeleton" style="height:72px"></div><div class="skeleton" style="height:180px"></div><div class="skeleton" style="height:380px"></div>';
-    return;
-  }
-  const e = t.entry;
+function topHtml(t) {
   const hour = new Date().getHours();
   const days = ['L', 'M', 'M', 'J', 'V', 'S', 'D'].map((l, i) =>
     `<span class="day ${t.week[i] ? 'done' : ''} ${i === t.todayIndex ? 'today' : ''}"><i></i>${l}</span>`).join('');
-  const playing = state.playIndex >= 0;
-  $view.innerHTML = `
+  return `
     <header class="header">
       <div>
         <p class="date">${esc(frenchDate(t.date))}</p>
@@ -261,11 +260,33 @@ function renderToday() {
       <h2>${esc(t.theme.name_fr)}</h2>
       <div class="week" aria-label="Jours ouverts cette semaine">${days}</div>
       <p class="why"><b>Pourquoi ce thème ?</b> ${esc(t.theme.why)}</p>
-    </section>
+      ${t.sample ? '<p class="small">Exemple intégré : le contenu arrive après <b>importNewContent()</b>.</p>' : ''}
+    </section>`;
+}
+
+function levelBadge(level) {
+  if (level === 'B2') return '<span class="badge b2">Niveau +</span>';
+  if (level === 'argot') return '<span class="badge argot">Argot</span>';
+  return '';
+}
+
+function renderToday() {
+  $view.className = '';
+  const t = state.today;
+  if (!t) {
+    $view.innerHTML = '<div class="skeleton" style="height:72px"></div><div class="skeleton" style="height:180px"></div><div class="skeleton" style="height:380px"></div>';
+    return;
+  }
+  if (t.mode === 'review') return renderReview(t);
+  const e = t.entry;
+  const playing = state.playIndex >= 0;
+  const veiled = !listenedToday();
+  $view.innerHTML = `
+    ${topHtml(t)}
 
     <section class="card">
       <div class="row-between">
-        <p class="eyebrow">Mot du jour</p>
+        <p class="eyebrow">Mot du jour ${levelBadge(e.level)}</p>
         <button class="icon-btn card-head ${t.saved.word ? 'saved' : ''}" style="${t.saved.word ? 'color:var(--accent)' : ''}" type="button" data-save="word" aria-pressed="${t.saved.word}" aria-label="${t.saved.word ? 'Retirer de Mes mots' : 'Enregistrer le mot'}">${ICON.bookmark}</button>
       </div>
       <div class="word-line">
@@ -307,11 +328,16 @@ function renderToday() {
       </div>
     </section>` : ''}
 
-    <section class="phrase-card">
+    <section class="phrase-card ${veiled ? 'veiled' : ''}">
       <div class="row-between">
         <p class="eyebrow coral">Phrase du jour</p>
         <button class="icon-btn card-head ${t.saved.phrase ? 'saved' : ''}" style="${t.saved.phrase ? 'color:var(--coral)' : ''}" type="button" data-save="phrase" aria-pressed="${t.saved.phrase}" aria-label="${t.saved.phrase ? 'Retirer la phrase' : 'Enregistrer la phrase'}">${ICON.bookmark}</button>
       </div>
+      ${veiled && !state.listenRunning ? `
+      <div class="listen-first">
+        <button class="btn btn-coral" type="button" data-listen-first>${ICON.play}Écouter d’abord</button>
+        <button class="link" type="button" data-show-text>Lire le texte</button>
+      </div>` : ''}
       <div class="phrase-line">
         <div>
           <p class="phrase">${esc(e.phrase_fr)}</p>
@@ -328,13 +354,53 @@ function renderToday() {
       </div>
       ${state.dialogueOpen ? `
       <div class="dialogue ${playing ? 'playing' : ''}">
+        ${SpeechRec && !veiled ? '<p class="small on-card">À vous : touchez le micro et dites la réplique B.</p>' : ''}
         ${e.dialogue.map((l, i) => `
           <div class="line ${i === state.playIndex ? 'current' : ''}">
             <span class="who ${l.who === 'B' ? 'b' : ''}">${esc(l.who)}</span>
-            <div><p class="fr">${esc(l.fr)}</p>${en('d' + i, l.en)}</div>
+            <div>
+              <p class="fr">${esc(l.fr)}</p>${en('d' + i, l.en)}
+              ${state.heard[i] ? `<p class="heard">Entendu : « ${esc(state.heard[i])} »</p>` : ''}
+            </div>
+            ${SpeechRec && l.who === 'B' && !veiled ? `<button class="mic ${state.micLine === i ? 'on' : ''}" type="button" data-mic="${i}" aria-label="À vous : dites cette réplique">${ICON.mic}</button>` : ''}
           </div>`).join('')}
         <p class="note"><b>Registre :</b> ${esc(e.register_note)}</p>
       </div>` : ''}
+    </section>`;
+}
+
+function renderReview(t) {
+  const r = t.review;
+  $view.innerHTML = `
+    ${topHtml(t)}
+    <section class="card">
+      <p class="eyebrow">Révision de la semaine</p>
+      <p class="muted" style="font-size:15px;line-height:1.5">Les six mots, phrases et expressions de la semaine. Écoutez, répétez, puis vérifiez l’anglais.</p>
+      <div class="review-list">
+        ${r.entries.map((x) => `
+          <div class="review-item">
+            <div>
+              <p class="review-word">${esc(x.word)} ${levelBadge(x.level)}</p>
+              ${en('rw:' + x.id, x.def_en)}
+              <p class="fr">${esc(x.phrase_fr)}</p>
+              ${en('rp:' + x.id, x.phrase_en)}
+            </div>
+            <button class="speak ghost" type="button" data-speak-text="${esc(x.word + '. ' + x.phrase_fr)}" aria-label="Écouter">${ICON.speaker}</button>
+          </div>`).join('')}
+      </div>
+    </section>
+    <section class="card idiom-card">
+      <p class="eyebrow">Les expressions de la semaine</p>
+      <div class="review-list">
+        ${r.idioms.map((x) => `
+          <div class="review-item">
+            <div>
+              <p class="review-word">${esc(x.fr)}</p>
+              ${en('ri:' + x.id, x.en)}
+            </div>
+            <button class="speak ghost" type="button" data-speak-text="${esc(x.fr)}" aria-label="Écouter">${ICON.speaker}</button>
+          </div>`).join('')}
+      </div>
     </section>`;
 }
 
@@ -350,11 +416,48 @@ $view.addEventListener('click', async (ev) => {
     if (el.dataset.say === 'word') return speakButton(el, e.tts || e.word);
     if (el.dataset.say === 'phrase') return speakButton(el, e.phrase_fr);
     if (el.dataset.say === 'idiom') return speakButton(el, state.today.idiom.fr + '. ' + state.today.idiom.example_fr);
+    if (el.dataset.speakText) return speakButton(el, el.dataset.speakText);
+    if ('listenFirst' in el.dataset) return listenFirst();
+    if ('showText' in el.dataset) { store.set('elise.listened', state.today.date); return renderToday(); }
+    if (el.dataset.mic) return speakBack(Number(el.dataset.mic));
     if ('toggleDialogue' in el.dataset) { state.dialogueOpen = !state.dialogueOpen; return renderToday(); }
     if ('play' in el.dataset) return togglePlay();
     if (el.dataset.save) return toggleSave(el.dataset.save);
   }
 });
+
+/** Listen first: the phrase, then the dialogue, before the French text is shown. */
+async function listenFirst() {
+  const e = state.today.entry;
+  state.listenRunning = true;
+  state.dialogueOpen = true;
+  renderToday();
+  tts.stop();
+  let ok = await tts.say(e.phrase_fr);
+  for (let i = 0; ok && i < e.dialogue.length; i++) {
+    await new Promise((r) => setTimeout(r, 650));
+    ok = await tts.say(e.dialogue[i].fr, e.dialogue[i].who === 'B' ? 1 : 0);
+  }
+  state.listenRunning = false;
+  if (ok) store.set('elise.listened', state.today.date);
+  renderToday();
+}
+
+/** Speak back: you say line i; Chrome's French recognition shows what it heard. */
+function speakBack(i) {
+  if (!SpeechRec || state.micLine >= 0) return;
+  tts.stop();
+  const rec = new SpeechRec();
+  rec.lang = 'fr-FR';
+  rec.interimResults = false;
+  rec.maxAlternatives = 1;
+  state.micLine = i;
+  renderToday();
+  rec.onresult = (ev) => { state.heard[i] = ev.results[0][0].transcript; };
+  rec.onerror = (ev) => { if (ev.error === 'not-allowed') toast('Autorisez le micro pour ÉLISE dans Chrome.'); };
+  rec.onend = () => { state.micLine = -1; renderToday(); };
+  try { rec.start(); } catch (err) { state.micLine = -1; renderToday(); }
+}
 
 let playRun = 0;
 async function togglePlay() {
@@ -564,8 +667,8 @@ function renderSettings() {
     </section>
     <section class="section">
       <h2>Test</h2>
-      <button class="btn btn-outline" type="button" disabled>Recalculer le thème de la semaine</button>
-      <p class="small">Disponible avec le moteur de thèmes (étape 5).</p>
+      <button class="btn btn-outline" type="button" data-rerun>Recalculer le thème de la semaine</button>
+      <p class="small">Ignore le verrouillage du lundi au dimanche : relit vos agendas maintenant.</p>
       <button class="btn btn-outline" type="button" data-disconnect>Déconnecter ce téléphone</button>
     </section>`}`;
 
@@ -590,6 +693,15 @@ $view.addEventListener('click', async (ev) => {
     el.setAttribute('aria-checked', String(included));
     try { state.settings = await api('save_settings', { calendar: { id: el.dataset.cal, included } }); } catch (err) { el.setAttribute('aria-checked', String(!included)); fail(err); }
   }
+  if ('rerun' in el.dataset) {
+    el.disabled = true;
+    try {
+      state.today = await api('rerun_week');
+      state.revealed = new Set(); state.heard = {};
+      toast('Thème recalculé : ' + state.today.theme.name_fr);
+      return go('today');
+    } catch (err) { el.disabled = false; return fail(err); }
+  }
   if ('disconnect' in el.dataset) {
     store.del('elise.token');
     state.today = null; state.saved = null; state.settings = null;
@@ -602,5 +714,16 @@ $view.addEventListener('click', async (ev) => {
 // ---------------------------------------------------------------------------
 
 if ('serviceWorker' in navigator) navigator.serviceWorker.register('sw.js').catch(() => {});
+
+// Session length for the Practice log (VERA reads it): sent when the app is hidden.
+let sessionStart = document.visibilityState === 'visible' ? Date.now() : null;
+function endSession() {
+  if (!sessionStart) return;
+  const minutes = (Date.now() - sessionStart) / 60000;
+  sessionStart = null;
+  if (minutes >= 0.5 && store.get('elise.token')) api('practice', { minutes: Math.max(1, Math.round(minutes)) }, { keepalive: true }).catch(() => {});
+}
+document.addEventListener('visibilitychange', () => { if (document.visibilityState === 'hidden') endSession(); else sessionStart = Date.now(); });
+window.addEventListener('pagehide', endSession);
 document.addEventListener('visibilitychange', () => { if (document.visibilityState === 'visible' && state.view === 'today' && store.get('elise.token')) loadToday(); });
 go('today');
