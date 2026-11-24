@@ -22,21 +22,35 @@ Total time: about 10 minutes, once.
 
 ## 2. Create the Apps Script API (once)
 
-1. Go to <https://script.google.com> › **New project**. Rename it **ÉLISE**.
-2. **Project Settings** (gear icon) › tick **Show "appsscript.json" manifest file in editor**.
-3. Back in **Editor**:
-   - open `appsscript.json`, replace everything with the contents of [`apps-script/appsscript.json`](apps-script/appsscript.json);
-   - open `Code.gs`, replace everything with the contents of [`apps-script/Code.js`](apps-script/Code.js).
-   - Save (Ctrl/Cmd + S).
-4. In the function menu at the top choose **setup** › **Run**. It fills your existing **Elise** Sheet
-   (adds the `Config`, `Visits` and `Saved` tabs and removes the empty `Sheet1`). Approve the permissions
+The code is pushed to Apps Script by GitHub Actions with **clasp**
+(`.github/workflows/apps-script.yml`), on every push to `main` that touches `apps-script/`.
+
+**a. Create the project and give Claude its id**
+1. <https://script.google.com> › **New project**. Rename it **ÉLISE**.
+2. **Project Settings** (gear) › copy the **Script ID**. Send it to Claude, who puts it in `.clasp.json`
+   (a script id is not a secret).
+
+**b. Let GitHub push with your clasp login** (skip 1–2 if clasp already works on your computer for VERA)
+1. Turn on the Apps Script API for your account: <https://script.google.com/home/usersettings> › **Google Apps Script API: On**.
+2. On your computer: `npx @google/clasp@3.4.1 login` and approve in the browser.
+3. Open the file it wrote, `~/.clasprc.json` (Windows: `C:\Users\<you>\.clasprc.json`), and copy all of it.
+4. GitHub › **my-language-app › Settings › Secrets and variables › Actions › New repository secret**:
+   name **`CLASPRC_JSON`**, value: the whole file. **Never paste it in a chat.**
+
+Once the script id is in `.clasp.json` and the secret exists, the **Push ÉLISE Apps Script** action
+puts `Code.js` and `appsscript.json` into the project.
+
+**c. Run setup and deploy (once, in the Apps Script editor)**
+1. Open the ÉLISE project. In the function menu choose **setup** › **Run**. It fills your **Elise** Sheet
+   (adds `Config`, `Visits`, `Saved`, removes the empty `Sheet1`). Approve the permissions
    (Google shows "unverified app" because it's your own script: **Advanced › Go to ÉLISE**).
-   It asks for: Sheets (to use the Elise Sheet) and Calendar, read-only.
-5. Open **Execution log**. It shows the Elise Sheet link and your **Token**. Keep the token private.
-6. **Deploy › New deployment** › type **Web app**:
-   - Execute as: **Me**
-   - Who has access: **Anyone** (like VERA; every request still needs the token)
-   - **Deploy**, then copy the **Web app URL** (it ends in `/exec`).
+   It asks for Sheets (the Elise Sheet) and Calendar, read-only.
+2. **Execution log** shows your **Token**. Keep it private.
+3. **Deploy › New deployment** › type **Web app** › Execute as **Me**, access **Anyone**
+   (like VERA; every request still needs the token) › **Deploy**. Copy the **Web app URL** (ends in `/exec`).
+4. **Deploy › Manage deployments** › copy the **Deployment ID**. GitHub › **Settings › Secrets and variables ›
+   Actions › Variables › New repository variable**: name **`ELISE_DEPLOYMENT_ID`**, value: that id.
+   From then on every code push also updates the web app, same URL.
 
 ## 3. Install on the Pixel
 
@@ -66,8 +80,7 @@ Total time: about 10 minutes, once.
 - [ ] Bookmark the word and the phrase: they appear in **Mes mots** and in the Sheet's **Saved** tab.
 - [ ] **Réglages** lists your calendars and finds `Vera · French`.
 
-## Updating the API later
+## Updating later
 
-When `apps-script/Code.js` changes, paste it into `Code.gs` again, then
-**Deploy › Manage deployments › ✏️ Edit › Version: New version › Deploy**.
-That keeps the same URL, so the phone needs nothing. The app itself updates on its own after each push to `main`.
+Nothing to do: a push to `main` redeploys the app (GitHub Pages) and the API (clasp, same `/exec` URL).
+If a code change needs a new permission, Apps Script asks for it the next time you run a function in the editor.

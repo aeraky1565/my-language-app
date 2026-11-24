@@ -1,0 +1,64 @@
+name: Push ÉLISE Apps Script
+
+# Pushes apps-script/ to the ÉLISE Apps Script project with clasp, then moves
+# the web app deployment to the new version (same /exec URL).
+#
+# Needs (repo Settings › Secrets and variables › Actions):
+#   secret   CLASPRC_JSON         contents of ~/.clasprc.json after `clasp login`
+#   variable ELISE_DEPLOYMENT_ID  the web app's deployment id (optional until
+#                                 the first deployment exists)
+
+on:
+  push:
+    branches: [main]
+    paths: ['apps-script/**', '.clasp.json', '.claspignore', '.github/workflows/apps-script.yml']
+  workflow_dispatch:
+
+concurrency:
+  group: apps-script
+  cancel-in-progress: false
+
+env:
+  CLASP: npx --yes @google/clasp@3.4.1
+
+jobs:
+  push:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+
+      - name: Check project id and credentials
+        id: check
+        env:
+          CLASPRC_JSON: ${{ secrets.CLASPRC_JSON }}
+        run: |
+          if grep -q 'PASTE_SCRIPT_ID_HERE' .clasp.json; then
+            echo "::notice::No script id in .clasp.json yet; nothing to push."
+            echo "ready=false" >> "$GITHUB_OUTPUT"; exit 0
+          fi
+          if [ -z "$CLASPRC_JSON" ]; then
+            echo "::error::Add the CLASPRC_JSON repository secret (see SETUP.md, step 2)."
+            exit 1
+          fi
+          printf '%s' "$CLASPRC_JSON" > "$HOME/.clasprc.json"
+          chmod 600 "$HOME/.clasprc.json"
+          echo "ready=true" >> "$GITHUB_OUTPUT"
+
+      - name: Push code
+        if: steps.check.outputs.ready == 'true'
+        run: $CLASP push --force
+
+      - name: Update the web app deployment
+        if: steps.check.outputs.ready == 'true'
+        env:
+          DEPLOYMENT_ID: ${{ vars.ELISE_DEPLOYMENT_ID }}
+        run: |
+          if [ -z "$DEPLOYMENT_ID" ]; then
+            echo "::notice::Code pushed. No ELISE_DEPLOYMENT_ID variable yet, so the web app was not redeployed."
+            exit 0
+          fi
+          $CLASP redeploy "$DEPLOYMENT_ID" --description "${GITHUB_SHA::7}"
+
+      - name: Remove credentials
+        if: always()
+        run: rm -f "$HOME/.clasprc.json"
