@@ -297,7 +297,7 @@ function sheet_(name, ss) {
   if (!sh) {
     sh = ss.insertSheet(name);
     sh.getRange('A:A').setNumberFormat('@'); // dates and ids stay plain text
-    sh.appendRow(TABS_[name] || CONTENT_TABS_[name]);
+    sh.appendRow(TABS_[name] || CONTENT_TABS_[name] || ENGINE_TABS_[name]);
     sh.setFrozenRows(1);
   }
   return sh;

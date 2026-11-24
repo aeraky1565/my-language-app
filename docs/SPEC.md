@@ -151,6 +151,30 @@ the full calendar scope from that step on.)
 
 Cooldown (§5.4) applies to both; the "priority: high" override is gone with Vera.
 
+**How the engine applies this** (`apps-script/Engine.js`, tested in `tests/engine.test.js`;
+a 12-week simulation is in [`checkpoint-3.md`](checkpoint-3.md)):
+
+- **Window:** events dated in the week *after* the theme week (Monday+7 to Sunday+13).
+- **Skipped:** recurring and declined events, and single-day all-day birthday reminders. A multi-day
+  all-day event (a trip) counts.
+- **Matching:** title and location, case- and accent-insensitive, whole words (plural *s* allowed),
+  from the `Keywords` tab.
+- **One event, several keywords:** a keyword naming a theme beats a category keyword; then category order;
+  then the keyword that comes first in the title ("Birthday dinner" is a birthday).
+- **Several events:** travel > social > errands > work > daily > seasonal, then the earliest date. An event
+  whose theme and related themes are all on cooldown hands over to the next event, then to the default.
+- **Default:** the ISO week's theme; in even ISO years, non-seasonal defaults are swapped for their first
+  related theme. A default on cooldown falls back to its related themes, then to the free theme used
+  longest ago.
+- **Only complete themes** (10+ entries with 6 B1, 2 B2, 2 argot, and 6 idioms) can be picked while the
+  library is being written. If every complete theme is on cooldown, the cooldown is relaxed and the one
+  used longest ago is picked, never an unwritten theme.
+- **Storage:** each week is stored in the `ThemeWeeks` tab (week_start, tag, source, why, event_date, plan,
+  chosen_at) and stays locked. `rerunThisWeek()` (Réglages › Recalculer) re-picks it.
+- **Schedule:** `chooseNextWeek()` runs on a Sunday 21:00 trigger (`installTriggers()`, run once).
+- **The `Shown` tab** (id, kind, theme, first_shown, last_shown, times_shown) feeds unseen-first picking and
+  later spaced repetition. It is written from step 4.
+
 ## 6. Widget: on hold
 
 No home-screen widget for now; to be revisited.
