@@ -42,6 +42,7 @@ test('an entry survives a trip through a Sheet row', () => {
   for (const e of read('entries.json')) {
     const back = rowToEntry_(entryToRow_(e));
     assert.deepEqual(JSON.parse(JSON.stringify(back)), { ...e, tts: e.tts || null });
+    assert.equal(back.idiom.fr, e.idiom.fr);
   }
 });
 
@@ -136,4 +137,16 @@ test('complete mode requires 2 B2 and 2 argot entries per theme', () => {
 test('the samples include one of each level', () => {
   const levels = new Set(read('entries.json').map((e) => e.level));
   assert.deepEqual([...levels].sort(), ['B1', 'B2', 'argot']);
+});
+
+test('an idiom used twice is an error', () => {
+  const lib = library();
+  lib.entries[1].idiom = { ...lib.entries[0].idiom };
+  assert.ok(validateLibrary_(lib).errors.some((m) => m.includes('idiom "mettre les voiles" already used')));
+});
+
+test('a missing idiom is an error', () => {
+  const lib = library();
+  delete lib.entries[0].idiom;
+  assert.ok(validateLibrary_(lib).errors.some((m) => m.includes('missing idiom_fr')));
 });
