@@ -289,21 +289,21 @@ function renderToday() {
       <p class="hint">Touchez l’anglais flouté pour le révéler.</p>
     </section>
 
-    ${e.idiom && e.idiom.fr ? `
+    ${t.idiom && t.idiom.fr ? `
     <section class="card idiom-card">
       <div class="row-between">
         <p class="eyebrow">Expression du jour</p>
         <button class="icon-btn card-head ${t.saved.idiom ? 'saved' : ''}" style="${t.saved.idiom ? 'color:var(--accent)' : ''}" type="button" data-save="idiom" aria-pressed="${!!t.saved.idiom}" aria-label="${t.saved.idiom ? 'Retirer l’expression' : 'Enregistrer l’expression'}">${ICON.bookmark}</button>
       </div>
       <div class="word-line">
-        <h3 class="idiom">${esc(e.idiom.fr)}</h3>
+        <h3 class="idiom">${esc(t.idiom.fr)}</h3>
         <button class="speak ghost" type="button" data-say="idiom" aria-label="Écouter l’expression">${ICON.speaker}</button>
       </div>
-      <p class="literal"><span>Mot à mot :</span> ${esc(e.idiom.literal)}</p>
-      ${en('idiom', e.idiom.en, 'lg')}
+      <p class="literal"><span>Mot à mot :</span> ${esc(t.idiom.literal)}</p>
+      ${en('idiom', t.idiom.en, 'lg')}
       <div class="example">
-        <p class="fr">${esc(e.idiom.example_fr)}</p>
-        ${en('idiomEx', e.idiom.example_en)}
+        <p class="fr">${esc(t.idiom.example_fr)}</p>
+        ${en('idiomEx', t.idiom.example_en)}
       </div>
     </section>` : ''}
 
@@ -349,7 +349,7 @@ $view.addEventListener('click', async (ev) => {
     const e = state.today.entry;
     if (el.dataset.say === 'word') return speakButton(el, e.tts || e.word);
     if (el.dataset.say === 'phrase') return speakButton(el, e.phrase_fr);
-    if (el.dataset.say === 'idiom') return speakButton(el, e.idiom.fr + '. ' + e.idiom.example_fr);
+    if (el.dataset.say === 'idiom') return speakButton(el, state.today.idiom.fr + '. ' + state.today.idiom.example_fr);
     if ('toggleDialogue' in el.dataset) { state.dialogueOpen = !state.dialogueOpen; return renderToday(); }
     if ('play' in el.dataset) return togglePlay();
     if (el.dataset.save) return toggleSave(el.dataset.save);
@@ -379,7 +379,7 @@ async function toggleSave(type) {
   const item = type === 'word'
     ? { type, entry_id: e.id, fr: e.fem ? `${e.word}, ${e.fem}` : e.word, en: e.def_en, theme: t.theme.name_fr }
     : type === 'idiom'
-      ? { type, entry_id: e.id, fr: e.idiom.fr, en: e.idiom.en, theme: t.theme.name_fr }
+      ? { type, entry_id: t.idiom.id, fr: t.idiom.fr, en: t.idiom.en, theme: t.theme.name_fr }
       : { type, entry_id: e.id, fr: e.phrase_fr, en: e.phrase_en, theme: t.theme.name_fr };
   t.saved[type] = !t.saved[type]; // optimistic
   renderToday();

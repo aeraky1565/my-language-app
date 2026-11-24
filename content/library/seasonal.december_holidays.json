@@ -1,0 +1,55 @@
+{
+  "theme": "seasonal.december_holidays",
+  "entries": [
+    {
+      "id": "seasonal.december_holidays.01",
+      "theme": "seasonal.december_holidays",
+      "level": "B1",
+      "word": "le réveillon",
+      "pos": "nom masc.",
+      "fem": null,
+      "ipa": "/lə ʁe.vɛ.jɔ̃/",
+      "def_fr": "Grand repas de fête le soir du 24 ou du 31 décembre.",
+      "def_en": "The Christmas Eve or New Year's Eve dinner (and party).",
+      "example_fr": "Cette année, on fait le réveillon chez mes beaux-parents.",
+      "example_en": "This year we're having Christmas Eve dinner at my in-laws'.",
+      "phrase_fr": "Vous faites quoi pour les fêtes ?",
+      "phrase_en": "What are you doing for the holidays?",
+      "register": "vous · avec un collègue ou un voisin",
+      "register_note": "La question de décembre. Entre amis : « Tu fais quoi pour les fêtes ? ». « En petit comité » = avec seulement quelques proches.",
+      "dialogue": [
+        {
+          "who": "A",
+          "fr": "Vous faites quoi pour les fêtes ?",
+          "en": "What are you doing for the holidays?"
+        },
+        {
+          "who": "B",
+          "fr": "On part dans le Sud-Ouest, chez ma sœur. Et vous ?",
+          "en": "We're going to the South-West, to my sister's. And you?"
+        },
+        {
+          "who": "A",
+          "fr": "On reste ici, on fait le réveillon en petit comité.",
+          "en": "We're staying here, Christmas Eve with just a few close family."
+        },
+        {
+          "who": "B",
+          "fr": "C'est bien aussi, c'est plus reposant ! Bonnes fêtes, alors.",
+          "en": "That's nice too, it's more restful! Happy holidays, then."
+        }
+      ]
+    }
+  ],
+  "idioms": [
+    {
+      "id": "seasonal.december_holidays.i01",
+      "theme": "seasonal.december_holidays",
+      "fr": "se mettre sur son trente et un",
+      "literal": "to put oneself on one's thirty-one",
+      "en": "to get dressed up to the nines",
+      "example_fr": "Pour le réveillon, tout le monde s'était mis sur son trente et un.",
+      "example_en": "For Christmas Eve, everyone was dressed up to the nines."
+    }
+  ]
+}

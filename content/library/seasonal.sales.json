@@ -1,0 +1,529 @@
+{
+  "theme": "seasonal.sales",
+  "entries": [
+    {
+      "id": "seasonal.sales.01",
+      "theme": "seasonal.sales",
+      "level": "B1",
+      "word": "dépensier",
+      "pos": "adj.",
+      "fem": "dépensière",
+      "ipa": "/de.pɑ̃.sje/",
+      "def_fr": "Qui aime dépenser son argent, parfois un peu trop.",
+      "def_en": "Free-spending; someone who spends easily, sometimes too much.",
+      "example_fr": "Pendant les soldes, je deviens vraiment dépensier.",
+      "example_en": "During the sales, I get really spendy.",
+      "phrase_fr": "Tu crois que ça vaut le coup ?",
+      "phrase_en": "Do you think it's worth it?",
+      "register": "tu · entre amis",
+      "register_note": "« tu » — on parle à une amie. Avec un vendeur : « Vous pensez que ça vaut le coup ? »",
+      "dialogue": [
+        {
+          "who": "A",
+          "fr": "Regarde, le manteau est à moins cinquante pour cent !",
+          "en": "Look, the coat is fifty percent off!"
+        },
+        {
+          "who": "B",
+          "fr": "Tu crois que ça vaut le coup ?",
+          "en": "Do you think it's worth it?"
+        },
+        {
+          "who": "A",
+          "fr": "Franchement, oui. Il était hors de prix avant.",
+          "en": "Honestly, yes. It was way overpriced before."
+        },
+        {
+          "who": "B",
+          "fr": "Bon, vas-y… mais ne sois pas trop dépensière cette fois !",
+          "en": "OK, go for it… but don't go overboard this time!"
+        }
+      ]
+    },
+    {
+      "id": "seasonal.sales.02",
+      "theme": "seasonal.sales",
+      "level": "B2",
+      "word": "une aubaine",
+      "pos": "nom fém.",
+      "fem": null,
+      "ipa": "/yn o.bɛn/",
+      "def_fr": "Occasion inespérée de faire une très bonne affaire.",
+      "def_en": "A godsend; a real bargain.",
+      "example_fr": "À ce prix-là, ce canapé, c'est une véritable aubaine.",
+      "example_en": "At that price, this sofa is a real steal.",
+      "phrase_fr": "Quitte à dépenser, autant prendre la meilleure qualité.",
+      "phrase_en": "If we're spending anyway, we might as well get the best quality.",
+      "register": "tu · entre amis",
+      "register_note": "Niveau + : « Quitte à + infinitif, autant… » = puisqu'on le fait de toute façon, faisons-le bien. Très courant à l'oral, dans tous les registres.",
+      "dialogue": [
+        {
+          "who": "A",
+          "fr": "Le canapé est à moins quarante pour cent, c'est une aubaine, non ?",
+          "en": "The sofa is forty percent off, that's a steal, right?"
+        },
+        {
+          "who": "B",
+          "fr": "Oui, mais quitte à dépenser, autant prendre la meilleure qualité.",
+          "en": "Yes, but if we're spending anyway, we might as well get the best quality."
+        },
+        {
+          "who": "A",
+          "fr": "Tu as raison. Celui en cuir tiendra beaucoup plus longtemps.",
+          "en": "You're right. The leather one will last much longer."
+        },
+        {
+          "who": "B",
+          "fr": "Et il me semble qu'il est soldé aussi. Demandons au vendeur.",
+          "en": "And I think it's on sale too. Let's ask the salesperson."
+        }
+      ]
+    },
+    {
+      "id": "seasonal.sales.03",
+      "theme": "seasonal.sales",
+      "level": "argot",
+      "word": "claquer",
+      "pos": "verbe (fam.)",
+      "fem": null,
+      "ipa": "/kla.ke/",
+      "def_fr": "Dépenser beaucoup d'argent, souvent sans trop réfléchir.",
+      "def_en": "(informal) To blow (money).",
+      "example_fr": "Je ne vais pas claquer tout mon salaire pendant les soldes !",
+      "example_en": "I'm not going to blow my whole salary in the sales!",
+      "phrase_fr": "Ça m'a coûté un bras !",
+      "phrase_en": "It cost me an arm and a leg!",
+      "register": "tu · familier, entre amis",
+      "register_note": "Familier : à éviter au travail et avec les gens qu'on vouvoie. En neutre : « J'ai beaucoup dépensé », « Ça m'a coûté très cher ». « Grave » = carrément ; « être à sec » = ne plus avoir d'argent.",
+      "dialogue": [
+        {
+          "who": "A",
+          "fr": "Alors, ces soldes ? Tu t'es lâché ?",
+          "en": "So, the sales? Did you go wild?"
+        },
+        {
+          "who": "B",
+          "fr": "Grave… J'ai pris des baskets, et ça m'a coûté un bras !",
+          "en": "Totally… I got some trainers, and they cost me an arm and a leg!"
+        },
+        {
+          "who": "A",
+          "fr": "Je te connais, tu vas encore claquer tout ton salaire.",
+          "en": "I know you, you're going to blow your whole salary again."
+        },
+        {
+          "who": "B",
+          "fr": "Non, non, c'est fini. Je suis à sec jusqu'à la fin du mois.",
+          "en": "No, no, I'm done. I'm broke until the end of the month."
+        }
+      ]
+    },
+    {
+      "id": "seasonal.sales.04",
+      "theme": "seasonal.sales",
+      "level": "B1",
+      "word": "une réduction",
+      "pos": "nom fém.",
+      "fem": null,
+      "ipa": "/yn ʁe.dyk.sjɔ̃/",
+      "def_fr": "Somme ou pourcentage qu'on enlève du prix normal.",
+      "def_en": "A discount; a reduction.",
+      "example_fr": "Avec la carte du magasin, vous avez dix pour cent de réduction.",
+      "example_en": "With the store card, you get ten percent off.",
+      "phrase_fr": "Est-ce que cet article est soldé ?",
+      "phrase_en": "Is this item on sale?",
+      "register": "vous · avec un vendeur",
+      "register_note": "« Soldé » = vendu moins cher pendant les soldes. On peut aussi demander : « Il y a une réduction sur ce modèle ? »",
+      "dialogue": [
+        {
+          "who": "A",
+          "fr": "Bonjour, est-ce que cet article est soldé ? Je ne vois pas d'étiquette.",
+          "en": "Hello, is this item on sale? I can't see a tag."
+        },
+        {
+          "who": "B",
+          "fr": "Oui, tout le rayon est à moins trente pour cent. La réduction se fait en caisse.",
+          "en": "Yes, the whole section is thirty percent off. The discount is applied at the till."
+        },
+        {
+          "who": "A",
+          "fr": "Parfait. Et je peux l'essayer ?",
+          "en": "Perfect. And can I try it on?"
+        },
+        {
+          "who": "B",
+          "fr": "Bien sûr, les cabines sont au fond à droite.",
+          "en": "Of course, the changing rooms are at the back on the right."
+        }
+      ]
+    },
+    {
+      "id": "seasonal.sales.05",
+      "theme": "seasonal.sales",
+      "level": "B1",
+      "word": "une étiquette",
+      "pos": "nom fém.",
+      "fem": null,
+      "ipa": "/yn e.ti.kɛt/",
+      "def_fr": "Petit morceau de papier fixé sur un article, avec le prix et la taille.",
+      "def_en": "A label; a price tag.",
+      "example_fr": "Regarde l'étiquette : le prix barré, c'est l'ancien prix.",
+      "example_en": "Look at the tag: the crossed-out price is the old price.",
+      "phrase_fr": "Je crois qu'il y a une erreur sur le prix.",
+      "phrase_en": "I think there's a mistake with the price.",
+      "register": "vous · à la caisse",
+      "register_note": "Pour signaler poliment un problème, « Je crois que… » adoucit tout. Réponse fréquente : « Je vais vérifier. »",
+      "dialogue": [
+        {
+          "who": "A",
+          "fr": "Excusez-moi, je crois qu'il y a une erreur sur le prix.",
+          "en": "Excuse me, I think there's a mistake with the price."
+        },
+        {
+          "who": "B",
+          "fr": "Ah bon ? Qu'est-ce qui était indiqué sur l'étiquette ?",
+          "en": "Really? What did the tag say?"
+        },
+        {
+          "who": "A",
+          "fr": "Quarante-neuf euros, et vous m'avez compté soixante-dix.",
+          "en": "Forty-nine euros, and you charged me seventy."
+        },
+        {
+          "who": "B",
+          "fr": "Vous avez raison, la remise n'est pas passée. Je corrige tout de suite.",
+          "en": "You're right, the discount didn't go through. I'll fix it right away."
+        }
+      ]
+    },
+    {
+      "id": "seasonal.sales.06",
+      "theme": "seasonal.sales",
+      "level": "B1",
+      "word": "rembourser",
+      "pos": "verbe",
+      "fem": null,
+      "ipa": "/ʁɑ̃.buʁ.se/",
+      "def_fr": "Rendre à quelqu'un l'argent qu'il a payé.",
+      "def_en": "To refund; to pay back.",
+      "example_fr": "Le magasin peut vous rembourser sous trente jours, avec le ticket.",
+      "example_en": "The shop can refund you within thirty days, with the receipt.",
+      "phrase_fr": "Je voudrais rendre ce pull, il ne me va pas.",
+      "phrase_en": "I'd like to return this jumper, it doesn't fit me.",
+      "register": "vous · au service client",
+      "register_note": "« Il ne me va pas » = mauvaise taille ou mauvais style. Pendant les soldes, beaucoup de magasins ne remboursent pas : ils proposent un échange ou un avoir (un bon d'achat).",
+      "dialogue": [
+        {
+          "who": "A",
+          "fr": "Bonjour, je voudrais rendre ce pull, il ne me va pas.",
+          "en": "Hello, I'd like to return this jumper, it doesn't fit me."
+        },
+        {
+          "who": "B",
+          "fr": "Vous avez le ticket ? Pour les articles soldés, on ne peut pas vous rembourser.",
+          "en": "Do you have the receipt? For sale items, we can't refund you."
+        },
+        {
+          "who": "A",
+          "fr": "Ah… Et un échange, c'est possible ?",
+          "en": "Oh… And an exchange, is that possible?"
+        },
+        {
+          "who": "B",
+          "fr": "Oui, ou alors je vous fais un avoir valable six mois.",
+          "en": "Yes, or I can give you a store credit valid for six months."
+        }
+      ]
+    },
+    {
+      "id": "seasonal.sales.07",
+      "theme": "seasonal.sales",
+      "level": "B1",
+      "word": "la file d'attente",
+      "pos": "nom fém.",
+      "fem": null,
+      "ipa": "/la fil da.tɑ̃t/",
+      "def_fr": "Rangée de personnes qui attendent leur tour.",
+      "def_en": "A queue; a line.",
+      "example_fr": "À huit heures, la file d'attente devant le magasin faisait déjà cent mètres.",
+      "example_en": "At eight o'clock, the queue outside the shop was already a hundred metres long.",
+      "phrase_fr": "C'est vous le dernier ?",
+      "phrase_en": "Are you the last one in the queue?",
+      "register": "vous · avec des inconnus",
+      "register_note": "Pour savoir où se mettre quand la file n'est pas claire. On répond « Oui, c'est moi » ou « Non, c'est la dame derrière ».",
+      "dialogue": [
+        {
+          "who": "A",
+          "fr": "Pardon, c'est vous le dernier ?",
+          "en": "Excuse me, are you the last in line?"
+        },
+        {
+          "who": "B",
+          "fr": "Oui, mais attention, la file d'attente continue jusqu'au coin de la rue.",
+          "en": "Yes, but careful, the queue goes all the way to the corner."
+        },
+        {
+          "who": "A",
+          "fr": "Ouh là ! Ils ouvrent à quelle heure ?",
+          "en": "Wow! What time do they open?"
+        },
+        {
+          "who": "B",
+          "fr": "À neuf heures. Les premiers sont là depuis six heures du matin !",
+          "en": "At nine. The first ones have been here since six in the morning!"
+        }
+      ]
+    },
+    {
+      "id": "seasonal.sales.08",
+      "theme": "seasonal.sales",
+      "level": "B1",
+      "word": "une bonne affaire",
+      "pos": "nom fém.",
+      "fem": null,
+      "ipa": "/yn bɔ.n‿a.fɛʁ/",
+      "def_fr": "Achat intéressant, à un prix plus bas que d'habitude.",
+      "def_en": "A good deal; a bargain.",
+      "example_fr": "Ces bottes à trente euros, c'est vraiment une bonne affaire.",
+      "example_en": "These boots for thirty euros are a real bargain.",
+      "phrase_fr": "J'hésite entre les deux.",
+      "phrase_en": "I can't decide between the two.",
+      "register": "tu · entre amis",
+      "register_note": "« Hésiter entre » + deux choses. Pour demander un avis : « Tu prendrais lequel, toi ? »",
+      "dialogue": [
+        {
+          "who": "A",
+          "fr": "J'hésite entre les deux. Tu prendrais lequel, toi ?",
+          "en": "I can't decide between the two. Which one would you take?"
+        },
+        {
+          "who": "B",
+          "fr": "Le bleu, sans hésiter. Et à ce prix-là, c'est une bonne affaire.",
+          "en": "The blue one, no question. And at that price, it's a good deal."
+        },
+        {
+          "who": "A",
+          "fr": "Oui, mais le noir va avec tout…",
+          "en": "Yes, but the black one goes with everything…"
+        },
+        {
+          "who": "B",
+          "fr": "Prends les deux, alors ! C'est les soldes, profites-en.",
+          "en": "Take both, then! It's the sales, make the most of it."
+        }
+      ]
+    },
+    {
+      "id": "seasonal.sales.09",
+      "theme": "seasonal.sales",
+      "level": "B1",
+      "word": "le ticket de caisse",
+      "pos": "nom masc.",
+      "fem": null,
+      "ipa": "/lə ti.kɛ d(ə) kɛs/",
+      "def_fr": "Petit papier donné à la caisse, qui prouve ce qu'on a acheté et à quel prix.",
+      "def_en": "The receipt.",
+      "example_fr": "Garde bien le ticket de caisse si tu veux échanger la veste.",
+      "example_en": "Hang on to the receipt if you want to exchange the jacket.",
+      "phrase_fr": "Je peux payer par carte ?",
+      "phrase_en": "Can I pay by card?",
+      "register": "vous · à la caisse",
+      "register_note": "« Par carte » ou « en espèces » (cash). « Sans contact » = contactless. En France, certains petits commerçants demandent un minimum pour la carte.",
+      "dialogue": [
+        {
+          "who": "A",
+          "fr": "Je peux payer par carte ?",
+          "en": "Can I pay by card?"
+        },
+        {
+          "who": "B",
+          "fr": "Bien sûr, sans contact si vous voulez. Vous voulez le ticket de caisse ?",
+          "en": "Of course, contactless if you like. Would you like the receipt?"
+        },
+        {
+          "who": "A",
+          "fr": "Oui, s'il vous plaît, au cas où je devrais l'échanger.",
+          "en": "Yes please, in case I need to exchange it."
+        },
+        {
+          "who": "B",
+          "fr": "Voilà. Vous avez trente jours pour les échanges. Bonne journée !",
+          "en": "Here you go. You have thirty days for exchanges. Have a nice day!"
+        }
+      ]
+    },
+    {
+      "id": "seasonal.sales.10",
+      "theme": "seasonal.sales",
+      "level": "B1",
+      "word": "le lèche-vitrines",
+      "pos": "nom masc.",
+      "fem": null,
+      "ipa": "/lə lɛʃ.vi.tʁin/",
+      "def_fr": "Le fait de se promener devant les magasins pour regarder, sans forcément acheter.",
+      "def_en": "Window-shopping.",
+      "example_fr": "Samedi, on a fait du lèche-vitrines sans rien acheter.",
+      "example_en": "On Saturday, we went window-shopping without buying anything.",
+      "phrase_fr": "Je regarde seulement, merci.",
+      "phrase_en": "I'm just looking, thanks.",
+      "register": "vous · avec un vendeur",
+      "register_note": "La réponse classique à « Je peux vous aider ? ». On peut ajouter : « Je vous appelle si j'ai besoin. »",
+      "dialogue": [
+        {
+          "who": "A",
+          "fr": "Bonjour, je peux vous aider ?",
+          "en": "Hello, can I help you?"
+        },
+        {
+          "who": "B",
+          "fr": "Je regarde seulement, merci. Je vous appelle si j'ai besoin.",
+          "en": "I'm just looking, thanks. I'll call you if I need anything."
+        },
+        {
+          "who": "A",
+          "fr": "Très bien. Les nouveautés sont au fond, et les soldes à l'entrée.",
+          "en": "Very good. New arrivals are at the back, and the sale items by the entrance."
+        },
+        {
+          "who": "B",
+          "fr": "D'accord, merci. Aujourd'hui, c'est juste du lèche-vitrines !",
+          "en": "OK, thanks. Today it's just window-shopping!"
+        }
+      ]
+    },
+    {
+      "id": "seasonal.sales.11",
+      "theme": "seasonal.sales",
+      "level": "B2",
+      "word": "se laisser tenter",
+      "pos": "verbe pron.",
+      "fem": null,
+      "ipa": "/sə lɛ.se tɑ̃.te/",
+      "def_fr": "Céder à l'envie d'acheter ou de faire quelque chose qu'on n'avait pas prévu.",
+      "def_en": "To give in to temptation; to be tempted into (buying) something.",
+      "example_fr": "Il ne faut pas se laisser tenter par toutes les promotions.",
+      "example_en": "You mustn't let every promotion tempt you.",
+      "phrase_fr": "Si j'avais su, j'aurais attendu les soldes.",
+      "phrase_en": "If I'd known, I'd have waited for the sales.",
+      "register": "tu · entre amis",
+      "register_note": "Niveau + : le « si » du regret = si + plus-que-parfait, puis conditionnel passé. « Si j'avais su… » s'emploie aussi tout seul, avec un soupir !",
+      "dialogue": [
+        {
+          "who": "A",
+          "fr": "Tu as vu ? Ton manteau est à moitié prix maintenant.",
+          "en": "Did you see? Your coat is half price now."
+        },
+        {
+          "who": "B",
+          "fr": "Non ! Si j'avais su, j'aurais attendu les soldes.",
+          "en": "No! If I'd known, I'd have waited for the sales."
+        },
+        {
+          "who": "A",
+          "fr": "Bah, au moins, tu l'as porté tout l'hiver.",
+          "en": "Well, at least you've worn it all winter."
+        },
+        {
+          "who": "B",
+          "fr": "C'est vrai. Mais la prochaine fois, je ne me laisserai pas tenter si vite.",
+          "en": "True. But next time, I won't be tempted so quickly."
+        }
+      ]
+    },
+    {
+      "id": "seasonal.sales.12",
+      "theme": "seasonal.sales",
+      "level": "argot",
+      "word": "une arnaque",
+      "pos": "nom fém. (fam.)",
+      "fem": null,
+      "ipa": "/yn aʁ.nak/",
+      "def_fr": "Prix beaucoup trop élevé ou vente malhonnête ; une tromperie.",
+      "def_en": "(informal) A rip-off; a scam.",
+      "example_fr": "Quatre-vingts euros pour un t-shirt, c'est une arnaque !",
+      "example_en": "Eighty euros for a T-shirt, that's a rip-off!",
+      "phrase_fr": "Franchement, c'est abusé !",
+      "phrase_en": "Honestly, that's outrageous!",
+      "register": "tu · familier, entre amis",
+      "register_note": "« C'est abusé » = c'est exagéré. Très courant chez les moins de quarante ans. « Balles » = euros (fam.) ; « une friperie » = un magasin de vêtements d'occasion. En neutre : « C'est beaucoup trop cher. »",
+      "dialogue": [
+        {
+          "who": "A",
+          "fr": "T'as vu le prix ? Même soldé, il coûte deux cents balles.",
+          "en": "Did you see the price? Even on sale, it's two hundred euros."
+        },
+        {
+          "who": "B",
+          "fr": "Franchement, c'est abusé ! C'est une arnaque, ce magasin.",
+          "en": "Honestly, that's outrageous! This shop is a rip-off."
+        },
+        {
+          "who": "A",
+          "fr": "Laisse tomber, on va voir ailleurs.",
+          "en": "Forget it, let's look somewhere else."
+        },
+        {
+          "who": "B",
+          "fr": "Ouais, il y a une friperie super sympa juste à côté.",
+          "en": "Yeah, there's a really nice vintage shop right next door."
+        }
+      ]
+    }
+  ],
+  "idioms": [
+    {
+      "id": "seasonal.sales.i01",
+      "theme": "seasonal.sales",
+      "fr": "jeter l'argent par les fenêtres",
+      "literal": "to throw money out of the windows",
+      "en": "to waste money, to throw money away",
+      "example_fr": "Un troisième manteau ? C'est jeter l'argent par les fenêtres !",
+      "example_en": "A third coat? That's throwing money away!"
+    },
+    {
+      "id": "seasonal.sales.i02",
+      "theme": "seasonal.sales",
+      "fr": "faire d'une pierre deux coups",
+      "literal": "to make two hits with one stone",
+      "en": "to kill two birds with one stone",
+      "example_fr": "En achetant les cadeaux pendant les soldes, j'ai fait d'une pierre deux coups.",
+      "example_en": "By buying the presents in the sales, I killed two birds with one stone."
+    },
+    {
+      "id": "seasonal.sales.i03",
+      "theme": "seasonal.sales",
+      "fr": "être fauché comme les blés",
+      "literal": "to be mown down like wheat",
+      "en": "to be flat broke",
+      "example_fr": "Après les soldes, je suis fauché comme les blés.",
+      "example_en": "After the sales, I'm flat broke."
+    },
+    {
+      "id": "seasonal.sales.i04",
+      "theme": "seasonal.sales",
+      "fr": "coûter les yeux de la tête",
+      "literal": "to cost the eyes out of your head",
+      "en": "to cost an arm and a leg",
+      "example_fr": "Ces chaussures sont belles, mais elles coûtent les yeux de la tête.",
+      "example_en": "These shoes are lovely, but they cost an arm and a leg."
+    },
+    {
+      "id": "seasonal.sales.i05",
+      "theme": "seasonal.sales",
+      "fr": "faire chauffer la carte bleue",
+      "literal": "to heat up the blue card",
+      "en": "to spend a lot on your card",
+      "example_fr": "Premier jour des soldes : j'ai fait chauffer la carte bleue !",
+      "example_en": "First day of the sales: I really hammered my card!"
+    },
+    {
+      "id": "seasonal.sales.i06",
+      "theme": "seasonal.sales",
+      "fr": "ce n'est pas donné",
+      "literal": "it's not given away",
+      "en": "it's not cheap",
+      "example_fr": "Le cachemire, même soldé, ce n'est pas donné.",
+      "example_en": "Cashmere isn't cheap, even on sale."
+    }
+  ]
+}

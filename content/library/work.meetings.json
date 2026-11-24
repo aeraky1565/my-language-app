@@ -1,0 +1,55 @@
+{
+  "theme": "work.meetings",
+  "entries": [
+    {
+      "id": "work.meetings.01",
+      "theme": "work.meetings",
+      "level": "B1",
+      "word": "l'ordre du jour",
+      "pos": "nom masc.",
+      "fem": null,
+      "ipa": "/lɔʁ.dʁə dy ʒuʁ/",
+      "def_fr": "Liste des sujets à traiter pendant une réunion.",
+      "def_en": "The agenda (of a meeting).",
+      "example_fr": "Tu peux m'envoyer l'ordre du jour avant la réunion de lundi ?",
+      "example_en": "Can you send me the agenda before Monday's meeting?",
+      "phrase_fr": "On peut faire un point rapide demain matin ?",
+      "phrase_en": "Can we have a quick catch-up tomorrow morning?",
+      "register": "tu · entre collègues",
+      "register_note": "Beaucoup de collègues se tutoient en France. « Faire un point » = une courte réunion pour voir où on en est. Avec un client : « Pourrions-nous faire un point demain matin ? »",
+      "dialogue": [
+        {
+          "who": "A",
+          "fr": "On peut faire un point rapide demain matin ? J'ai besoin de ton avis sur le budget.",
+          "en": "Can we have a quick catch-up tomorrow morning? I need your opinion on the budget."
+        },
+        {
+          "who": "B",
+          "fr": "Oui, mais pas avant dix heures, j'ai une réunion d'équipe.",
+          "en": "Yes, but not before ten, I have a team meeting."
+        },
+        {
+          "who": "A",
+          "fr": "Parfait. Je t'envoie l'ordre du jour ce soir.",
+          "en": "Perfect. I'll send you the agenda tonight."
+        },
+        {
+          "who": "B",
+          "fr": "Super, comme ça je pourrai préparer mes chiffres.",
+          "en": "Great, that way I can get my numbers ready."
+        }
+      ]
+    }
+  ],
+  "idioms": [
+    {
+      "id": "work.meetings.i01",
+      "theme": "work.meetings",
+      "fr": "tourner autour du pot",
+      "literal": "to turn around the pot",
+      "en": "to beat around the bush",
+      "example_fr": "Arrête de tourner autour du pot : qu'est-ce qui ne va pas avec le budget ?",
+      "example_en": "Stop beating around the bush: what's wrong with the budget?"
+    }
+  ]
+}

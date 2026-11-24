@@ -54,7 +54,8 @@ seeding from `content/*.json`, **the Sheet is the master copy.**
 | `Themes` | tag, category, name_fr, name_en, related | 65 themes. `related` is comma-separated; the **first** one is the even-year swap and the first cooldown fallback |
 | `DefaultCalendar` | week, tag | ISO weeks 1–53 |
 | `Keywords` | keyword, target | target is a theme tag, or a category (→ that category's first theme not in cooldown) |
-| `Entries` | id, theme, level, word, pos, fem, ipa, def_fr, def_en, example_fr, example_en, phrase_fr, phrase_en, register, register_note, d1_fr … d4_en, tts, idiom_fr, idiom_literal, idiom_en, idiom_example_fr, idiom_example_en | Dialogue speakers alternate A, B, A, B. `tts` is optional: what to speak when the word mispronounces. Every entry has an idiom, tied to its theme where possible; no idiom is used twice |
+| `Entries` | id, theme, level, word, pos, fem, ipa, def_fr, def_en, example_fr, example_en, phrase_fr, phrase_en, register, register_note, d1_fr … d4_en, tts | Dialogue speakers alternate A, B, A, B. `tts` is optional: what to speak when the word mispronounces |
+| `Idioms` | id, theme, idiom_fr, literal, meaning_en, example_fr, example_en | **6 per theme** (≈390 in all), one for each of Mon–Sat; a repeat year reuses them. No idiom is used twice in the library |
 
 `validateContent()` (Apps Script, `Content.js`) and `node --test tests/*.test.js` apply the same rules:
 10–14 entries per theme (`validateContent(true)` once the library is complete), no duplicate words
@@ -110,7 +111,9 @@ the full calendar scope from that step on.)
 1. **Your calendars**: keyword detection (original §5.3) on every calendar switched on in Réglages,
    mainly **AE&VV - Our Joint Chaos**. Off by default: Holidays in United States, Bills, VERA,
    and the ÉLISE calendar itself (never listed).
-2. **Default calendar**: the seasonal list by ISO week (original §6), from the Sheet.
+2. **Default calendar**: the seasonal list by ISO week (original §6), from the Sheet. The even-year swap
+   (original §6) applies to every category **except seasonal**: sales, Halloween, réveillon, 14 Juillet and
+   the rest always fall in their real season.
 
 Cooldown (§5.4) applies to both; the "priority: high" override is gone with Vera.
 

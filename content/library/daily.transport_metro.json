@@ -1,0 +1,55 @@
+{
+  "theme": "daily.transport_metro",
+  "entries": [
+    {
+      "id": "daily.transport_metro.01",
+      "theme": "daily.transport_metro",
+      "level": "B1",
+      "word": "une rame",
+      "pos": "nom fém.",
+      "fem": null,
+      "ipa": "/yn ʁam/",
+      "def_fr": "Ensemble des voitures d'un métro ou d'un train qui roulent ensemble.",
+      "def_en": "A train (the set of carriages), especially on the metro.",
+      "example_fr": "La rame était tellement pleine que j'ai attendu la suivante.",
+      "example_en": "The train was so packed that I waited for the next one.",
+      "phrase_fr": "Pardon, je descends à la prochaine !",
+      "phrase_en": "Excuse me, I'm getting off at the next stop!",
+      "register": "vous · avec des inconnus",
+      "register_note": "« Pardon » suffit pour se frayer un chemin. « La prochaine » = la prochaine station. Avec des inconnus, on vouvoie toujours.",
+      "dialogue": [
+        {
+          "who": "A",
+          "fr": "Pardon, je descends à la prochaine !",
+          "en": "Excuse me, I'm getting off at the next stop!"
+        },
+        {
+          "who": "B",
+          "fr": "Allez-y, je me pousse.",
+          "en": "Go ahead, I'll move."
+        },
+        {
+          "who": "A",
+          "fr": "Merci. Ils annoncent un incident sur la ligne 4, vous savez ce qui se passe ?",
+          "en": "Thanks. They're announcing an incident on line 4, do you know what's going on?"
+        },
+        {
+          "who": "B",
+          "fr": "Aucune idée, mais la rame suivante a dix minutes de retard.",
+          "en": "No idea, but the next train is ten minutes late."
+        }
+      ]
+    }
+  ],
+  "idioms": [
+    {
+      "id": "daily.transport_metro.i01",
+      "theme": "daily.transport_metro",
+      "fr": "être serrés comme des sardines",
+      "literal": "to be squeezed like sardines",
+      "en": "to be packed in like sardines",
+      "example_fr": "Sur la ligne 13 à huit heures, on est serrés comme des sardines.",
+      "example_en": "On line 13 at eight o'clock, we're packed in like sardines."
+    }
+  ]
+}
