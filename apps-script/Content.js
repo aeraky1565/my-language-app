@@ -13,22 +13,28 @@ var CONTENT_TABS_ = {
   Themes: ['tag', 'category', 'name_fr', 'name_en', 'related'],
   DefaultCalendar: ['week', 'tag'],
   Keywords: ['keyword', 'target'],
-  Entries: ['id', 'theme', 'word', 'pos', 'fem', 'ipa', 'def_fr', 'def_en', 'example_fr', 'example_en',
+  Entries: ['id', 'theme', 'level', 'word', 'pos', 'fem', 'ipa', 'def_fr', 'def_en', 'example_fr', 'example_en',
             'phrase_fr', 'phrase_en', 'register', 'register_note',
             'd1_fr', 'd1_en', 'd2_fr', 'd2_en', 'd3_fr', 'd3_en', 'd4_fr', 'd4_en', 'tts']
 };
 
-var ENTRY_REQUIRED_ = ['id', 'theme', 'word', 'pos', 'ipa', 'def_fr', 'def_en', 'example_fr', 'example_en',
+var ENTRY_REQUIRED_ = ['id', 'theme', 'level', 'word', 'pos', 'ipa', 'def_fr', 'def_en', 'example_fr', 'example_en',
                        'phrase_fr', 'phrase_en', 'register', 'register_note'];
 
 var ENTRIES_PER_THEME_ = { min: 10, max: 14 };
+
+// Each week: 4 B1, 1 B2 ("Niveau +") and 1 argot, shuffled over Mon–Sat; Sunday
+// reviews them. A theme needs at least this many of each so a repeat year
+// still has unseen ones.
+var LEVELS_ = ['B1', 'B2', 'argot'];
+var LEVEL_MIN_PER_THEME_ = { B1: 6, B2: 2, argot: 2 };
 
 // ---- Rows <-> objects (pure) ------------------------------------------------
 
 /** Pure: entry object → Entries row. Dialogue speakers alternate A, B, A, B. */
 function entryToRow_(e) {
   var d = e.dialogue || [];
-  var row = [e.id, e.theme, e.word, e.pos, e.fem || '', e.ipa, e.def_fr, e.def_en, e.example_fr, e.example_en,
+  var row = [e.id, e.theme, e.level, e.word, e.pos, e.fem || '', e.ipa, e.def_fr, e.def_en, e.example_fr, e.example_en,
              e.phrase_fr, e.phrase_en, e.register, e.register_note];
   for (var i = 0; i < 4; i++) row.push(d[i] ? d[i].fr : '', d[i] ? d[i].en : '');
   row.push(e.tts || '');
@@ -40,14 +46,14 @@ function rowToEntry_(r) {
   var s = function (v) { return v == null ? '' : String(v).trim(); };
   var dialogue = [];
   for (var i = 0; i < 4; i++) {
-    var fr = s(r[14 + i * 2]), en = s(r[15 + i * 2]);
+    var fr = s(r[15 + i * 2]), en = s(r[16 + i * 2]);
     if (fr || en) dialogue.push({ who: i % 2 ? 'B' : 'A', fr: fr, en: en });
   }
   return {
-    id: s(r[0]), theme: s(r[1]), word: s(r[2]), pos: s(r[3]), fem: s(r[4]) || null, ipa: s(r[5]),
-    def_fr: s(r[6]), def_en: s(r[7]), example_fr: s(r[8]), example_en: s(r[9]),
-    phrase_fr: s(r[10]), phrase_en: s(r[11]), register: s(r[12]), register_note: s(r[13]),
-    dialogue: dialogue, tts: s(r[22]) || null
+    id: s(r[0]), theme: s(r[1]), level: s(r[2]), word: s(r[3]), pos: s(r[4]), fem: s(r[5]) || null, ipa: s(r[6]),
+    def_fr: s(r[7]), def_en: s(r[8]), example_fr: s(r[9]), example_en: s(r[10]),
+    phrase_fr: s(r[11]), phrase_en: s(r[12]), register: s(r[13]), register_note: s(r[14]),
+    dialogue: dialogue, tts: s(r[23]) || null
   };
 }
 
@@ -115,13 +121,15 @@ function validateLibrary_(lib, opts) {
     if (!tags[target] && CATEGORIES_.indexOf(target) === -1) errors.push('Keywords: "' + kw + '" points to unknown ' + target);
   });
 
-  var ids = {}, words = {}, counts = {};
-  Object.keys(tags).forEach(function (t) { counts[t] = 0; });
+  var ids = {}, words = {}, counts = {}, levels = {};
+  Object.keys(tags).forEach(function (t) { counts[t] = 0; levels[t] = { B1: 0, B2: 0, argot: 0 }; });
   (lib.entries || []).forEach(function (e, i) {
     var where = 'Entries row ' + (i + 2) + ' (' + (e.id || '?') + ')';
     ENTRY_REQUIRED_.forEach(function (f) { if (!e[f]) errors.push(where + ': missing ' + f); });
     if (!tags[e.theme]) { errors.push(where + ': unknown theme ' + e.theme); return; }
     counts[e.theme]++;
+    if (LEVELS_.indexOf(e.level) === -1) errors.push(where + ': level must be B1, B2 or argot');
+    else levels[e.theme][e.level]++;
     if (ids[e.id]) errors.push(where + ': duplicate id');
     ids[e.id] = true;
     if (e.id && e.id.indexOf(e.theme + '.') !== 0) errors.push(where + ': id must start with its theme');
@@ -153,9 +161,16 @@ function validateLibrary_(lib, opts) {
     var n = counts[t];
     if (n > ENTRIES_PER_THEME_.max) errors.push('Theme ' + t + ': ' + n + ' entries (max ' + ENTRIES_PER_THEME_.max + ')');
     else if (opts.complete && n < ENTRIES_PER_THEME_.min) errors.push('Theme ' + t + ': ' + n + ' entries (min ' + ENTRIES_PER_THEME_.min + ')');
+    if (opts.complete) {
+      LEVELS_.forEach(function (lv) {
+        if (levels[t][lv] < LEVEL_MIN_PER_THEME_[lv]) {
+          errors.push('Theme ' + t + ': ' + levels[t][lv] + ' ' + lv + ' entries (min ' + LEVEL_MIN_PER_THEME_[lv] + ')');
+        }
+      });
+    }
   });
 
-  return { errors: errors, warnings: warnings, counts: counts };
+  return { errors: errors, warnings: warnings, counts: counts, levels: levels };
 }
 
 // ---- Sheet wrappers (Apps Script only) -------------------------------------

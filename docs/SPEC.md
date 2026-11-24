@@ -65,6 +65,28 @@ in its example (a conjugated verb, say) is a warning, not an error.
 Keyword categories beyond the original four: daily and seasonal keywords exist too. Category order
 when several events match: **travel > social > errands > work > daily > seasonal**, then the earliest date.
 
+## 3b. The week's rhythm (replaces original §5.5)
+
+| Day | What | Notes |
+|---|---|---|
+| Mon–Sat | 6 new entries: **4 B1, 1 B2 "Niveau +", 1 argot** | Order shuffled each week (seeded by the week, so it is fixed once the week is locked and the app, the ÉLISE calendar event and "Next" agree) |
+| Sun | **Révision** | No new entry: listen-and-recall of the week's 6 |
+
+- Entries have a `level`: `B1`, `B2` (a less common word or subtler structure: *quitte à*, subjunctive, *il aurait fallu*), or `argot`.
+- **Argot = widely used familiar French** (*bosser, galère, kiffer, claquer, ça me saoule*), always with a note on
+  when not to use it and the neutral equivalent. No trendy verlan, nothing that dates fast.
+- Per theme (complete library): 10–14 entries with at least **6 B1, 2 B2, 2 argot**, so a repeat year still has unseen ones.
+- Unseen-first and oldest-seen fallback (original §5.4) apply within each level.
+- The B2 and argot entries carry a small badge in the app.
+
+## 3c. Immersion (new; app features)
+
+1. **Listen first:** on opening Today, the phrase plays, then the dialogue; the French text appears after
+   listening (or on tap). English stays blurred until tapped.
+2. **Speak back ("À vous"):** a mic button on the dialogue. You say speaker B's line; Chrome's built-in French
+   speech recognition (`fr-FR`) shows what it heard under the target line. No score, no network beyond
+   Chrome's own recognition.
+
 ## 4. ÉLISE calendar: the theme weeks (new)
 
 ÉLISE creates its own calendar, **ÉLISE**, and writes **one all-day event per theme week (Monday to
@@ -94,6 +116,7 @@ No home-screen widget for now; to be revisited.
 1. **Scaffold:** API with sample entry, streak, saving, settings; web app installable on the Pixel. **Checkpoint 1:** [SETUP.md](../SETUP.md).
 2. **Content:** Sheet schema + validator, the 52 default-calendar themes first. **Checkpoint 2:** 10 random entries to read *and listen to* on the phone; decide whether the phone voice is good enough.
 3. **Theme engine:** keyword / default logic as pure functions with tests (run locally with Node), Sunday 21:00 trigger. **Checkpoint 3:** test report + 12-week simulation.
-4. **Today wired to the engine:** daily pick, seen-entries log (timestamps + counts for v2 spaced repetition).
+4. **Today wired to the engine:** the week's shuffled 4 B1 / 1 B2 / 1 argot, Sunday review, seen-entries log
+   (timestamps + counts for v2 spaced repetition), listen first, speak back.
 5. **ÉLISE calendar:** one all-day event per theme week.
 6. **Polish.**
