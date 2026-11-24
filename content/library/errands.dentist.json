@@ -1,0 +1,55 @@
+{
+  "theme": "errands.dentist",
+  "entries": [
+    {
+      "id": "errands.dentist.01",
+      "theme": "errands.dentist",
+      "level": "B1",
+      "word": "une carie",
+      "pos": "nom fém.",
+      "fem": null,
+      "ipa": "/yn ka.ʁi/",
+      "def_fr": "Petit trou dans une dent, causé par les bactéries et le sucre.",
+      "def_en": "A cavity (in a tooth).",
+      "example_fr": "Le dentiste a trouvé une carie, il faut que j'y retourne mardi.",
+      "example_en": "The dentist found a cavity, I have to go back on Tuesday.",
+      "phrase_fr": "J'ai mal quand je bois quelque chose de froid.",
+      "phrase_en": "It hurts when I drink something cold.",
+      "register": "vous · chez le dentiste",
+      "register_note": "On vouvoie le dentiste. « J'ai mal quand… » marche pour tous les symptômes : « quand je mâche », « quand je me penche ».",
+      "dialogue": [
+        {
+          "who": "A",
+          "fr": "Alors, qu'est-ce qui vous amène aujourd'hui ?",
+          "en": "So, what brings you in today?"
+        },
+        {
+          "who": "B",
+          "fr": "J'ai mal quand je bois quelque chose de froid, surtout à gauche.",
+          "en": "It hurts when I drink something cold, especially on the left."
+        },
+        {
+          "who": "A",
+          "fr": "Je regarde… Oui, vous avez une petite carie. On peut la soigner tout de suite.",
+          "en": "Let me look… Yes, you have a small cavity. We can treat it right away."
+        },
+        {
+          "who": "B",
+          "fr": "D'accord. Ça va faire mal ? Je suis un peu douillet.",
+          "en": "OK. Will it hurt? I'm a bit of a wimp."
+        }
+      ]
+    }
+  ],
+  "idioms": [
+    {
+      "id": "errands.dentist.i01",
+      "theme": "errands.dentist",
+      "fr": "serrer les dents",
+      "literal": "to squeeze one's teeth",
+      "en": "to grit one's teeth (and bear it)",
+      "example_fr": "Pendant la piqûre, j'ai serré les dents.",
+      "example_en": "During the injection, I gritted my teeth."
+    }
+  ]
+}

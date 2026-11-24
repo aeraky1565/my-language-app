@@ -58,19 +58,21 @@ var SAMPLE_ENTRY_ = {
   phrase_en: 'Do you think it’s worth it?',
   register: 'tu · entre amis',
   register_note: '« tu » — on parle à une amie. Avec un vendeur : « Vous pensez que ça vaut le coup ? »',
-  idiom: {
-    fr: 'jeter l’argent par les fenêtres',
-    literal: 'to throw money out of the windows',
-    en: 'to waste money, to throw money away',
-    example_fr: 'Un troisième manteau ? C’est jeter l’argent par les fenêtres !',
-    example_en: 'A third coat? That’s throwing money away!'
-  },
   dialogue: [
     { who: 'A', fr: 'Regarde, le manteau est à moins cinquante pour cent !', en: 'Look, the coat is fifty percent off!' },
     { who: 'B', fr: 'Tu crois que ça vaut le coup ?', en: 'Do you think it’s worth it?' },
     { who: 'A', fr: 'Franchement, oui. Il était hors de prix avant.', en: 'Honestly, yes. It was way overpriced before.' },
     { who: 'B', fr: 'Bon, vas-y… mais ne sois pas trop dépensière cette fois !', en: 'OK, go for it… but don’t go overboard this time!' }
   ]
+};
+
+var SAMPLE_IDIOM_ = {
+  id: 'seasonal.sales.i01',
+  fr: 'jeter l’argent par les fenêtres',
+  literal: 'to throw money out of the windows',
+  en: 'to waste money, to throw money away',
+  example_fr: 'Un troisième manteau ? C’est jeter l’argent par les fenêtres !',
+  example_en: 'A third coat? That’s throwing money away!'
 };
 
 // ---- Setup -----------------------------------------------------------------
@@ -158,9 +160,10 @@ function apiToday_() {
     todayIndex: weekdayIndex_(today),
     theme: SAMPLE_THEME_,
     entry: SAMPLE_ENTRY_,
+    idiom: SAMPLE_IDIOM_,
     saved: {
       word: !!saved[SAMPLE_ENTRY_.id + ':word'],
-      idiom: !!saved[SAMPLE_ENTRY_.id + ':idiom'],
+      idiom: !!saved[SAMPLE_IDIOM_.id + ':idiom'],
       phrase: !!saved[SAMPLE_ENTRY_.id + ':phrase']
     },
     tts_rate: config_().tts_rate

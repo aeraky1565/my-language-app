@@ -1,0 +1,55 @@
+{
+  "theme": "social.neighbours",
+  "entries": [
+    {
+      "id": "social.neighbours.01",
+      "theme": "social.neighbours",
+      "level": "B1",
+      "word": "le palier",
+      "pos": "nom masc.",
+      "fem": null,
+      "ipa": "/lə pa.lje/",
+      "def_fr": "Espace devant les portes des appartements, à chaque étage d'un immeuble.",
+      "def_en": "The landing (in a block of flats).",
+      "example_fr": "J'ai croisé la nouvelle voisine sur le palier, elle a l'air sympa.",
+      "example_en": "I ran into the new neighbour on the landing, she seems nice.",
+      "phrase_fr": "Désolé pour le bruit hier soir.",
+      "phrase_en": "Sorry about the noise last night.",
+      "register": "vous · avec un voisin qu'on connaît peu",
+      "register_note": "Entre voisins, on se vouvoie au début. On peut aussi prévenir : « On fait une petite fête samedi, désolés d'avance pour le bruit ! »",
+      "dialogue": [
+        {
+          "who": "A",
+          "fr": "Bonjour ! Désolé pour le bruit hier soir, on fêtait l'anniversaire de mon fils.",
+          "en": "Hello! Sorry about the noise last night, we were celebrating my son's birthday."
+        },
+        {
+          "who": "B",
+          "fr": "Oh, ce n'est rien, je n'ai presque rien entendu.",
+          "en": "Oh, it's nothing, I barely heard a thing."
+        },
+        {
+          "who": "A",
+          "fr": "Tant mieux. La prochaine fois, je mettrai un mot dans le hall.",
+          "en": "Good. Next time I'll put a note up in the hall."
+        },
+        {
+          "who": "B",
+          "fr": "C'est gentil. Bonne journée, et bon anniversaire au petit !",
+          "en": "That's kind. Have a good day, and happy birthday to the little one!"
+        }
+      ]
+    }
+  ],
+  "idioms": [
+    {
+      "id": "social.neighbours.i01",
+      "theme": "social.neighbours",
+      "fr": "ne pas fermer l'œil de la nuit",
+      "literal": "not to close one's eye all night",
+      "en": "not to sleep a wink",
+      "example_fr": "Avec la fête du troisième, je n'ai pas fermé l'œil de la nuit.",
+      "example_en": "With the party on the third floor, I didn't sleep a wink."
+    }
+  ]
+}

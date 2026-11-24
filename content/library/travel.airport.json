@@ -1,0 +1,55 @@
+{
+  "theme": "travel.airport",
+  "entries": [
+    {
+      "id": "travel.airport.01",
+      "theme": "travel.airport",
+      "level": "B1",
+      "word": "la correspondance",
+      "pos": "nom fém.",
+      "fem": null,
+      "ipa": "/la kɔ.ʁɛs.pɔ̃.dɑ̃s/",
+      "def_fr": "Deuxième vol (ou train) qu'on prend pour continuer son trajet après une escale.",
+      "def_en": "A connection (connecting flight or train).",
+      "example_fr": "J'ai seulement cinquante minutes pour attraper ma correspondance à Roissy.",
+      "example_en": "I only have fifty minutes to catch my connection at Roissy.",
+      "phrase_fr": "Je risque de rater ma correspondance, vous pouvez m'aider ?",
+      "phrase_en": "I might miss my connection, can you help me?",
+      "register": "vous · avec le personnel",
+      "register_note": "Au comptoir, on vouvoie toujours. « Je risque de… » est plus doux que « Je vais rater… » et attire la sympathie.",
+      "dialogue": [
+        {
+          "who": "A",
+          "fr": "Excusez-moi, je risque de rater ma correspondance, vous pouvez m'aider ?",
+          "en": "Excuse me, I might miss my connection, can you help me?"
+        },
+        {
+          "who": "B",
+          "fr": "Montrez-moi votre carte d'embarquement… Lyon ? Pas d'inquiétude, on vous met sur le vol suivant.",
+          "en": "Show me your boarding pass… Lyon? Don't worry, we'll put you on the next flight."
+        },
+        {
+          "who": "A",
+          "fr": "Et mes bagages, ils suivent automatiquement ?",
+          "en": "And my bags, do they follow automatically?"
+        },
+        {
+          "who": "B",
+          "fr": "Oui, ils sont enregistrés jusqu'à Lyon. Vous n'avez rien à faire.",
+          "en": "Yes, they're checked through to Lyon. You don't need to do anything."
+        }
+      ]
+    }
+  ],
+  "idioms": [
+    {
+      "id": "travel.airport.i01",
+      "theme": "travel.airport",
+      "fr": "mettre les voiles",
+      "literal": "to set the sails",
+      "en": "to head off, to leave",
+      "example_fr": "Bon, mon vol est à sept heures, je mets les voiles !",
+      "example_en": "Right, my flight's at seven, I'm off!"
+    }
+  ]
+}

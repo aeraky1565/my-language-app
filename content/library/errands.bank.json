@@ -1,0 +1,55 @@
+{
+  "theme": "errands.bank",
+  "entries": [
+    {
+      "id": "errands.bank.01",
+      "theme": "errands.bank",
+      "level": "B1",
+      "word": "un virement",
+      "pos": "nom masc.",
+      "fem": null,
+      "ipa": "/œ̃ viʁ.mɑ̃/",
+      "def_fr": "Transfert d'argent d'un compte bancaire à un autre.",
+      "def_en": "A bank transfer.",
+      "example_fr": "Je t'ai fait un virement pour le loyer, tu devrais le recevoir demain.",
+      "example_en": "I sent you a transfer for the rent, you should get it tomorrow.",
+      "phrase_fr": "Mon virement n'est toujours pas arrivé.",
+      "phrase_en": "My transfer still hasn't arrived.",
+      "register": "vous · avec le conseiller",
+      "register_note": "Le « conseiller » ou la « conseillère » gère votre compte. « Toujours pas » = still not ; très utile pour se plaindre poliment.",
+      "dialogue": [
+        {
+          "who": "A",
+          "fr": "Bonjour, mon virement n'est toujours pas arrivé, ça fait trois jours.",
+          "en": "Hello, my transfer still hasn't arrived, it's been three days."
+        },
+        {
+          "who": "B",
+          "fr": "Je regarde… Il a été fait vendredi soir, donc il sera traité aujourd'hui.",
+          "en": "Let me check… It was made on Friday evening, so it'll be processed today."
+        },
+        {
+          "who": "A",
+          "fr": "Ah, à cause du week-end ? Je ne savais pas.",
+          "en": "Oh, because of the weekend? I didn't know."
+        },
+        {
+          "who": "B",
+          "fr": "Exactement. La prochaine fois, choisissez le virement instantané.",
+          "en": "Exactly. Next time, choose an instant transfer."
+        }
+      ]
+    }
+  ],
+  "idioms": [
+    {
+      "id": "errands.bank.i01",
+      "theme": "errands.bank",
+      "fr": "avoir des fins de mois difficiles",
+      "literal": "to have difficult ends of the month",
+      "en": "to struggle to make ends meet",
+      "example_fr": "Avec le loyer qui augmente, beaucoup de gens ont des fins de mois difficiles.",
+      "example_en": "With rents going up, lots of people struggle to make ends meet."
+    }
+  ]
+}

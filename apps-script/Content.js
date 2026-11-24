@@ -15,13 +15,17 @@ var CONTENT_TABS_ = {
   Keywords: ['keyword', 'target'],
   Entries: ['id', 'theme', 'level', 'word', 'pos', 'fem', 'ipa', 'def_fr', 'def_en', 'example_fr', 'example_en',
             'phrase_fr', 'phrase_en', 'register', 'register_note',
-            'd1_fr', 'd1_en', 'd2_fr', 'd2_en', 'd3_fr', 'd3_en', 'd4_fr', 'd4_en', 'tts',
-            'idiom_fr', 'idiom_literal', 'idiom_en', 'idiom_example_fr', 'idiom_example_en']
+            'd1_fr', 'd1_en', 'd2_fr', 'd2_en', 'd3_fr', 'd3_en', 'd4_fr', 'd4_en', 'tts'],
+  Idioms: ['id', 'theme', 'idiom_fr', 'literal', 'meaning_en', 'example_fr', 'example_en']
 };
 
 var ENTRY_REQUIRED_ = ['id', 'theme', 'level', 'word', 'pos', 'ipa', 'def_fr', 'def_en', 'example_fr', 'example_en',
-                       'phrase_fr', 'phrase_en', 'register', 'register_note',
-                       'idiom_fr', 'idiom_literal', 'idiom_en', 'idiom_example_fr', 'idiom_example_en'];
+                       'phrase_fr', 'phrase_en', 'register', 'register_note'];
+
+var IDIOM_REQUIRED_ = ['id', 'theme', 'fr', 'literal', 'en', 'example_fr', 'example_en'];
+
+// Six idioms per theme: one for each of Mon–Sat. A repeat year reuses them.
+var IDIOMS_PER_THEME_ = 6;
 
 var ENTRIES_PER_THEME_ = { min: 10, max: 14 };
 
@@ -40,8 +44,6 @@ function entryToRow_(e) {
              e.phrase_fr, e.phrase_en, e.register, e.register_note];
   for (var i = 0; i < 4; i++) row.push(d[i] ? d[i].fr : '', d[i] ? d[i].en : '');
   row.push(e.tts || '');
-  var id = e.idiom || {};
-  row.push(id.fr || '', id.literal || '', id.en || '', id.example_fr || '', id.example_en || '');
   return row;
 }
 
@@ -57,9 +59,16 @@ function rowToEntry_(r) {
     id: s(r[0]), theme: s(r[1]), level: s(r[2]), word: s(r[3]), pos: s(r[4]), fem: s(r[5]) || null, ipa: s(r[6]),
     def_fr: s(r[7]), def_en: s(r[8]), example_fr: s(r[9]), example_en: s(r[10]),
     phrase_fr: s(r[11]), phrase_en: s(r[12]), register: s(r[13]), register_note: s(r[14]),
-    dialogue: dialogue, tts: s(r[23]) || null,
-    idiom: { fr: s(r[24]), literal: s(r[25]), en: s(r[26]), example_fr: s(r[27]), example_en: s(r[28]) }
+    dialogue: dialogue, tts: s(r[23]) || null
   };
+}
+
+/** Pure: idiom object <-> Idioms row. */
+function idiomToRow_(i) { return [i.id, i.theme, i.fr, i.literal, i.en, i.example_fr, i.example_en]; }
+
+function rowToIdiom_(r) {
+  var s = function (v) { return v == null ? '' : String(v).trim(); };
+  return { id: s(r[0]), theme: s(r[1]), fr: s(r[2]), literal: s(r[3]), en: s(r[4]), example_fr: s(r[5]), example_en: s(r[6]) };
 }
 
 function themeToRow_(t) { return [t.tag, t.category, t.name_fr, t.name_en, (t.related || []).join(', ')]; }
@@ -84,7 +93,7 @@ function norm_(s) { return String(s || '').toLowerCase().replace(/[’]/g, "'").
 
 /**
  * Pure: checks the library against the content rules.
- *   lib = { themes: [...], calendar: {week: tag}, keywords: [[kw, target]], entries: [...] }
+ *   lib = { themes: [...], calendar: {week: tag}, keywords: [[kw, target]], entries: [...], idioms: [...] }
  *   opts.complete: also require 10–14 entries for every theme (false while the
  *                  library is being written).
  * Returns { errors: [string], warnings: [string], counts: {tag: n} }.
@@ -126,15 +135,11 @@ function validateLibrary_(lib, opts) {
     if (!tags[target] && CATEGORIES_.indexOf(target) === -1) errors.push('Keywords: "' + kw + '" points to unknown ' + target);
   });
 
-  var ids = {}, words = {}, idioms = {}, counts = {}, levels = {};
+  var ids = {}, words = {}, counts = {}, levels = {};
   Object.keys(tags).forEach(function (t) { counts[t] = 0; levels[t] = { B1: 0, B2: 0, argot: 0 }; });
   (lib.entries || []).forEach(function (e, i) {
     var where = 'Entries row ' + (i + 2) + ' (' + (e.id || '?') + ')';
-    var flat = Object.assign({}, e);
-    var idm = e.idiom || {};
-    flat.idiom_fr = idm.fr; flat.idiom_literal = idm.literal; flat.idiom_en = idm.en;
-    flat.idiom_example_fr = idm.example_fr; flat.idiom_example_en = idm.example_en;
-    ENTRY_REQUIRED_.forEach(function (f) { if (!flat[f]) errors.push(where + ': missing ' + f); });
+    ENTRY_REQUIRED_.forEach(function (f) { if (!e[f]) errors.push(where + ': missing ' + f); });
     if (!tags[e.theme]) { errors.push(where + ': unknown theme ' + e.theme); return; }
     counts[e.theme]++;
     if (LEVELS_.indexOf(e.level) === -1) errors.push(where + ': level must be B1, B2 or argot');
@@ -147,11 +152,6 @@ function validateLibrary_(lib, opts) {
     if (words[l]) errors.push(where + ': word "' + e.word + '" already used by ' + words[l]);
     words[l] = e.id;
 
-    if (idm.fr) {
-      var ik = norm_(idm.fr);
-      if (idioms[ik]) errors.push(where + ': idiom "' + idm.fr + '" already used by ' + idioms[ik]);
-      idioms[ik] = e.id;
-    }
 
     if (!e.dialogue || e.dialogue.length !== 4 || e.dialogue.some(function (d) { return !d.fr || !d.en; })) {
       errors.push(where + ': needs 4 dialogue lines, each in French and English');
@@ -172,6 +172,26 @@ function validateLibrary_(lib, opts) {
     if (e.ipa && !/^\/.+\/$/.test(e.ipa)) warnings.push(where + ': IPA should be written between slashes');
   });
 
+  var idiomIds = {}, idiomText = {}, idiomCounts = {};
+  Object.keys(tags).forEach(function (t) { idiomCounts[t] = 0; });
+  (lib.idioms || []).forEach(function (m, i) {
+    var where = 'Idioms row ' + (i + 2) + ' (' + (m.id || '?') + ')';
+    IDIOM_REQUIRED_.forEach(function (f) { if (!m[f]) errors.push(where + ': missing ' + f); });
+    if (!tags[m.theme]) { errors.push(where + ': unknown theme ' + m.theme); return; }
+    idiomCounts[m.theme]++;
+    if (idiomIds[m.id]) errors.push(where + ': duplicate id');
+    idiomIds[m.id] = true;
+    if (m.id && m.id.indexOf(m.theme + '.i') !== 0) errors.push(where + ': id must look like ' + m.theme + '.i01');
+    var k = norm_(m.fr);
+    if (idiomText[k]) errors.push(where + ': idiom "' + m.fr + '" already used by ' + idiomText[k]);
+    idiomText[k] = m.id;
+  });
+  Object.keys(idiomCounts).forEach(function (t) {
+    var n = idiomCounts[t];
+    if (n > IDIOMS_PER_THEME_) errors.push('Theme ' + t + ': ' + n + ' idioms (max ' + IDIOMS_PER_THEME_ + ')');
+    else if (opts.complete && n < IDIOMS_PER_THEME_) errors.push('Theme ' + t + ': ' + n + ' idioms (need ' + IDIOMS_PER_THEME_ + ')');
+  });
+
   Object.keys(counts).forEach(function (t) {
     var n = counts[t];
     if (n > ENTRIES_PER_THEME_.max) errors.push('Theme ' + t + ': ' + n + ' entries (max ' + ENTRIES_PER_THEME_.max + ')');
@@ -185,7 +205,7 @@ function validateLibrary_(lib, opts) {
     }
   });
 
-  return { errors: errors, warnings: warnings, counts: counts, levels: levels };
+  return { errors: errors, warnings: warnings, counts: counts, levels: levels, idioms: idiomCounts };
 }
 
 // ---- Sheet wrappers (Apps Script only) -------------------------------------
@@ -202,7 +222,8 @@ function readLibrary_() {
     themes: rows('Themes').map(rowToTheme_),
     calendar: calendar,
     keywords: rows('Keywords').map(function (r) { return [String(r[0]), String(r[1]).trim()]; }),
-    entries: rows('Entries').map(rowToEntry_)
+    entries: rows('Entries').map(rowToEntry_),
+    idioms: rows('Idioms').map(rowToIdiom_)
   };
 }
 

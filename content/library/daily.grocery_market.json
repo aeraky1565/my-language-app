@@ -1,0 +1,55 @@
+{
+  "theme": "daily.grocery_market",
+  "entries": [
+    {
+      "id": "daily.grocery_market.01",
+      "theme": "daily.grocery_market",
+      "level": "B1",
+      "word": "une barquette",
+      "pos": "nom fém.",
+      "fem": null,
+      "ipa": "/yn baʁ.kɛt/",
+      "def_fr": "Petit récipient en carton ou en plastique dans lequel on vend des fruits, de la viande…",
+      "def_en": "A punnet; a small tray (of fruit, meat…).",
+      "example_fr": "Je vais vous prendre une barquette de fraises, s'il vous plaît.",
+      "example_en": "I'll take a punnet of strawberries, please.",
+      "phrase_fr": "Et avec ceci ?",
+      "phrase_en": "Anything else?",
+      "register": "vous · au marché",
+      "register_note": "C'est la question rituelle du commerçant. On répond « Ce sera tout, merci » ou « C'est tout pour aujourd'hui ».",
+      "dialogue": [
+        {
+          "who": "A",
+          "fr": "Voilà vos tomates. Et avec ceci ?",
+          "en": "Here are your tomatoes. Anything else?"
+        },
+        {
+          "who": "B",
+          "fr": "Une barquette de fraises, s'il vous plaît. Elles viennent d'où ?",
+          "en": "A punnet of strawberries, please. Where are they from?"
+        },
+        {
+          "who": "A",
+          "fr": "De Plougastel, en Bretagne. Elles sont superbes cette semaine.",
+          "en": "From Plougastel, in Brittany. They're gorgeous this week."
+        },
+        {
+          "who": "B",
+          "fr": "Parfait. Ce sera tout, merci. Je vous dois combien ?",
+          "en": "Perfect. That's all, thanks. How much do I owe you?"
+        }
+      ]
+    }
+  ],
+  "idioms": [
+    {
+      "id": "daily.grocery_market.i01",
+      "theme": "daily.grocery_market",
+      "fr": "pour une bouchée de pain",
+      "literal": "for a mouthful of bread",
+      "en": "for next to nothing",
+      "example_fr": "En fin de marché, j'ai eu trois kilos de pommes pour une bouchée de pain.",
+      "example_en": "At the end of the market, I got three kilos of apples for next to nothing."
+    }
+  ]
+}

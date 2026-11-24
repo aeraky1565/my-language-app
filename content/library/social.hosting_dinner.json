@@ -1,0 +1,55 @@
+{
+  "theme": "social.hosting_dinner",
+  "entries": [
+    {
+      "id": "social.hosting_dinner.01",
+      "theme": "social.hosting_dinner",
+      "level": "B1",
+      "word": "un apéro",
+      "pos": "nom masc. (fam.)",
+      "fem": null,
+      "ipa": "/œ̃.n‿a.pe.ʁo/",
+      "def_fr": "Moment où l'on boit un verre et grignote avant le repas, souvent entre amis.",
+      "def_en": "Pre-dinner drinks and nibbles (informal for apéritif).",
+      "example_fr": "Venez vers dix-neuf heures, on commence par un apéro sur le balcon.",
+      "example_en": "Come around seven, we'll start with drinks on the balcony.",
+      "phrase_fr": "Qu'est-ce que je peux apporter ?",
+      "phrase_en": "What can I bring?",
+      "register": "tu · entre amis",
+      "register_note": "Entre amis, on dit aussi « Je ramène quoi ? ». Chez des gens qu'on connaît peu : « Est-ce que je peux apporter quelque chose ? »",
+      "dialogue": [
+        {
+          "who": "A",
+          "fr": "Ça te dit de venir dîner samedi ? On fait un apéro d'abord.",
+          "en": "Fancy coming for dinner on Saturday? We'll have drinks first."
+        },
+        {
+          "who": "B",
+          "fr": "Avec plaisir ! Qu'est-ce que je peux apporter ?",
+          "en": "I'd love to! What can I bring?"
+        },
+        {
+          "who": "A",
+          "fr": "Rien du tout… Bon, si tu insistes, une bouteille de rouge.",
+          "en": "Nothing at all… Well, if you insist, a bottle of red."
+        },
+        {
+          "who": "B",
+          "fr": "Ça marche. J'arrive vers vingt heures.",
+          "en": "Deal. I'll be there around eight."
+        }
+      ]
+    }
+  ],
+  "idioms": [
+    {
+      "id": "social.hosting_dinner.i01",
+      "theme": "social.hosting_dinner",
+      "fr": "mettre les petits plats dans les grands",
+      "literal": "to put the small dishes in the big ones",
+      "en": "to go all out (for guests)",
+      "example_fr": "Pour ses beaux-parents, elle a mis les petits plats dans les grands.",
+      "example_en": "For her in-laws, she went all out."
+    }
+  ]
+}
