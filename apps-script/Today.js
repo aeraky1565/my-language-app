@@ -124,8 +124,8 @@ function markShown_(items, date) {
       var row = at[it.id], prev = row ? rows[row - 1].map(function (v, j) { return j >= 3 && j <= 4 ? cellDate_(v) : v; }) : null;
       var res = shownRow_(prev, it, date);
       if (!res.changed) return;
-      if (res.isNew) { sh.appendRow(res.row); fresh++; }
-      else sh.getRange(row, 1, 1, res.row.length).setValues([res.row]);
+      if (res.isNew) { writeRow_(sh, 0, res.row); fresh++; }
+      else writeRow_(sh, row, res.row);
     });
     return fresh;
   } finally {
@@ -146,8 +146,7 @@ function logPractice_(date, patch) {
     }
     var m = mergePractice_(prev, patch, date, config_().language, new Date().toISOString());
     var out = PRACTICE_COLS_.map(function (c) { return m[c]; });
-    if (row) sh.getRange(row, 1, 1, out.length).setValues([out]);
-    else sh.appendRow(out);
+    writeRow_(sh, row, out);
   } finally {
     lock.releaseLock();
   }

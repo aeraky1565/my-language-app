@@ -336,8 +336,7 @@ function weekFor_(weekStart, force) {
   });
   var row = [weekStart, choice.tag, choice.source, choice.why, choice.event_date, JSON.stringify(plan), new Date().toISOString()];
   var sh = sheet_('ThemeWeeks'), at = findRow_(sh, weekStart);
-  if (at) sh.getRange(at, 1, 1, row.length).setValues([row]);
-  else sh.appendRow(row);
+  writeRow_(sh, at, row);
   Logger.log('Week of ' + weekStart + ': ' + choice.tag + ' (' + choice.source + ': ' + choice.why + ')');
   return { week_start: weekStart, tag: choice.tag, source: choice.source, why: choice.why, event_date: choice.event_date, plan: plan };
 }

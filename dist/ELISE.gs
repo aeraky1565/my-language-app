@@ -169,7 +169,7 @@ function apiToggleSaved_(item) {
   try {
     var row = findRow_(sh, id);
     if (row) { sh.deleteRow(row); return { saved: false }; }
-    sh.appendRow([id, item.type, item.fr, item.en, item.theme, item.entry_id, new Date().toISOString()]);
+    writeRow_(sh, 0, [id, item.type, item.fr, item.en, item.theme, item.entry_id, new Date().toISOString()]);
     return { saved: true };
   } finally {
     lock.releaseLock();
@@ -230,7 +230,7 @@ function recordVisit_() {
   var lock = LockService.getScriptLock();
   lock.waitLock(5000);
   try {
-    if (!visitSet_()[today]) sheet_('Visits').appendRow([today, new Date().toISOString()]);
+    if (!visitSet_()[today]) writeRow_(sheet_('Visits'), 0, [today, new Date().toISOString()]);
   } finally {
     lock.releaseLock();
   }
@@ -288,18 +288,33 @@ function sheet_(name, ss) {
   if (!sh) {
     sh = ss.insertSheet(name);
     sh.getRange(1, 1, sh.getMaxRows(), sh.getMaxColumns()).setNumberFormat('@'); // dates and ids stay plain text
-    sh.appendRow(TABS_[name] || CONTENT_TABS_[name] || ENGINE_TABS_[name]);
+    writeRow_(sh, 1, TABS_[name] || CONTENT_TABS_[name] || ENGINE_TABS_[name]);
     sh.setFrozenRows(1);
   }
   return sh;
 }
 
+/**
+ * The row (1-based) whose first cell is `id`, or 0. A date cell matches its
+ * 'yyyy-MM-dd' text: Sheets may have turned a written date into a real date.
+ */
 function findRow_(sh, id) {
   var last = sh.getLastRow();
   if (last < 2) return 0;
   var ids = sh.getRange(2, 1, last - 1, 1).getValues();
-  for (var i = 0; i < ids.length; i++) if (String(ids[i][0]) === id) return i + 2;
+  for (var i = 0; i < ids.length; i++) if (cellDate_(ids[i][0]) === String(id)) return i + 2;
   return 0;
+}
+
+/**
+ * Writes one row as plain text: at `row` (1-based), or after the last row when
+ * row is 0. The cells are set to text first, so Sheets never turns "2026-11-24"
+ * into a date (appendRow does, whatever the column's format).
+ */
+function writeRow_(sh, row, values) {
+  var r = row || sh.getLastRow() + 1;
+  sh.getRange(r, 1, 1, values.length).setNumberFormat('@').setValues([values.map(function (v) { return v == null ? '' : String(v); })]);
+  return r;
 }
 
 function readConfig_() {
@@ -311,8 +326,7 @@ function readConfig_() {
 function writeConfig_(key, value) {
   var sh = sheet_('Config');
   var row = findRow_(sh, key);
-  if (row) sh.getRange(row, 2).setValue(value);
-  else sh.appendRow([key, value]);
+  writeRow_(sh, row, [key, value]);
 }
 
 function config_() {
@@ -943,8 +957,7 @@ function weekFor_(weekStart, force) {
   });
   var row = [weekStart, choice.tag, choice.source, choice.why, choice.event_date, JSON.stringify(plan), new Date().toISOString()];
   var sh = sheet_('ThemeWeeks'), at = findRow_(sh, weekStart);
-  if (at) sh.getRange(at, 1, 1, row.length).setValues([row]);
-  else sh.appendRow(row);
+  writeRow_(sh, at, row);
   Logger.log('Week of ' + weekStart + ': ' + choice.tag + ' (' + choice.source + ': ' + choice.why + ')');
   return { week_start: weekStart, tag: choice.tag, source: choice.source, why: choice.why, event_date: choice.event_date, plan: plan };
 }
@@ -1094,8 +1107,8 @@ function markShown_(items, date) {
       var row = at[it.id], prev = row ? rows[row - 1].map(function (v, j) { return j >= 3 && j <= 4 ? cellDate_(v) : v; }) : null;
       var res = shownRow_(prev, it, date);
       if (!res.changed) return;
-      if (res.isNew) { sh.appendRow(res.row); fresh++; }
-      else sh.getRange(row, 1, 1, res.row.length).setValues([res.row]);
+      if (res.isNew) { writeRow_(sh, 0, res.row); fresh++; }
+      else writeRow_(sh, row, res.row);
     });
     return fresh;
   } finally {
@@ -1116,8 +1129,7 @@ function logPractice_(date, patch) {
     }
     var m = mergePractice_(prev, patch, date, config_().language, new Date().toISOString());
     var out = PRACTICE_COLS_.map(function (c) { return m[c]; });
-    if (row) sh.getRange(row, 1, 1, out.length).setValues([out]);
-    else sh.appendRow(out);
+    writeRow_(sh, row, out);
   } finally {
     lock.releaseLock();
   }
