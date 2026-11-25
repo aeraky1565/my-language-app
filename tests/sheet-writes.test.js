@@ -43,10 +43,11 @@ function load() {
     LockService: { getScriptLock: () => ({ waitLock() {}, releaseLock() {} }) },
     Session: { getScriptTimeZone: () => 'America/New_York' },
     CalendarApp: { getDefaultCalendar: () => ({ getTimeZone: () => 'America/New_York' }) },
-    PropertiesService: { getScriptProperties: () => ({ getProperty: () => null }) }
+    PropertiesService: { getScriptProperties: () => ({ getProperty: () => null }) },
+    Logger: { log() {} }
   };
   vm.createContext(ctx);
-  for (const f of ['Code.js', 'Content.js', 'Engine.js', 'Today.js']) {
+  for (const f of ['Code.js', 'Content.js', 'Engine.js', 'Progress.js', 'Today.js']) {
     vm.runInContext(fs.readFileSync(path.join(__dirname, '../apps-script', f), 'utf8'), ctx);
   }
   const sheets = {
@@ -137,4 +138,18 @@ test('timestamps written to the Sheet are Eastern time, never UTC', () => {
   ctx.Utilities.formatDate = (d, tz, fmt) => { calls.push([tz, fmt]); return 'x'; };
   ctx.nowStamp_();
   assert.deepEqual(calls[0], ['America/New_York', 'yyyy-MM-dd HH:mm:ss z']);
+});
+
+test('Sunday ratings update the spaced-review columns in Shown and the review count in Practice', () => {
+  const { ctx, sheets } = load();
+  const today = ctx.Utilities.formatDate(new Date());
+  ctx.markShown_([{ id: 'a.b.01', kind: 'entry', theme: 'a.b' }, { id: 'a.b.i01', kind: 'idiom', theme: 'a.b' }], '2026-11-24');
+  ctx.apiComplete_({ mode: 'review', minutes: 5, ratings: { 'a.b.01': 'knew', 'a.b.i01': 'no', 'x.y.99': 'knew', 'a.b.02': 'maybe' } });
+  const shown = sheets.Shown.rows.slice(1);
+  assert.deepEqual(shown[0].slice(6), ['2', ctx.enShift_(today, 14), 'knew', today, '1', '1']);
+  assert.deepEqual(shown[1].slice(6), ['1', ctx.enShift_(today, 7), 'no', today, '1', '0']);
+  assert.equal(shown[0][4], '2026-11-24');   // last shown kept
+  const practice = sheets.Practice.rows.slice(1);
+  assert.equal(practice.length, 1);
+  assert.equal(practice[0][5], '2');         // reviewed: only the two known items with a valid rating
 });

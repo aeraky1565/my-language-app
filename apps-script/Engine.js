@@ -31,7 +31,6 @@
 
 var CATEGORY_ORDER_ = ['travel', 'social', 'errands', 'work', 'daily', 'seasonal'];
 var COOLDOWN_WEEKS_ = 8;
-var WEEK_MIX_ = [['B1', 4], ['B2', 1], ['argot', 1]];
 var MOIS_ = ['janvier', 'février', 'mars', 'avril', 'mai', 'juin', 'juillet', 'août', 'septembre', 'octobre', 'novembre', 'décembre'];
 var BIRTHDAY_RE_ = /\b(birthday|bday|b-day|anniversaire)\b/;
 
@@ -208,12 +207,16 @@ function chooseTheme_(input) {
 
 // ---- Which themes are complete (pure) -------------------------------------------
 
-/** Pure: tags with enough content to run a week: 10+ entries (6 B1, 2 B2, 2 argot) and 6 idioms. */
-function completeTags_(lib) {
-  var res = validateLibrary_(lib, { complete: true });
-  var bad = {};
-  res.errors.forEach(function (m) { var x = /^Theme ([a-z_]+\.[a-z_]+):/.exec(m); if (x) bad[x[1]] = true; });
-  return (lib.themes || []).map(function (t) { return t.tag; }).filter(function (t) { return !bad[t] && res.counts[t] > 0; });
+/**
+ * Pure: tags with enough content to run two weeks at `level` (default B1): 10+ entries with the
+ * level's minimum per kind (B1 mode: 6 B1, 2 B2, 2 argot; B2 mode: 4 B1, 6 B2, 2 argot) and 6 idioms.
+ */
+function completeTags_(lib, level) {
+  var res = validateLibrary_(lib, {}), need = requiredFor_(level);
+  return (lib.themes || []).map(function (t) { return t.tag; }).filter(function (t) {
+    if ((res.counts[t] || 0) < ENTRIES_PER_THEME_.min || (res.idioms[t] || 0) < IDIOMS_PER_THEME_) return false;
+    return Object.keys(need).every(function (lv) { return (res.levels[t][lv] || 0) >= need[lv]; });
+  });
 }
 
 // ---- The week's plan (pure) -----------------------------------------------------
@@ -252,12 +255,12 @@ function pickFresh_(items, shown, n) {
 /**
  * Pure: the plan for a theme week.
  *   input = { weekStart, tag, entries: [entries of the theme], idioms: [idioms of the theme],
- *             shown: { id: { last_shown, times_shown } } }
+ *             shown: { id: { last_shown, times_shown } }, level: 'B1'|'B2' (the weekly mix; default B1) }
  * → { days: [{ day: 0..5, entry_id, level, idiom_id }], review: [entry ids] }   (day 0 = Monday; Sunday is the review)
  */
 function planWeek_(input) {
   var shown = input.shown || {}, entries = input.entries || [], chosen = [], used = {};
-  WEEK_MIX_.forEach(function (mix) {
+  mixFor_(input.level).forEach(function (mix) {
     pickFresh_(entries.filter(function (e) { return e.level === mix[0]; }), shown, mix[1])
       .forEach(function (e) { chosen.push(e); used[e.id] = true; });
   });
@@ -276,7 +279,7 @@ function planWeek_(input) {
 
 var ENGINE_TABS_ = {
   ThemeWeeks: ['week_start', 'tag', 'source', 'why', 'event_date', 'plan', 'chosen_at'],
-  Shown: ['id', 'kind', 'theme', 'first_shown', 'last_shown', 'times_shown']
+  Shown: ['id', 'kind', 'theme', 'first_shown', 'last_shown', 'times_shown', 'box', 'due', 'last_rating', 'last_review', 'reviews', 'knew']
 };
 
 function todayYmd_() { return Utilities.formatDate(new Date(), tz_(), 'yyyy-MM-dd'); }
@@ -314,7 +317,8 @@ function readThemeWeeks_() {
 function readShown_() {
   var m = {};
   sheet_('Shown').getDataRange().getValues().slice(1).forEach(function (r) {
-    if (r[0]) m[String(r[0])] = { last_shown: cellDate_(r[4]), times_shown: Number(r[5]) || 0 };
+    if (r[0]) m[String(r[0])] = { kind: String(r[1]), last_shown: cellDate_(r[4]), times_shown: Number(r[5]) || 0,
+                                  box: Number(r[6]) || 0, due: r[7] ? cellDate_(r[7]) : '' };
   });
   return m;
 }
@@ -325,12 +329,15 @@ function weekFor_(weekStart, force) {
   var existing = history.filter(function (h) { return h.week_start === weekStart; })[0];
   if (existing && !force) return existing;
   var lib = readLibrary_();
+  // The weekly mix follows Config › level; a level without enough content yet falls back to B1.
+  var level = config_().level, available = completeTags_(lib, level);
+  if (!available.length && level !== 'B1') { level = 'B1'; available = completeTags_(lib, 'B1'); }
   var choice = chooseTheme_({
     weekStart: weekStart, lib: lib, history: history, force: !!force,
-    available: completeTags_(lib), events: readEvents_(enShift_(weekStart, 7), enShift_(weekStart, 13))
+    available: available, events: readEvents_(enShift_(weekStart, 7), enShift_(weekStart, 13))
   });
   var plan = planWeek_({
-    weekStart: weekStart, tag: choice.tag, shown: readShown_(),
+    weekStart: weekStart, tag: choice.tag, shown: readShown_(), level: level,
     entries: lib.entries.filter(function (e) { return e.theme === choice.tag; }),
     idioms: lib.idioms.filter(function (i) { return i.theme === choice.tag; })
   });
@@ -342,7 +349,10 @@ function weekFor_(weekStart, force) {
 }
 
 /** Trigger, Sundays at 21:00: chooses next week's theme. */
-function chooseNextWeek() { return weekFor_(enShift_(enMonday_(todayYmd_()), 7), false); }
+function chooseNextWeek() {
+  try { updateReadiness_(); } catch (e) { Logger.log('updateReadiness_: ' + e); }
+  return weekFor_(enShift_(enMonday_(todayYmd_()), 7), false);
+}
 
 /** The current week's theme, chosen now if it has none yet (first launch). */
 function currentWeek_() { return weekFor_(enMonday_(todayYmd_()), false); }

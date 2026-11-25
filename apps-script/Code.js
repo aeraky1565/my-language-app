@@ -34,6 +34,7 @@ var ELISE_CALENDAR_NAME_ = 'ÉLISE';
 var DEFAULT_CONFIG_ = {
   excluded_calendars: '[]',
   language: 'fr',
+  level: 'B1',
   tts_rate: '0.9'
 };
 
@@ -334,7 +335,8 @@ function config_() {
   var c = Object.assign({}, DEFAULT_CONFIG_, readConfig_());
   var excluded = [];
   try { excluded = JSON.parse(c.excluded_calendars); } catch (e) {}
-  return { excluded_calendars: excluded, tts_rate: Number(c.tts_rate) || 0.9, language: c.language || 'fr' };
+  return { excluded_calendars: excluded, tts_rate: Number(c.tts_rate) || 0.9, language: c.language || 'fr',
+           level: MIX_BY_LEVEL_[String(c.level).trim()] ? String(c.level).trim() : 'B1' };
 }
 
 function savedIndex_() {

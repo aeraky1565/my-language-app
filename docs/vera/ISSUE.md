@@ -14,9 +14,9 @@ So VERA **reads** the log each night. Any later language app (German: `GOAL-2026
 
 A tab (default name `Practice`) with a header row. VERA needs only `date` and `minutes`; it uses `theme` and `note` for the practice note and ignores the rest.
 
-| date | language | minutes | sessions | new_items | reviewed | theme | note | updated_at |
-|---|---|---|---|---|---|---|---|---|
-| 2026-11-24 | fr | 7 | 2 | 2 | 0 | Les soldes | dépensier · jeter l'argent par les fenêtres | 2026-11-24T19:02:11Z |
+| date | language | minutes | sessions | new_items | reviewed | theme | note | updated_at | speaking |
+|---|---|---|---|---|---|---|---|---|---|
+| 2026-11-24 | fr | 7 | 2 | 2 | 0 | Les soldes | dépensier · jeter l'argent par les fenêtres | 2026-11-24 14:02:11 EST | 82 |
 
 - One row per day. The app updates the day's row as I practise more, so `minutes` can go up during the day.
 - `date` is `yyyy-MM-dd` in my time zone.

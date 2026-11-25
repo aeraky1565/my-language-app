@@ -152,7 +152,7 @@ function progress() {
     const p = JSON.parse(store.get('elise.progress') || 'null');
     if (p && t && p.date === t.date) return p;
   } catch (e) {}
-  return { date: t && t.date, steps: {}, played: [], sent: false };
+  return { date: t && t.date, steps: {}, ratings: {}, spoken: [], sent: false };
 }
 const saveProgress = (p) => store.set('elise.progress', JSON.stringify(p));
 
@@ -163,7 +163,7 @@ function requiredSteps(t) {
 function reviewCount(t) { return t.review.entries.length + t.review.idioms.length; }
 function isDone(t, p) {
   if (t.done) return true;
-  if (t.mode === 'review') return p.played.length >= reviewCount(t);
+  if (t.mode === 'review') return Object.keys(p.ratings || {}).length >= reviewCount(t);
   return requiredSteps(t).every(([k]) => p.steps[k]);
 }
 
@@ -174,12 +174,23 @@ function markStep(step) {
   if (!p.steps[step]) { p.steps[step] = true; saveProgress(p); }
   checkDone();
 }
-function markPlayed(key) {
+/** Sunday self-test: knew / unsure / no, per item. Feeds the spaced review and the level check. */
+function rateItem(id, rating) {
   const t = state.today;
-  if (!t || t.sample || !key) return;
+  if (!t || t.sample || !id) return;
   const p = progress();
-  if (!p.played.includes(key)) { p.played.push(key); saveProgress(p); }
+  p.ratings = p.ratings || {};
+  p.ratings[id] = rating;
+  saveProgress(p);
   checkDone();
+}
+/** A line said with the mic: kept for the day's speaking score (sent when the day is finished). */
+function noteSpoken(target, heard) {
+  const t = state.today;
+  if (!t || t.sample) return;
+  const p = progress();
+  p.spoken = (p.spoken || []).concat([{ target, heard }]).slice(-8);
+  saveProgress(p);
 }
 
 async function checkDone() {
@@ -190,9 +201,9 @@ async function checkDone() {
   flushActive();
   const minutes = Math.max(1, Math.round(activeToday().ms / 60000));
   const payload = t.mode === 'review'
-    ? { mode: 'review', minutes, reviewed: reviewCount(t), theme: t.theme.name_fr, note: 'Révision de la semaine' }
+    ? { mode: 'review', minutes, ratings: p.ratings, theme: t.theme.name_fr, note: 'Révision de la semaine' }
     : { mode: 'day', minutes, entry_id: t.entry.id, idiom_id: t.idiom ? t.idiom.id : '', theme: t.theme.name_fr,
-        note: t.entry.word + (t.idiom ? ' · ' + t.idiom.fr : '') };
+        note: t.entry.word + (t.idiom ? ' · ' + t.idiom.fr : ''), spoken: p.spoken || [] };
   try {
     const r = await api('complete', payload);
     Object.assign(t, { done: true, streak: r.streak, week: r.week });
@@ -210,11 +221,11 @@ function progressHtml(t) {
   const p = progress();
   if (isDone(t, p)) return `<section class="progress done">${ICON.check}<span>Séance terminée — à demain !</span></section>`;
   if (t.mode === 'review') {
-    const need = reviewCount(t), n = Math.min(p.played.length, need);
+    const need = reviewCount(t), n = Math.min(Object.keys(p.ratings || {}).length, need);
     return `<section class="progress">
       <p class="eyebrow">Révision · ${n}/${need}</p>
       <div class="bar"><i style="width:${Math.round(100 * n / need)}%"></i></div>
-      <p class="small">Écoutez chaque mot et chaque expression.</p>
+      <p class="small">Pour chaque mot et expression : le saviez-vous ?</p>
     </section>`;
   }
   const req = requiredSteps(t), n = req.filter(([k]) => p.steps[k]).length;
@@ -474,24 +485,32 @@ function renderToday() {
     </section>`;
 }
 
+function rateRow(id) {
+  const r = (progress().ratings || {})[id];
+  const b = (val, label) => `<button type="button" class="rate ${r === val ? 'on ' + val : ''}" data-rate="${esc(id)}|${val}" aria-pressed="${r === val}">${label}</button>`;
+  return `<div class="rates">${b('knew', 'Je savais')}${b('unsure', 'Pas sûr')}${b('no', 'Je ne savais pas')}</div>`;
+}
+
 function renderReview(t) {
   const r = t.review;
+  const dueTag = (x) => (x.due ? '<span class="badge due">À revoir</span>' : '');
   $view.innerHTML = `
     ${topHtml(t)}
     ${progressHtml(t)}
     <section class="card">
       <p class="eyebrow">Révision de la semaine</p>
-      <p class="muted" style="font-size:15px;line-height:1.5">Les six mots, phrases et expressions de la semaine. Écoutez, répétez, puis vérifiez l’anglais.</p>
+      <p class="muted" style="font-size:15px;line-height:1.5">Lisez le mot, dites ce qu’il veut dire, puis vérifiez l’anglais. Soyez honnête : les mots oubliés reviendront plus vite.</p>
       <div class="review-list">
         ${r.entries.map((x) => `
           <div class="review-item">
             <div>
-              <p class="review-word">${esc(x.word)} ${levelBadge(x.level)}</p>
+              <p class="review-word">${esc(x.word)} ${levelBadge(x.level)} ${dueTag(x)}</p>
               ${en('rw:' + x.id, x.def_en)}
               <p class="fr">${esc(x.phrase_fr)}</p>
               ${en('rp:' + x.id, x.phrase_en)}
+              ${rateRow(x.id)}
             </div>
-            <button class="speak ghost" type="button" data-key="${esc(x.id)}" data-speak-text="${esc(x.word + '. ' + x.phrase_fr)}" aria-label="Écouter">${ICON.speaker}</button>
+            <button class="speak ghost" type="button" data-speak-text="${esc(x.word + '. ' + x.phrase_fr)}" aria-label="Écouter">${ICON.speaker}</button>
           </div>`).join('')}
       </div>
     </section>
@@ -501,10 +520,11 @@ function renderReview(t) {
         ${r.idioms.map((x) => `
           <div class="review-item">
             <div>
-              <p class="review-word">${esc(x.fr)}</p>
+              <p class="review-word">${esc(x.fr)} ${dueTag(x)}</p>
               ${en('ri:' + x.id, x.en)}
+              ${rateRow(x.id)}
             </div>
-            <button class="speak ghost" type="button" data-key="${esc(x.id)}" data-speak-text="${esc(x.fr)}" aria-label="Écouter">${ICON.speaker}</button>
+            <button class="speak ghost" type="button" data-speak-text="${esc(x.fr)}" aria-label="Écouter">${ICON.speaker}</button>
           </div>`).join('')}
       </div>
     </section>`;
@@ -522,7 +542,8 @@ $view.addEventListener('click', async (ev) => {
     if (el.dataset.say === 'word') { if (await speakButton(el, e.tts || e.word)) markStep('word'); return; }
     if (el.dataset.say === 'phrase') return speakButton(el, e.phrase_fr);
     if (el.dataset.say === 'idiom') { if (await speakButton(el, state.today.idiom.fr + '. ' + state.today.idiom.example_fr)) markStep('idiom'); return; }
-    if (el.dataset.speakText) { if (await speakButton(el, el.dataset.speakText)) markPlayed(el.dataset.key); return; }
+    if (el.dataset.speakText) return speakButton(el, el.dataset.speakText);
+    if (el.dataset.rate) { const [id, rating] = el.dataset.rate.split('|'); return rateItem(id, rating); }
     if ('listenFirst' in el.dataset) return listenFirst();
     if ('showText' in el.dataset) { store.set('elise.listened', state.today.date); return renderToday(); }
     if (el.dataset.mic) return speakBack(Number(el.dataset.mic));
@@ -559,7 +580,11 @@ function speakBack(i) {
   rec.maxAlternatives = 1;
   state.micLine = i;
   renderToday();
-  rec.onresult = (ev) => { state.heard[i] = ev.results[0][0].transcript; markStep('spoke'); };
+  rec.onresult = (ev) => {
+    state.heard[i] = ev.results[0][0].transcript;
+    noteSpoken(state.today.entry.dialogue[i].fr, state.heard[i]);
+    markStep('spoke');
+  };
   rec.onerror = (ev) => { if (ev.error === 'not-allowed') toast('Autorisez le micro pour ÉLISE dans Chrome.'); };
   rec.onend = () => { state.micLine = -1; renderToday(); };
   try { rec.start(); } catch (err) { state.micLine = -1; renderToday(); }

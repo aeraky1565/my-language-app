@@ -117,12 +117,32 @@ in Mes mots › Phrases.
    the first that matches the theme or its category and wasn't used recently, otherwise the next in
    rotation. It opens in Spotify.
 
+## 3c-bis. Level and progress (new; backend only for now)
+
+No level display in the app yet: everything lives in the Sheet's **Config** tab.
+
+- **`level`** (`B1` now): the weekly mix. B1 mode = 4 B1 · 1 B2 · 1 argot; B2 mode = 2 B1 · 3 B2 · 1 argot.
+  A theme can run B2 mode only with 6+ B2 entries (none can yet); until then the engine stays in B1 mode.
+- **Spaced review**: Sunday's review is a self-test: each word and idiom is rated *Je savais / Pas sûr /
+  Je ne savais pas*. Items move through 5 boxes, reviewed after 1, 2, 4, 8 and 16 weeks (knew: up a
+  box; unsure: same box; didn't know: back to box 1); box 4–5 = mastered. Up to 6 due items from past
+  weeks join each Sunday review ("À revoir"). Stored in the Shown tab (box, due, last_rating,
+  last_review, reviews, knew). The day is finished when every item is rated.
+- **Speaking**: each line said with the mic is scored against its target (share of words heard,
+  0–100); the day's average goes to Practice › `speaking`.
+- **Readiness**, checked every Sunday night and after each review, over the last 8 weeks:
+  B1 → B2 needs ≥ 8 weeks at B1, ≥ 4 finished days a week, B1 recall ≥ 85 % (≥ 30 reviews),
+  B2 recall ≥ 70 % (≥ 10 reviews), speaking ≥ 70 (≥ 10 days; skipped if never measured).
+  First-guess thresholds, to tune on real data. Written to Config: `level_readiness` (the numbers),
+  `level_suggestion` (only when ready: suggests a TCF/DELF practice test first). **ÉLISE never changes
+  `level` itself**: you change it in Config; `level_since` restarts then.
+
 ## 3d. Practice log, read by VERA (new)
 
 ÉLISE **writes its own log**, and VERA **reads it**. ÉLISE holds no VERA token and never calls VERA.
 
 - ÉLISE keeps a `Practice` tab, one row per **finished** day:
-  `date | language | minutes | sessions | new_items | reviewed | theme | note | updated_at`.
+  `date | language | minutes | sessions | new_items | reviewed | theme | note | updated_at | speaking`.
   The row is written when the day is finished (see §2); finishing again the same day adds minutes and a
   session to that row. Opening the app alone writes nothing here.
 - The same format is used by any later language app (German…), each in its own Sheet with its own

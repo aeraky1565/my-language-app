@@ -7,7 +7,7 @@ const vm = require('vm');
 
 const E = {};
 vm.createContext(E);
-for (const f of ['Content.js', 'Engine.js']) vm.runInContext(fs.readFileSync(path.join(__dirname, '../apps-script', f), 'utf8'), E);
+for (const f of ['Content.js', 'Engine.js', 'Progress.js']) vm.runInContext(fs.readFileSync(path.join(__dirname, '../apps-script', f), 'utf8'), E);
 
 const read = (f) => JSON.parse(fs.readFileSync(path.join(__dirname, '../content', f), 'utf8'));
 const files = read('library/INDEX.json').files.map((f) => read('library/' + f));

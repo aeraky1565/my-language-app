@@ -12,15 +12,17 @@
 // tests/today.test.js.
 // ============================================================
 
-var PRACTICE_COLS_ = ['date', 'language', 'minutes', 'sessions', 'new_items', 'reviewed', 'theme', 'note', 'updated_at'];
+var PRACTICE_COLS_ = ['date', 'language', 'minutes', 'sessions', 'new_items', 'reviewed', 'theme', 'note', 'updated_at', 'speaking'];
 
 // ---- pure --------------------------------------------------------------------
 
 /**
  * Pure: the day's content from the week's plan.
  *   o = { date, week: { tag, why, source, plan }, lib: { themes, entries, idioms }, nextTag }
+ *   o.due = [ids due for spaced review] (Sunday only; entries and idioms from past weeks)
  * → { mode: 'day', todayIndex, theme, entry, idiom }            Monday to Saturday
- *   { mode: 'review', todayIndex: 6, theme, review: { entries, idioms } }   Sunday
+ *   { mode: 'review', todayIndex: 6, theme, review: { entries, idioms } }   Sunday: the week's six of
+ *   each, then the due ones from past weeks (marked due: true)
  */
 function buildToday_(o) {
   var byTag = themesByTag_(o.lib.themes), t = byTag[o.week.tag] || { tag: o.week.tag, name_fr: o.week.tag };
@@ -37,8 +39,10 @@ function buildToday_(o) {
     return {
       mode: 'review', todayIndex: 6, theme: theme,
       review: {
-        entries: (plan.review || []).map(function (id) { return E[id]; }).filter(Boolean),
+        entries: (plan.review || []).map(function (id) { return E[id]; }).filter(Boolean)
+          .concat((o.due || []).filter(function (id) { return E[id]; }).map(function (id) { return Object.assign({ due: true }, E[id]); })),
         idioms: (plan.days || []).map(function (d) { return I[d.idiom_id]; }).filter(Boolean)
+          .concat((o.due || []).filter(function (id) { return I[id]; }).map(function (id) { return Object.assign({ due: true }, I[id]); }))
       }
     };
   }
@@ -65,7 +69,8 @@ function mergePractice_(prev, patch, date, language, now) {
     date: date, language: p.language || language,
     minutes: n(p.minutes) + n(patch.minutes), sessions: n(p.sessions) + n(patch.sessions),
     new_items: Math.max(n(p.new_items), n(patch.new_items)), reviewed: Math.max(n(p.reviewed), n(patch.reviewed)),
-    theme: patch.theme || p.theme || '', note: patch.note || p.note || '', updated_at: now
+    theme: patch.theme || p.theme || '', note: patch.note || p.note || '', updated_at: now,
+    speaking: patch.speaking !== undefined && patch.speaking !== '' ? patch.speaking : (p.speaking == null ? '' : p.speaking)
   };
 }
 
@@ -85,7 +90,13 @@ function todayPayload_() {
   if (completeTags_(lib).length) {
     var week = currentWeek_();
     var next = readThemeWeeks_().filter(function (h) { return h.week_start === enShift_(enMonday_(today), 7); })[0];
-    body = buildToday_({ date: today, week: week, lib: lib, nextTag: next && next.tag });
+    var due = [];
+    if (enDow_(today) === 6) {
+      var mine = {};
+      ((week.plan && week.plan.days) || []).forEach(function (d) { mine[d.entry_id] = true; mine[d.idiom_id] = true; });
+      due = dueItems_(readShown_(), today, mine, REVIEW_DUE_LIMIT_);
+    }
+    body = buildToday_({ date: today, week: week, lib: lib, nextTag: next && next.tag, due: due });
     if (body.mode === 'day' && !body.entry) body = null;
   }
   if (!body) {
@@ -93,7 +104,8 @@ function todayPayload_() {
   } else {
     var items = body.mode === 'day'
       ? [{ id: body.entry.id, kind: 'entry', theme: body.entry.theme }].concat(body.idiom ? [{ id: body.idiom.id, kind: 'idiom', theme: body.idiom.theme }] : [])
-      : [];
+      : body.review.entries.map(function (e) { return { id: e.id, kind: 'entry', theme: e.theme }; })
+          .concat(body.review.idioms.map(function (i) { return { id: i.id, kind: 'idiom', theme: i.theme }; }));
     markShown_(items, today);
   }
   var doneDays = practiceDays_();
@@ -170,17 +182,22 @@ function firstSeenOn_(ids, date) {
 /**
  * API: the day is finished. Writes (or adds to) today's Practice row, the one
  * VERA reads, and returns the new streak.
- *   p = { mode: 'day'|'review', minutes, entry_id, idiom_id, theme, note, reviewed }
+ *   p = { mode: 'day'|'review', minutes, entry_id, idiom_id, theme, note,
+ *         spoken: [{ target, heard }]   (day: the lines said with the mic)
+ *         ratings: { id: 'knew'|'unsure'|'no' } }   (review)
  */
 function apiComplete_(p) {
   p = p || {};
   var today = Utilities.formatDate(new Date(), tz_(), 'yyyy-MM-dd');
+  var rated = p.mode === 'review' ? applyRatings_(p.ratings || {}, today) : 0;
   logPractice_(today, {
     minutes: sessionMinutes_(p.minutes), sessions: 1,
     new_items: p.mode === 'review' ? 0 : firstSeenOn_([p.entry_id, p.idiom_id], today),
-    reviewed: p.mode === 'review' ? Math.max(0, Math.min(50, Number(p.reviewed) || 0)) : 0,
-    theme: String(p.theme || '').slice(0, 80), note: String(p.note || '').slice(0, 160)
+    reviewed: rated,
+    theme: String(p.theme || '').slice(0, 80), note: String(p.note || '').slice(0, 160),
+    speaking: p.mode === 'review' ? '' : speakingOfDay_((p.spoken || []).slice(0, 8))
   });
+  if (p.mode === 'review') { try { updateReadiness_(); } catch (e) { Logger.log('updateReadiness_: ' + e); } }
   var doneDays = practiceDays_();
   return { done: true, streak: streak_(doneDays, today), week: weekFlags_(doneDays, today) };
 }

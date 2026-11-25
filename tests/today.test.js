@@ -8,7 +8,7 @@ const vm = require('vm');
 
 const E = {};
 vm.createContext(E);
-for (const f of ['Content.js', 'Engine.js', 'Today.js']) vm.runInContext(fs.readFileSync(path.join(__dirname, '../apps-script', f), 'utf8'), E);
+for (const f of ['Content.js', 'Engine.js', 'Progress.js', 'Today.js']) vm.runInContext(fs.readFileSync(path.join(__dirname, '../apps-script', f), 'utf8'), E);
 const plain = (x) => JSON.parse(JSON.stringify(x));
 
 const read = (f) => JSON.parse(fs.readFileSync(path.join(__dirname, '../content', f), 'utf8'));
@@ -67,7 +67,7 @@ test('Shown: a first view is new; a second view the same day changes nothing; a 
 
 test('Practice: minutes, sessions and new items add up over the day; reviewed keeps the highest', () => {
   let p = plain(E.mergePractice_(null, { new_items: 2, theme: 'Les soldes', note: 'claquer' }, '2026-11-24', 'fr', 't1'));
-  assert.deepEqual(p, { date: '2026-11-24', language: 'fr', minutes: 0, sessions: 0, new_items: 2, reviewed: 0, theme: 'Les soldes', note: 'claquer', updated_at: 't1' });
+  assert.deepEqual(p, { date: '2026-11-24', language: 'fr', minutes: 0, sessions: 0, new_items: 2, reviewed: 0, theme: 'Les soldes', note: 'claquer', updated_at: 't1', speaking: '' });
   p = plain(E.mergePractice_(p, { minutes: 4, sessions: 1 }, '2026-11-24', 'fr', 't2'));
   p = plain(E.mergePractice_(p, { minutes: 3, sessions: 1 }, '2026-11-24', 'fr', 't3'));
   assert.equal(p.minutes, 7);
