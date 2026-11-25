@@ -127,3 +127,14 @@ test('the streak counts finished days, through yesterday while today is not fini
   assert.equal(ctx.streak_(set, '2026-11-26'), 0);   // a whole day missed
   assert.deepEqual(JSON.parse(JSON.stringify(ctx.weekFlags_(set, '2026-11-25'))), [true, true, false, false, false, false, false]);
 });
+
+test('timestamps written to the Sheet are Eastern time, never UTC', () => {
+  const src = ['Code.js', 'Engine.js', 'Today.js'].map((f) => fs.readFileSync(path.join(__dirname, '../apps-script', f), 'utf8')).join('\n');
+  const iso = src.split('\n').filter((l) => /toISOString\(\)/.test(l) && !/slice\(0, 10\)/.test(l));
+  assert.deepEqual(iso, []);   // only date arithmetic (…toISOString().slice(0, 10)) may use it
+  const calls = [];
+  const { ctx } = load();
+  ctx.Utilities.formatDate = (d, tz, fmt) => { calls.push([tz, fmt]); return 'x'; };
+  ctx.nowStamp_();
+  assert.deepEqual(calls[0], ['America/New_York', 'yyyy-MM-dd HH:mm:ss z']);
+});

@@ -334,7 +334,7 @@ function weekFor_(weekStart, force) {
     entries: lib.entries.filter(function (e) { return e.theme === choice.tag; }),
     idioms: lib.idioms.filter(function (i) { return i.theme === choice.tag; })
   });
-  var row = [weekStart, choice.tag, choice.source, choice.why, choice.event_date, JSON.stringify(plan), new Date().toISOString()];
+  var row = [weekStart, choice.tag, choice.source, choice.why, choice.event_date, JSON.stringify(plan), nowStamp_()];
   var sh = sheet_('ThemeWeeks'), at = findRow_(sh, weekStart);
   writeRow_(sh, at, row);
   Logger.log('Week of ' + weekStart + ': ' + choice.tag + ' (' + choice.source + ': ' + choice.why + ')');
