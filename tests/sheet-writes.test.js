@@ -105,3 +105,25 @@ test('ThemeWeeks: re-choosing a week (Recalculer) updates its row instead of add
   assert.equal(sheets.ThemeWeeks.rows.length, 2);
   assert.equal(sheets.ThemeWeeks.rows[1][1], 'seasonal.gifts');
 });
+
+test('finishing a day writes one Practice row; finishing again adds minutes, not rows', () => {
+  const { ctx, sheets } = load();
+  const today = ctx.Utilities.formatDate(new Date());
+  ctx.markShown_([{ id: 'seasonal.sales.03', kind: 'entry', theme: 'seasonal.sales' }, { id: 'seasonal.sales.i04', kind: 'idiom', theme: 'seasonal.sales' }], today);
+  const r = JSON.parse(JSON.stringify(ctx.apiComplete_({ mode: 'day', minutes: 6, entry_id: 'seasonal.sales.03', idiom_id: 'seasonal.sales.i04', theme: 'Les soldes', note: 'claquer' })));
+  assert.equal(r.done, true);
+  assert.equal(r.streak, 1);
+  ctx.apiComplete_({ mode: 'day', minutes: 3, entry_id: 'seasonal.sales.03', idiom_id: 'seasonal.sales.i04' });
+  const rows = sheets.Practice.rows.slice(1);
+  assert.equal(rows.length, 1);
+  assert.deepEqual(rows[0].slice(0, 5), [today, 'fr', '9', '2', '2']);   // 6+3 minutes, 2 sessions, 2 new items (not 4)
+});
+
+test('the streak counts finished days, through yesterday while today is not finished yet', () => {
+  const { ctx } = load();
+  const set = { '2026-11-22': true, '2026-11-23': true, '2026-11-24': true };
+  assert.equal(ctx.streak_(set, '2026-11-24'), 3);
+  assert.equal(ctx.streak_(set, '2026-11-25'), 3);   // today not finished: the streak is still alive
+  assert.equal(ctx.streak_(set, '2026-11-26'), 0);   // a whole day missed
+  assert.deepEqual(JSON.parse(JSON.stringify(ctx.weekFlags_(set, '2026-11-25'))), [true, true, false, false, false, false, false]);
+});

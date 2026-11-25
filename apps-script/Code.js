@@ -132,7 +132,7 @@ function doGet(e) {
       case 'remove_saved':  return out_({ ok: true, data: apiRemoveSaved_(p.id) });
       case 'settings':      return out_({ ok: true, data: apiSettings_() });
       case 'save_settings': return out_({ ok: true, data: apiSaveSettings_(p) });
-      case 'practice':      return out_({ ok: true, data: apiPractice_(p) });
+      case 'complete':      return out_({ ok: true, data: apiComplete_(p) });
       case 'rerun_week':    return out_({ ok: true, data: apiRerunWeek_() });
       default:              return out_({ ok: false, error: 'unknown_action' });
     }
@@ -253,9 +253,9 @@ function weekdayIndex_(key) {
   return (new Date(Date.UTC(p[0], p[1] - 1, p[2])).getUTCDay() + 6) % 7;
 }
 
-/** Pure: consecutive visited days ending today. */
+/** Pure: consecutive finished days ending today, or yesterday while today isn't finished yet. */
 function streak_(visits, today) {
-  var n = 0, day = today;
+  var n = 0, day = visits[today] ? today : shiftDay_(today, -1);
   while (visits[day]) { n++; day = shiftDay_(day, -1); }
   return n;
 }
