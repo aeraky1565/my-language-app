@@ -142,7 +142,7 @@ function logPractice_(date, patch) {
       prev = {};
       PRACTICE_COLS_.forEach(function (c, i) { prev[c] = v[i]; });
     }
-    var m = mergePractice_(prev, patch, date, config_().language, new Date().toISOString());
+    var m = mergePractice_(prev, patch, date, config_().language, nowStamp_());
     var out = PRACTICE_COLS_.map(function (c) { return m[c]; });
     writeRow_(sh, row, out);
   } finally {

@@ -165,7 +165,7 @@ function apiToggleSaved_(item) {
   try {
     var row = findRow_(sh, id);
     if (row) { sh.deleteRow(row); return { saved: false }; }
-    writeRow_(sh, 0, [id, item.type, item.fr, item.en, item.theme, item.entry_id, new Date().toISOString()]);
+    writeRow_(sh, 0, [id, item.type, item.fr, item.en, item.theme, item.entry_id, nowStamp_()]);
     return { saved: true };
   } finally {
     lock.releaseLock();
@@ -217,6 +217,11 @@ function tz_() {
   try { return CalendarApp.getDefaultCalendar().getTimeZone(); } catch (e) { return Session.getScriptTimeZone(); }
 }
 
+/** Now, as Eastern time with its zone, e.g. "2026-11-24 18:36:05 EST" (EDT in summer). */
+function nowStamp_() {
+  return Utilities.formatDate(new Date(), tz_(), 'yyyy-MM-dd HH:mm:ss z');
+}
+
 function cellDate_(v) {
   return v instanceof Date ? Utilities.formatDate(v, tz_(), 'yyyy-MM-dd') : String(v);
 }
@@ -226,7 +231,7 @@ function recordVisit_() {
   var lock = LockService.getScriptLock();
   lock.waitLock(5000);
   try {
-    if (!visitSet_()[today]) writeRow_(sheet_('Visits'), 0, [today, new Date().toISOString()]);
+    if (!visitSet_()[today]) writeRow_(sheet_('Visits'), 0, [today, nowStamp_()]);
   } finally {
     lock.releaseLock();
   }

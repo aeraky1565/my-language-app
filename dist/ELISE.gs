@@ -169,7 +169,7 @@ function apiToggleSaved_(item) {
   try {
     var row = findRow_(sh, id);
     if (row) { sh.deleteRow(row); return { saved: false }; }
-    writeRow_(sh, 0, [id, item.type, item.fr, item.en, item.theme, item.entry_id, new Date().toISOString()]);
+    writeRow_(sh, 0, [id, item.type, item.fr, item.en, item.theme, item.entry_id, nowStamp_()]);
     return { saved: true };
   } finally {
     lock.releaseLock();
@@ -221,6 +221,11 @@ function tz_() {
   try { return CalendarApp.getDefaultCalendar().getTimeZone(); } catch (e) { return Session.getScriptTimeZone(); }
 }
 
+/** Now, as Eastern time with its zone, e.g. "2026-11-24 18:36:05 EST" (EDT in summer). */
+function nowStamp_() {
+  return Utilities.formatDate(new Date(), tz_(), 'yyyy-MM-dd HH:mm:ss z');
+}
+
 function cellDate_(v) {
   return v instanceof Date ? Utilities.formatDate(v, tz_(), 'yyyy-MM-dd') : String(v);
 }
@@ -230,7 +235,7 @@ function recordVisit_() {
   var lock = LockService.getScriptLock();
   lock.waitLock(5000);
   try {
-    if (!visitSet_()[today]) writeRow_(sheet_('Visits'), 0, [today, new Date().toISOString()]);
+    if (!visitSet_()[today]) writeRow_(sheet_('Visits'), 0, [today, nowStamp_()]);
   } finally {
     lock.releaseLock();
   }
@@ -955,7 +960,7 @@ function weekFor_(weekStart, force) {
     entries: lib.entries.filter(function (e) { return e.theme === choice.tag; }),
     idioms: lib.idioms.filter(function (i) { return i.theme === choice.tag; })
   });
-  var row = [weekStart, choice.tag, choice.source, choice.why, choice.event_date, JSON.stringify(plan), new Date().toISOString()];
+  var row = [weekStart, choice.tag, choice.source, choice.why, choice.event_date, JSON.stringify(plan), nowStamp_()];
   var sh = sheet_('ThemeWeeks'), at = findRow_(sh, weekStart);
   writeRow_(sh, at, row);
   Logger.log('Week of ' + weekStart + ': ' + choice.tag + ' (' + choice.source + ': ' + choice.why + ')');
@@ -1125,7 +1130,7 @@ function logPractice_(date, patch) {
       prev = {};
       PRACTICE_COLS_.forEach(function (c, i) { prev[c] = v[i]; });
     }
-    var m = mergePractice_(prev, patch, date, config_().language, new Date().toISOString());
+    var m = mergePractice_(prev, patch, date, config_().language, nowStamp_());
     var out = PRACTICE_COLS_.map(function (c) { return m[c]; });
     writeRow_(sh, row, out);
   } finally {
