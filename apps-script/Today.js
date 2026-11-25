@@ -3,8 +3,10 @@
 // What the Today screen shows each day, and the two logs it keeps:
 //   Shown     every entry and idiom you've seen: first and last day, how many
 //             days (unseen-first picking now, spaced repetition later).
-//   Practice  one row per day: minutes, sessions, new items, reviewed, theme,
-//             note. VERA reads this tab (docs/vera/ISSUE.md); ÉLISE never calls VERA.
+//   Practice  one row per FINISHED day (word and idiom played, phrase and
+//             dialogue heard, one line spoken): minutes, sessions, new items,
+//             reviewed, theme, note. The streak and week dots come from here.
+//             VERA reads this tab (docs/vera/ISSUE.md); ÉLISE never calls VERA.
 //
 // Everything above the "Apps Script" line is pure and covered by
 // tests/today.test.js.
@@ -55,14 +57,14 @@ function shownRow_(prev, item, date) {
   return { row: [prev[0], prev[1], prev[2], prev[3], date, (Number(prev[5]) || 0) + 1], isNew: false, changed: true };
 }
 
-/** Pure: the day's Practice record with a patch added (minutes, sessions and new items add up). */
+/** Pure: the day's Practice record with a patch added (minutes and sessions add up; new items and reviewed keep the highest). */
 function mergePractice_(prev, patch, date, language, now) {
   var p = prev || {};
   var n = function (v) { return Number(v) || 0; };
   return {
     date: date, language: p.language || language,
     minutes: n(p.minutes) + n(patch.minutes), sessions: n(p.sessions) + n(patch.sessions),
-    new_items: n(p.new_items) + n(patch.new_items), reviewed: Math.max(n(p.reviewed), n(patch.reviewed)),
+    new_items: Math.max(n(p.new_items), n(patch.new_items)), reviewed: Math.max(n(p.reviewed), n(patch.reviewed)),
     theme: patch.theme || p.theme || '', note: patch.note || p.note || '', updated_at: now
   };
 }
@@ -77,7 +79,7 @@ function sessionMinutes_(raw) {
 
 /** The Today payload: the engine's day (or the built-in sample until the library is in the Sheet). */
 function todayPayload_() {
-  var today = recordVisit_(), visits = visitSet_(), saved = savedIndex_(), cfg = config_();
+  var today = recordVisit_(), saved = savedIndex_(), cfg = config_();
   var body = null;
   var lib = readLibrary_();
   if (completeTags_(lib).length) {
@@ -92,17 +94,13 @@ function todayPayload_() {
     var items = body.mode === 'day'
       ? [{ id: body.entry.id, kind: 'entry', theme: body.entry.theme }].concat(body.idiom ? [{ id: body.idiom.id, kind: 'idiom', theme: body.idiom.theme }] : [])
       : [];
-    var fresh = markShown_(items, today);
-    logPractice_(today, {
-      new_items: fresh,
-      reviewed: body.mode === 'review' ? body.review.entries.length : 0,
-      theme: body.theme.name_fr,
-      note: body.mode === 'day' ? body.entry.word + (body.idiom ? ' · ' + body.idiom.fr : '') : 'Révision de la semaine'
-    });
+    markShown_(items, today);
   }
+  var doneDays = practiceDays_();
   body.date = today;
-  body.streak = streak_(visits, today);
-  body.week = weekFlags_(visits, today);
+  body.done = !!doneDays[today];
+  body.streak = streak_(doneDays, today);
+  body.week = weekFlags_(doneDays, today);
   body.tts_rate = cfg.tts_rate;
   body.saved = body.mode === 'day' ? {
     word: !!saved[body.entry.id + ':word'],
@@ -152,11 +150,39 @@ function logPractice_(date, patch) {
   }
 }
 
-/** API: the app reports a finished session. */
-function apiPractice_(p) {
+/** Days with a Practice row (finished days) → { 'yyyy-MM-dd': true }. */
+function practiceDays_() {
+  var set = {};
+  sheet_('Practice').getDataRange().getValues().slice(1).forEach(function (r) { if (r[0]) set[cellDate_(r[0])] = true; });
+  return set;
+}
+
+/** Of these Shown ids, how many were seen for the first time on `date`. */
+function firstSeenOn_(ids, date) {
+  var want = {}, n = 0;
+  ids.forEach(function (id) { if (id) want[id] = true; });
+  sheet_('Shown').getDataRange().getValues().slice(1).forEach(function (r) {
+    if (want[String(r[0])] && cellDate_(r[3]) === date) n++;
+  });
+  return n;
+}
+
+/**
+ * API: the day is finished. Writes (or adds to) today's Practice row, the one
+ * VERA reads, and returns the new streak.
+ *   p = { mode: 'day'|'review', minutes, entry_id, idiom_id, theme, note, reviewed }
+ */
+function apiComplete_(p) {
+  p = p || {};
   var today = Utilities.formatDate(new Date(), tz_(), 'yyyy-MM-dd');
-  logPractice_(today, { minutes: sessionMinutes_(p && p.minutes), sessions: 1 });
-  return { ok: true };
+  logPractice_(today, {
+    minutes: sessionMinutes_(p.minutes), sessions: 1,
+    new_items: p.mode === 'review' ? 0 : firstSeenOn_([p.entry_id, p.idiom_id], today),
+    reviewed: p.mode === 'review' ? Math.max(0, Math.min(50, Number(p.reviewed) || 0)) : 0,
+    theme: String(p.theme || '').slice(0, 80), note: String(p.note || '').slice(0, 160)
+  });
+  var doneDays = practiceDays_();
+  return { done: true, streak: streak_(doneDays, today), week: weekFlags_(doneDays, today) };
 }
 
 /** API: Réglages › Recalculer. */

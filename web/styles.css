@@ -89,6 +89,17 @@ h1, h2, h3, p { margin: 0; }
 .literal { font-size: 14px; font-style: italic; color: var(--muted); margin-top: -8px; }
 .literal span { font-style: normal; font-weight: 600; }
 
+/* Progress toward a finished day */
+.progress { display: flex; flex-direction: column; gap: 10px; padding: 14px 16px; border-radius: 16px; background: var(--surface); border: 1px solid var(--line); }
+.progress .steps { display: flex; flex-wrap: wrap; gap: 8px; }
+.step { display: inline-flex; align-items: center; gap: 4px; height: 30px; padding: 0 12px; border-radius: 15px; background: var(--sunk); color: var(--muted); font-size: 13px; }
+.step.ok { background: var(--solid); color: var(--on-solid); }
+.step svg { width: 14px; height: 14px; stroke-width: 2.4; }
+.progress .bar { height: 6px; border-radius: 3px; background: var(--sunk); overflow: hidden; }
+.progress .bar i { display: block; height: 100%; background: var(--accent); }
+.progress.done { flex-direction: row; align-items: center; gap: 10px; color: var(--ok); font-weight: 600; font-size: 15px; }
+.progress.done svg { width: 20px; height: 20px; stroke-width: 2.4; }
+
 /* Level badges */
 .badge { display: inline-block; margin-left: 6px; padding: 2px 8px; border-radius: 10px; font-size: 10px; letter-spacing: .06em; vertical-align: 1px; }
 .badge.b2 { background: var(--solid); color: var(--on-solid); }

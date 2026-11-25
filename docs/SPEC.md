@@ -41,7 +41,13 @@ Time zone: America/New_York (from the default calendar at runtime).
 - **Réglages:** on/off per calendar for keyword detection,
   speech speed (default 0.9×) with a test button, "Recalculer le thème de la semaine".
 - **Empty state** for Mes mots and a **missing French voice** sheet.
-- Streak: a missed day resets quietly to 1. No onboarding screen: calendar access is granted once
+- **A finished day** = word played, idiom played, phrase and dialogue heard (Écouter d'abord or Écouter),
+  and one line spoken with the mic (skipped on a phone without speech recognition). Revealing the English
+  is never required. A progress row on Today shows the steps; when all are done, "Séance terminée" and the
+  day is logged once, with the minutes actually spent in the app. Sunday: finished when all 6 words and
+  6 idioms have been played.
+- Streak and week dots count **finished days only** (the Practice tab), not opens. A missed day resets the
+  streak quietly; today not finished yet doesn't break it. No onboarding screen: calendar access is granted once
   when `setup()` runs.
 
 ## 3. Content (adds to original §3)
@@ -115,9 +121,10 @@ in Mes mots › Phrases.
 
 ÉLISE **writes its own log**, and VERA **reads it**. ÉLISE holds no VERA token and never calls VERA.
 
-- ÉLISE keeps a `Practice` tab, one row per day:
+- ÉLISE keeps a `Practice` tab, one row per **finished** day:
   `date | language | minutes | sessions | new_items | reviewed | theme | note | updated_at`.
-  The first open of a day creates the row; later sessions update `minutes`, `sessions` and the counts.
+  The row is written when the day is finished (see §2); finishing again the same day adds minutes and a
+  session to that row. Opening the app alone writes nothing here.
 - The same format is used by any later language app (German…), each in its own Sheet with its own
   `language` code, so VERA needs one reader for all of them.
 - VERA's side is a small nightly reader (`docs/vera/PracticeLogs.js`), proposed as an issue on the VERA

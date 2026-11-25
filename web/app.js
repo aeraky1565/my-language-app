@@ -133,8 +133,112 @@ function toast(msg) {
 async function speakButton(btn, text, speaker) {
   btn.classList.add('busy');
   tts.stop();
-  await tts.say(text, speaker);
+  const ok = await tts.say(text, speaker);
   btn.classList.remove('busy');
+  return ok;
+}
+
+// ---------------------------------------------------------------------------
+// A finished day: heard and spoken. Only then is it logged (Practice tab,
+// read by VERA), and only finished days light up the streak and week dots.
+// ---------------------------------------------------------------------------
+
+const STEPS = [['word', 'Mot'], ['idiom', 'Expression'], ['listen', 'Dialogue'], ['spoke', 'À vous']];
+const localDay = () => { const d = new Date(); return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0'); };
+
+function progress() {
+  const t = state.today;
+  try {
+    const p = JSON.parse(store.get('elise.progress') || 'null');
+    if (p && t && p.date === t.date) return p;
+  } catch (e) {}
+  return { date: t && t.date, steps: {}, played: [], sent: false };
+}
+const saveProgress = (p) => store.set('elise.progress', JSON.stringify(p));
+
+/** The steps this day needs: the idiom only if there is one, speaking only if the phone can listen. */
+function requiredSteps(t) {
+  return STEPS.filter(([k]) => (k !== 'idiom' || t.idiom) && (k !== 'spoke' || SpeechRec));
+}
+function reviewCount(t) { return t.review.entries.length + t.review.idioms.length; }
+function isDone(t, p) {
+  if (t.done) return true;
+  if (t.mode === 'review') return p.played.length >= reviewCount(t);
+  return requiredSteps(t).every(([k]) => p.steps[k]);
+}
+
+function markStep(step) {
+  const t = state.today;
+  if (!t || t.sample) return;
+  const p = progress();
+  if (!p.steps[step]) { p.steps[step] = true; saveProgress(p); }
+  checkDone();
+}
+function markPlayed(key) {
+  const t = state.today;
+  if (!t || t.sample || !key) return;
+  const p = progress();
+  if (!p.played.includes(key)) { p.played.push(key); saveProgress(p); }
+  checkDone();
+}
+
+async function checkDone() {
+  const t = state.today, p = progress();
+  if (t.done || p.sent || !isDone(t, p)) { if (state.view === 'today') renderToday(); return; }
+  p.sent = true;
+  saveProgress(p);
+  flushActive();
+  const minutes = Math.max(1, Math.round(activeToday().ms / 60000));
+  const payload = t.mode === 'review'
+    ? { mode: 'review', minutes, reviewed: reviewCount(t), theme: t.theme.name_fr, note: 'Révision de la semaine' }
+    : { mode: 'day', minutes, entry_id: t.entry.id, idiom_id: t.idiom ? t.idiom.id : '', theme: t.theme.name_fr,
+        note: t.entry.word + (t.idiom ? ' · ' + t.idiom.fr : '') };
+  try {
+    const r = await api('complete', payload);
+    Object.assign(t, { done: true, streak: r.streak, week: r.week });
+    toast('Séance terminée ✓');
+  } catch (err) {
+    p.sent = false;
+    saveProgress(p);
+    fail(err);
+  }
+  if (state.view === 'today') renderToday();
+}
+
+function progressHtml(t) {
+  if (t.sample) return '';
+  const p = progress();
+  if (isDone(t, p)) return `<section class="progress done">${ICON.check}<span>Séance terminée — à demain !</span></section>`;
+  if (t.mode === 'review') {
+    const need = reviewCount(t), n = Math.min(p.played.length, need);
+    return `<section class="progress">
+      <p class="eyebrow">Révision · ${n}/${need}</p>
+      <div class="bar"><i style="width:${Math.round(100 * n / need)}%"></i></div>
+      <p class="small">Écoutez chaque mot et chaque expression.</p>
+    </section>`;
+  }
+  const req = requiredSteps(t), n = req.filter(([k]) => p.steps[k]).length;
+  return `<section class="progress">
+    <p class="eyebrow">Séance du jour · ${n}/${req.length}</p>
+    <div class="steps">${req.map(([k, l]) => `<span class="step ${p.steps[k] ? 'ok' : ''}">${p.steps[k] ? ICON.check : ''}${l}</span>`).join('')}</div>
+  </section>`;
+}
+
+// Time actually spent in the app today (visible), for the minutes VERA sees.
+let visibleSince = document.visibilityState === 'visible' ? Date.now() : null;
+function activeToday() {
+  try {
+    const a = JSON.parse(store.get('elise.active') || 'null');
+    if (a && a.date === localDay()) return a;
+  } catch (e) {}
+  return { date: localDay(), ms: 0 };
+}
+function flushActive() {
+  if (!visibleSince) return;
+  const a = activeToday();
+  a.ms += Date.now() - visibleSince;
+  visibleSince = Date.now();
+  store.set('elise.active', JSON.stringify(a));
 }
 
 // ---------------------------------------------------------------------------
@@ -283,6 +387,7 @@ function renderToday() {
   const veiled = !listenedToday();
   $view.innerHTML = `
     ${topHtml(t)}
+    ${progressHtml(t)}
 
     <section class="card">
       <div class="row-between">
@@ -373,6 +478,7 @@ function renderReview(t) {
   const r = t.review;
   $view.innerHTML = `
     ${topHtml(t)}
+    ${progressHtml(t)}
     <section class="card">
       <p class="eyebrow">Révision de la semaine</p>
       <p class="muted" style="font-size:15px;line-height:1.5">Les six mots, phrases et expressions de la semaine. Écoutez, répétez, puis vérifiez l’anglais.</p>
@@ -385,7 +491,7 @@ function renderReview(t) {
               <p class="fr">${esc(x.phrase_fr)}</p>
               ${en('rp:' + x.id, x.phrase_en)}
             </div>
-            <button class="speak ghost" type="button" data-speak-text="${esc(x.word + '. ' + x.phrase_fr)}" aria-label="Écouter">${ICON.speaker}</button>
+            <button class="speak ghost" type="button" data-key="${esc(x.id)}" data-speak-text="${esc(x.word + '. ' + x.phrase_fr)}" aria-label="Écouter">${ICON.speaker}</button>
           </div>`).join('')}
       </div>
     </section>
@@ -398,7 +504,7 @@ function renderReview(t) {
               <p class="review-word">${esc(x.fr)}</p>
               ${en('ri:' + x.id, x.en)}
             </div>
-            <button class="speak ghost" type="button" data-speak-text="${esc(x.fr)}" aria-label="Écouter">${ICON.speaker}</button>
+            <button class="speak ghost" type="button" data-key="${esc(x.id)}" data-speak-text="${esc(x.fr)}" aria-label="Écouter">${ICON.speaker}</button>
           </div>`).join('')}
       </div>
     </section>`;
@@ -413,10 +519,10 @@ $view.addEventListener('click', async (ev) => {
 
   if (state.view === 'today' && state.today) {
     const e = state.today.entry;
-    if (el.dataset.say === 'word') return speakButton(el, e.tts || e.word);
+    if (el.dataset.say === 'word') { if (await speakButton(el, e.tts || e.word)) markStep('word'); return; }
     if (el.dataset.say === 'phrase') return speakButton(el, e.phrase_fr);
-    if (el.dataset.say === 'idiom') return speakButton(el, state.today.idiom.fr + '. ' + state.today.idiom.example_fr);
-    if (el.dataset.speakText) return speakButton(el, el.dataset.speakText);
+    if (el.dataset.say === 'idiom') { if (await speakButton(el, state.today.idiom.fr + '. ' + state.today.idiom.example_fr)) markStep('idiom'); return; }
+    if (el.dataset.speakText) { if (await speakButton(el, el.dataset.speakText)) markPlayed(el.dataset.key); return; }
     if ('listenFirst' in el.dataset) return listenFirst();
     if ('showText' in el.dataset) { store.set('elise.listened', state.today.date); return renderToday(); }
     if (el.dataset.mic) return speakBack(Number(el.dataset.mic));
@@ -439,7 +545,7 @@ async function listenFirst() {
     ok = await tts.say(e.dialogue[i].fr, e.dialogue[i].who === 'B' ? 1 : 0);
   }
   state.listenRunning = false;
-  if (ok) store.set('elise.listened', state.today.date);
+  if (ok) { store.set('elise.listened', state.today.date); markStep('listen'); }
   renderToday();
 }
 
@@ -453,7 +559,7 @@ function speakBack(i) {
   rec.maxAlternatives = 1;
   state.micLine = i;
   renderToday();
-  rec.onresult = (ev) => { state.heard[i] = ev.results[0][0].transcript; };
+  rec.onresult = (ev) => { state.heard[i] = ev.results[0][0].transcript; markStep('spoke'); };
   rec.onerror = (ev) => { if (ev.error === 'not-allowed') toast('Autorisez le micro pour ÉLISE dans Chrome.'); };
   rec.onend = () => { state.micLine = -1; renderToday(); };
   try { rec.start(); } catch (err) { state.micLine = -1; renderToday(); }
@@ -471,10 +577,15 @@ async function togglePlay() {
     state.playIndex = i;
     renderToday();
     const ok = await tts.say(lines[i].fr, lines[i].who === 'B' ? 1 : 0);
-    if (!ok || run !== playRun) break;
+    if (!ok || run !== playRun) { state.playIndex = -2; break; }
     await new Promise((r) => setTimeout(r, 650));
   }
-  if (run === playRun) { state.playIndex = -1; renderToday(); }
+  if (run === playRun) {
+    const heardAll = state.playIndex === lines.length - 1;
+    state.playIndex = -1;
+    if (heardAll) markStep('listen');
+    renderToday();
+  }
 }
 
 async function toggleSave(type) {
@@ -715,15 +826,10 @@ $view.addEventListener('click', async (ev) => {
 
 if ('serviceWorker' in navigator) navigator.serviceWorker.register('sw.js').catch(() => {});
 
-// Session length for the Practice log (VERA reads it): sent when the app is hidden.
-let sessionStart = document.visibilityState === 'visible' ? Date.now() : null;
-function endSession() {
-  if (!sessionStart) return;
-  const minutes = (Date.now() - sessionStart) / 60000;
-  sessionStart = null;
-  if (minutes >= 0.5 && store.get('elise.token')) api('practice', { minutes: Math.max(1, Math.round(minutes)) }, { keepalive: true }).catch(() => {});
-}
-document.addEventListener('visibilitychange', () => { if (document.visibilityState === 'hidden') endSession(); else sessionStart = Date.now(); });
-window.addEventListener('pagehide', endSession);
+// Active time: counted while the app is visible.
+document.addEventListener('visibilitychange', () => {
+  if (document.visibilityState === 'hidden') { flushActive(); visibleSince = null; } else visibleSince = Date.now();
+});
+window.addEventListener('pagehide', flushActive);
 document.addEventListener('visibilitychange', () => { if (document.visibilityState === 'visible' && state.view === 'today' && store.get('elise.token')) loadToday(); });
 go('today');
