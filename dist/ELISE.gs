@@ -38,6 +38,7 @@ var ELISE_CALENDAR_NAME_ = 'ÉLISE';
 var DEFAULT_CONFIG_ = {
   excluded_calendars: '[]',
   language: 'fr',
+  level: 'B1',
   tts_rate: '0.9'
 };
 
@@ -338,7 +339,8 @@ function config_() {
   var c = Object.assign({}, DEFAULT_CONFIG_, readConfig_());
   var excluded = [];
   try { excluded = JSON.parse(c.excluded_calendars); } catch (e) {}
-  return { excluded_calendars: excluded, tts_rate: Number(c.tts_rate) || 0.9, language: c.language || 'fr' };
+  return { excluded_calendars: excluded, tts_rate: Number(c.tts_rate) || 0.9, language: c.language || 'fr',
+           level: MIX_BY_LEVEL_[String(c.level).trim()] ? String(c.level).trim() : 'B1' };
 }
 
 function savedIndex_() {
@@ -657,7 +659,6 @@ function importNewContent() {
 
 var CATEGORY_ORDER_ = ['travel', 'social', 'errands', 'work', 'daily', 'seasonal'];
 var COOLDOWN_WEEKS_ = 8;
-var WEEK_MIX_ = [['B1', 4], ['B2', 1], ['argot', 1]];
 var MOIS_ = ['janvier', 'février', 'mars', 'avril', 'mai', 'juin', 'juillet', 'août', 'septembre', 'octobre', 'novembre', 'décembre'];
 var BIRTHDAY_RE_ = /\b(birthday|bday|b-day|anniversaire)\b/;
 
@@ -834,12 +835,16 @@ function chooseTheme_(input) {
 
 // ---- Which themes are complete (pure) -------------------------------------------
 
-/** Pure: tags with enough content to run a week: 10+ entries (6 B1, 2 B2, 2 argot) and 6 idioms. */
-function completeTags_(lib) {
-  var res = validateLibrary_(lib, { complete: true });
-  var bad = {};
-  res.errors.forEach(function (m) { var x = /^Theme ([a-z_]+\.[a-z_]+):/.exec(m); if (x) bad[x[1]] = true; });
-  return (lib.themes || []).map(function (t) { return t.tag; }).filter(function (t) { return !bad[t] && res.counts[t] > 0; });
+/**
+ * Pure: tags with enough content to run two weeks at `level` (default B1): 10+ entries with the
+ * level's minimum per kind (B1 mode: 6 B1, 2 B2, 2 argot; B2 mode: 4 B1, 6 B2, 2 argot) and 6 idioms.
+ */
+function completeTags_(lib, level) {
+  var res = validateLibrary_(lib, {}), need = requiredFor_(level);
+  return (lib.themes || []).map(function (t) { return t.tag; }).filter(function (t) {
+    if ((res.counts[t] || 0) < ENTRIES_PER_THEME_.min || (res.idioms[t] || 0) < IDIOMS_PER_THEME_) return false;
+    return Object.keys(need).every(function (lv) { return (res.levels[t][lv] || 0) >= need[lv]; });
+  });
 }
 
 // ---- The week's plan (pure) -----------------------------------------------------
@@ -878,12 +883,12 @@ function pickFresh_(items, shown, n) {
 /**
  * Pure: the plan for a theme week.
  *   input = { weekStart, tag, entries: [entries of the theme], idioms: [idioms of the theme],
- *             shown: { id: { last_shown, times_shown } } }
+ *             shown: { id: { last_shown, times_shown } }, level: 'B1'|'B2' (the weekly mix; default B1) }
  * → { days: [{ day: 0..5, entry_id, level, idiom_id }], review: [entry ids] }   (day 0 = Monday; Sunday is the review)
  */
 function planWeek_(input) {
   var shown = input.shown || {}, entries = input.entries || [], chosen = [], used = {};
-  WEEK_MIX_.forEach(function (mix) {
+  mixFor_(input.level).forEach(function (mix) {
     pickFresh_(entries.filter(function (e) { return e.level === mix[0]; }), shown, mix[1])
       .forEach(function (e) { chosen.push(e); used[e.id] = true; });
   });
@@ -902,7 +907,7 @@ function planWeek_(input) {
 
 var ENGINE_TABS_ = {
   ThemeWeeks: ['week_start', 'tag', 'source', 'why', 'event_date', 'plan', 'chosen_at'],
-  Shown: ['id', 'kind', 'theme', 'first_shown', 'last_shown', 'times_shown']
+  Shown: ['id', 'kind', 'theme', 'first_shown', 'last_shown', 'times_shown', 'box', 'due', 'last_rating', 'last_review', 'reviews', 'knew']
 };
 
 function todayYmd_() { return Utilities.formatDate(new Date(), tz_(), 'yyyy-MM-dd'); }
@@ -940,7 +945,8 @@ function readThemeWeeks_() {
 function readShown_() {
   var m = {};
   sheet_('Shown').getDataRange().getValues().slice(1).forEach(function (r) {
-    if (r[0]) m[String(r[0])] = { last_shown: cellDate_(r[4]), times_shown: Number(r[5]) || 0 };
+    if (r[0]) m[String(r[0])] = { kind: String(r[1]), last_shown: cellDate_(r[4]), times_shown: Number(r[5]) || 0,
+                                  box: Number(r[6]) || 0, due: r[7] ? cellDate_(r[7]) : '' };
   });
   return m;
 }
@@ -951,12 +957,15 @@ function weekFor_(weekStart, force) {
   var existing = history.filter(function (h) { return h.week_start === weekStart; })[0];
   if (existing && !force) return existing;
   var lib = readLibrary_();
+  // The weekly mix follows Config › level; a level without enough content yet falls back to B1.
+  var level = config_().level, available = completeTags_(lib, level);
+  if (!available.length && level !== 'B1') { level = 'B1'; available = completeTags_(lib, 'B1'); }
   var choice = chooseTheme_({
     weekStart: weekStart, lib: lib, history: history, force: !!force,
-    available: completeTags_(lib), events: readEvents_(enShift_(weekStart, 7), enShift_(weekStart, 13))
+    available: available, events: readEvents_(enShift_(weekStart, 7), enShift_(weekStart, 13))
   });
   var plan = planWeek_({
-    weekStart: weekStart, tag: choice.tag, shown: readShown_(),
+    weekStart: weekStart, tag: choice.tag, shown: readShown_(), level: level,
     entries: lib.entries.filter(function (e) { return e.theme === choice.tag; }),
     idioms: lib.idioms.filter(function (i) { return i.theme === choice.tag; })
   });
@@ -968,7 +977,10 @@ function weekFor_(weekStart, force) {
 }
 
 /** Trigger, Sundays at 21:00: chooses next week's theme. */
-function chooseNextWeek() { return weekFor_(enShift_(enMonday_(todayYmd_()), 7), false); }
+function chooseNextWeek() {
+  try { updateReadiness_(); } catch (e) { Logger.log('updateReadiness_: ' + e); }
+  return weekFor_(enShift_(enMonday_(todayYmd_()), 7), false);
+}
 
 /** The current week's theme, chosen now if it has none yet (first launch). */
 function currentWeek_() { return weekFor_(enMonday_(todayYmd_()), false); }
@@ -1000,15 +1012,17 @@ function installTriggers() {
 // tests/today.test.js.
 // ============================================================
 
-var PRACTICE_COLS_ = ['date', 'language', 'minutes', 'sessions', 'new_items', 'reviewed', 'theme', 'note', 'updated_at'];
+var PRACTICE_COLS_ = ['date', 'language', 'minutes', 'sessions', 'new_items', 'reviewed', 'theme', 'note', 'updated_at', 'speaking'];
 
 // ---- pure --------------------------------------------------------------------
 
 /**
  * Pure: the day's content from the week's plan.
  *   o = { date, week: { tag, why, source, plan }, lib: { themes, entries, idioms }, nextTag }
+ *   o.due = [ids due for spaced review] (Sunday only; entries and idioms from past weeks)
  * → { mode: 'day', todayIndex, theme, entry, idiom }            Monday to Saturday
- *   { mode: 'review', todayIndex: 6, theme, review: { entries, idioms } }   Sunday
+ *   { mode: 'review', todayIndex: 6, theme, review: { entries, idioms } }   Sunday: the week's six of
+ *   each, then the due ones from past weeks (marked due: true)
  */
 function buildToday_(o) {
   var byTag = themesByTag_(o.lib.themes), t = byTag[o.week.tag] || { tag: o.week.tag, name_fr: o.week.tag };
@@ -1025,8 +1039,10 @@ function buildToday_(o) {
     return {
       mode: 'review', todayIndex: 6, theme: theme,
       review: {
-        entries: (plan.review || []).map(function (id) { return E[id]; }).filter(Boolean),
+        entries: (plan.review || []).map(function (id) { return E[id]; }).filter(Boolean)
+          .concat((o.due || []).filter(function (id) { return E[id]; }).map(function (id) { return Object.assign({ due: true }, E[id]); })),
         idioms: (plan.days || []).map(function (d) { return I[d.idiom_id]; }).filter(Boolean)
+          .concat((o.due || []).filter(function (id) { return I[id]; }).map(function (id) { return Object.assign({ due: true }, I[id]); }))
       }
     };
   }
@@ -1053,7 +1069,8 @@ function mergePractice_(prev, patch, date, language, now) {
     date: date, language: p.language || language,
     minutes: n(p.minutes) + n(patch.minutes), sessions: n(p.sessions) + n(patch.sessions),
     new_items: Math.max(n(p.new_items), n(patch.new_items)), reviewed: Math.max(n(p.reviewed), n(patch.reviewed)),
-    theme: patch.theme || p.theme || '', note: patch.note || p.note || '', updated_at: now
+    theme: patch.theme || p.theme || '', note: patch.note || p.note || '', updated_at: now,
+    speaking: patch.speaking !== undefined && patch.speaking !== '' ? patch.speaking : (p.speaking == null ? '' : p.speaking)
   };
 }
 
@@ -1073,7 +1090,13 @@ function todayPayload_() {
   if (completeTags_(lib).length) {
     var week = currentWeek_();
     var next = readThemeWeeks_().filter(function (h) { return h.week_start === enShift_(enMonday_(today), 7); })[0];
-    body = buildToday_({ date: today, week: week, lib: lib, nextTag: next && next.tag });
+    var due = [];
+    if (enDow_(today) === 6) {
+      var mine = {};
+      ((week.plan && week.plan.days) || []).forEach(function (d) { mine[d.entry_id] = true; mine[d.idiom_id] = true; });
+      due = dueItems_(readShown_(), today, mine, REVIEW_DUE_LIMIT_);
+    }
+    body = buildToday_({ date: today, week: week, lib: lib, nextTag: next && next.tag, due: due });
     if (body.mode === 'day' && !body.entry) body = null;
   }
   if (!body) {
@@ -1081,7 +1104,8 @@ function todayPayload_() {
   } else {
     var items = body.mode === 'day'
       ? [{ id: body.entry.id, kind: 'entry', theme: body.entry.theme }].concat(body.idiom ? [{ id: body.idiom.id, kind: 'idiom', theme: body.idiom.theme }] : [])
-      : [];
+      : body.review.entries.map(function (e) { return { id: e.id, kind: 'entry', theme: e.theme }; })
+          .concat(body.review.idioms.map(function (i) { return { id: i.id, kind: 'idiom', theme: i.theme }; }));
     markShown_(items, today);
   }
   var doneDays = practiceDays_();
@@ -1158,17 +1182,22 @@ function firstSeenOn_(ids, date) {
 /**
  * API: the day is finished. Writes (or adds to) today's Practice row, the one
  * VERA reads, and returns the new streak.
- *   p = { mode: 'day'|'review', minutes, entry_id, idiom_id, theme, note, reviewed }
+ *   p = { mode: 'day'|'review', minutes, entry_id, idiom_id, theme, note,
+ *         spoken: [{ target, heard }]   (day: the lines said with the mic)
+ *         ratings: { id: 'knew'|'unsure'|'no' } }   (review)
  */
 function apiComplete_(p) {
   p = p || {};
   var today = Utilities.formatDate(new Date(), tz_(), 'yyyy-MM-dd');
+  var rated = p.mode === 'review' ? applyRatings_(p.ratings || {}, today) : 0;
   logPractice_(today, {
     minutes: sessionMinutes_(p.minutes), sessions: 1,
     new_items: p.mode === 'review' ? 0 : firstSeenOn_([p.entry_id, p.idiom_id], today),
-    reviewed: p.mode === 'review' ? Math.max(0, Math.min(50, Number(p.reviewed) || 0)) : 0,
-    theme: String(p.theme || '').slice(0, 80), note: String(p.note || '').slice(0, 160)
+    reviewed: rated,
+    theme: String(p.theme || '').slice(0, 80), note: String(p.note || '').slice(0, 160),
+    speaking: p.mode === 'review' ? '' : speakingOfDay_((p.spoken || []).slice(0, 8))
   });
+  if (p.mode === 'review') { try { updateReadiness_(); } catch (e) { Logger.log('updateReadiness_: ' + e); } }
   var doneDays = practiceDays_();
   return { done: true, streak: streak_(doneDays, today), week: weekFlags_(doneDays, today) };
 }
@@ -1177,4 +1206,204 @@ function apiComplete_(p) {
 function apiRerunWeek_() {
   rerunThisWeek();
   return todayPayload_();
+}
+
+// ======================= Progress.js =======================
+// ============================================================
+// ÉLISE — Progress.js
+// Level and progress, all in the backend (the Sheet's Config tab shows them):
+//
+//   Spaced review   Sunday's review is a self-test: each item is rated
+//                   knew / unsure / no. Items live in 5 boxes, reviewed after
+//                   1, 2, 4, 8, 16 weeks; knew moves up a box, unsure stays,
+//                   no goes back to box 1. Box 4–5 = mastered. Due items come
+//                   back in Sunday's review next to the week's own.
+//   Speaking        each line said with the mic is compared with its target
+//                   (0–100); the day's average goes to Practice › speaking.
+//   Readiness       every Sunday night and after each review, the evidence for
+//                   the next level is checked and written to Config:
+//                   level_readiness (the numbers), level_suggestion (only when
+//                   ready). ÉLISE never changes `level` itself: you do, in Config.
+//
+// Everything above the "Apps Script" line is pure (tests/progress.test.js).
+// ============================================================
+
+var LEITNER_WEEKS_ = [0, 1, 2, 4, 8, 16];   // index = box (1–5)
+var MASTERED_BOX_ = 4;
+var REVIEW_DUE_LIMIT_ = 6;
+var RATINGS_ = ['knew', 'unsure', 'no'];
+
+// What a level shows in a week (Mon–Sat), and what a theme needs to run it
+// twice (so a repeat year still has unseen entries).
+var MIX_BY_LEVEL_ = {
+  B1: [['B1', 4], ['B2', 1], ['argot', 1]],
+  B2: [['B1', 2], ['B2', 3], ['argot', 1]]
+};
+var REQUIRED_BY_LEVEL_ = {
+  B1: { B1: 6, B2: 2, argot: 2 },
+  B2: { B1: 4, B2: 6, argot: 2 }
+};
+
+// The evidence for moving up. Thresholds are a first guess, to tune on real data.
+var LEVEL_RULES_ = {
+  B1: { next: 'B2', weeks: 8, daysPerWeek: 4, recall: { B1: { rate: 0.85, min: 30 }, B2: { rate: 0.70, min: 10 } }, speaking: { avg: 70, min: 10 } },
+  B2: { next: 'C1', weeks: 12, daysPerWeek: 4, recall: { B2: { rate: 0.85, min: 40 } }, speaking: { avg: 80, min: 15 } }
+};
+var READINESS_WINDOW_DAYS_ = 56;
+
+// ---- pure ------------------------------------------------------------------------
+
+function mixFor_(level) { return MIX_BY_LEVEL_[level] || MIX_BY_LEVEL_.B1; }
+function requiredFor_(level) { return REQUIRED_BY_LEVEL_[level] || REQUIRED_BY_LEVEL_.B1; }
+
+/** Pure: an item's spaced-review state after a rating on `date`. prev = { box, reviews, knew } or null. */
+function leitnerNext_(prev, rating, date) {
+  prev = prev || {};
+  var box = Math.max(1, Math.min(5, Number(prev.box) || 1));
+  if (rating === 'knew') box = Math.min(5, box + 1);
+  else if (rating === 'no') box = 1;
+  return {
+    box: box, due: enShift_(date, 7 * LEITNER_WEEKS_[box]), last_rating: rating, last_review: date,
+    reviews: (Number(prev.reviews) || 0) + 1, knew: (Number(prev.knew) || 0) + (rating === 'knew' ? 1 : 0)
+  };
+}
+
+/** Pure: ids due for review on `date` (oldest due first), skipping `exclude`, at most `limit`. shown = { id: { due } }. */
+function dueItems_(shown, date, exclude, limit) {
+  exclude = exclude || {};
+  return Object.keys(shown || {})
+    .filter(function (id) { var d = shown[id].due; return d && d <= date && !exclude[id]; })
+    .sort(function (a, b) { var x = shown[a].due, y = shown[b].due; return x < y ? -1 : x > y ? 1 : (a < b ? -1 : 1); })
+    .slice(0, limit);
+}
+
+/** Pure: French text → lower-case words without accents or punctuation. */
+function words_(s) {
+  return enNorm_(s).replace(/[^a-z0-9' ]+/g, ' ').replace(/'/g, ' ').split(/\s+/).filter(Boolean);
+}
+
+/** Pure: how much of the target line was heard (0–100): the share of its words found in what was heard. */
+function speakScore_(heard, target) {
+  var want = words_(target), got = words_(heard), pool = {};
+  if (!want.length) return 0;
+  got.forEach(function (w) { pool[w] = (pool[w] || 0) + 1; });
+  var hit = 0;
+  want.forEach(function (w) { if (pool[w]) { pool[w]--; hit++; } });
+  return Math.round(100 * hit / want.length);
+}
+
+/** Pure: the average score of a day's spoken lines → number, or '' when none. */
+function speakingOfDay_(spoken) {
+  var s = (spoken || []).filter(function (x) { return x && x.target; }).map(function (x) { return speakScore_(x.heard, x.target); });
+  return s.length ? Math.round(s.reduce(function (a, b) { return a + b; }, 0) / s.length) : '';
+}
+
+/**
+ * Pure: is the evidence there for the next level?
+ *   o = { level, since: 'yyyy-MM-dd', today,
+ *         items: [{ level, reviews, knew, last_review, box }],   (entries you have reviewed)
+ *         practice: [{ date, speaking }] }                       (finished days)
+ * → { level, next, ready, checks: [{ key, label, value, target, ok, skipped }], mastered, summary }
+ */
+function readiness_(o) {
+  var rule = LEVEL_RULES_[o.level];
+  var from = enShift_(o.today, -READINESS_WINDOW_DAYS_);
+  var mastered = (o.items || []).filter(function (x) { return Number(x.box) >= MASTERED_BOX_; }).length;
+  if (!rule) return { level: o.level, next: '', ready: false, checks: [], mastered: mastered, summary: o.level + ' : pas de niveau suivant pour l’instant' };
+  var checks = [];
+  var weeks = Math.floor((enParse_(o.today) - enParse_(o.since || o.today)) / 864e5 / 7);
+  checks.push({ key: 'weeks', label: 'semaines au niveau', value: weeks, target: rule.weeks, ok: weeks >= rule.weeks });
+
+  var days = (o.practice || []).filter(function (p) { return p.date >= from && p.date <= o.today; });
+  var perWeek = Math.round(10 * days.length / (READINESS_WINDOW_DAYS_ / 7)) / 10;
+  checks.push({ key: 'days', label: 'jours/semaine', value: perWeek, target: rule.daysPerWeek, ok: perWeek >= rule.daysPerWeek });
+
+  Object.keys(rule.recall).forEach(function (lv) {
+    var r = rule.recall[lv];
+    var its = (o.items || []).filter(function (x) { return x.level === lv && x.last_review && x.last_review >= from; });
+    var n = its.reduce(function (a, x) { return a + (Number(x.reviews) || 0); }, 0);
+    var k = its.reduce(function (a, x) { return a + (Number(x.knew) || 0); }, 0);
+    var rate = n ? k / n : 0;
+    checks.push({ key: 'recall_' + lv, label: 'rappel ' + lv, value: n ? Math.round(100 * rate) : null, target: Math.round(100 * r.rate),
+                  ok: n >= r.min && rate >= r.rate, note: n < r.min ? n + '/' + r.min + ' révisions' : '' });
+  });
+
+  var sp = days.filter(function (p) { return p.speaking !== '' && p.speaking != null && !isNaN(Number(p.speaking)); }).map(function (p) { return Number(p.speaking); });
+  if (!sp.length) {
+    checks.push({ key: 'speaking', label: 'oral', value: null, target: rule.speaking.avg, ok: true, skipped: true, note: 'non mesuré' });
+  } else {
+    var avg = Math.round(sp.reduce(function (a, b) { return a + b; }, 0) / sp.length);
+    checks.push({ key: 'speaking', label: 'oral', value: avg, target: rule.speaking.avg, ok: sp.length >= rule.speaking.min && avg >= rule.speaking.avg,
+                  note: sp.length < rule.speaking.min ? sp.length + '/' + rule.speaking.min + ' jours' : '' });
+  }
+
+  var ready = checks.every(function (c) { return c.ok; });
+  var okCount = checks.filter(function (c) { return c.ok && !c.skipped; }).length, total = checks.filter(function (c) { return !c.skipped; }).length;
+  var parts = checks.map(function (c) {
+    var v = c.value == null ? '—' : c.value + (c.key.indexOf('recall') === 0 || c.key === 'speaking' ? ' %' : '');
+    var t = c.target + (c.key.indexOf('recall') === 0 || c.key === 'speaking' ? ' %' : '');
+    return c.label + ' ' + v + ' / ' + t + (c.skipped ? ' (' + c.note + ')' : c.ok ? ' ✓' : c.note ? ' (' + c.note + ')' : '');
+  });
+  return {
+    level: o.level, next: rule.next, ready: ready, checks: checks, mastered: mastered,
+    summary: o.level + ' → ' + rule.next + ' : ' + okCount + '/' + total + ' critères · ' + parts.join(' · ') + ' · ' + mastered + ' mots maîtrisés'
+  };
+}
+
+// ---- Apps Script -------------------------------------------------------------------
+
+/** Applies Sunday's ratings ({ id: 'knew'|'unsure'|'no' }) to the Shown rows. → how many were rated. */
+function applyRatings_(ratings, date) {
+  var ids = Object.keys(ratings || {}).filter(function (id) { return RATINGS_.indexOf(ratings[id]) !== -1; });
+  if (!ids.length) return 0;
+  var lock = LockService.getScriptLock();
+  lock.waitLock(5000);
+  try {
+    var sh = sheet_('Shown'), rows = sh.getDataRange().getValues(), n = 0;
+    rows.forEach(function (r, i) {
+      var id = String(r[0]);
+      if (!i || !ratings[id] || RATINGS_.indexOf(ratings[id]) === -1) return;
+      var s = leitnerNext_({ box: r[6], reviews: r[10], knew: r[11] }, ratings[id], date);
+      var row = r.slice(0, 6).map(function (v, j) { return j >= 3 && j <= 4 ? cellDate_(v) : v; })
+        .concat([s.box, s.due, s.last_rating, s.last_review, s.reviews, s.knew]);
+      writeRow_(sh, i + 1, row);
+      n++;
+    });
+    return n;
+  } finally {
+    lock.releaseLock();
+  }
+}
+
+/** Checks the evidence for the next level and writes it to Config (level_readiness, level_suggestion). */
+function updateReadiness_() {
+  var today = Utilities.formatDate(new Date(), tz_(), 'yyyy-MM-dd');
+  var raw = readConfig_(), level = raw.level || 'B1';
+  if (raw.level_seen !== level || !raw.level_since) {   // a new level (or first run): the clock starts now
+    writeConfig_('level_since', raw.level_seen && raw.level_seen !== level ? today : (raw.level_since || firstPracticeDay_() || today));
+    writeConfig_('level_seen', level);
+    raw = readConfig_();
+  }
+  var lib = readLibrary_(), levelOf = {};
+  lib.entries.forEach(function (e) { levelOf[e.id] = e.level; });
+  var items = [];
+  sheet_('Shown').getDataRange().getValues().slice(1).forEach(function (r) {
+    if (r[0] && String(r[1]) === 'entry' && r[9]) {
+      items.push({ level: levelOf[String(r[0])] || '', box: r[6], last_review: cellDate_(r[9]), reviews: r[10], knew: r[11] });
+    }
+  });
+  var practice = sheet_('Practice').getDataRange().getValues().slice(1).filter(function (r) { return r[0]; })
+    .map(function (r) { return { date: cellDate_(r[0]), speaking: r[9] }; });
+  var res = readiness_({ level: level, since: cellDate_(raw.level_since), today: today, items: items, practice: practice });
+  writeConfig_('level_readiness', res.summary + ' (' + today + ')');
+  writeConfig_('level_suggestion', res.ready
+    ? 'Prêt pour ' + res.next + ' ? Vérifiez avec un test blanc (TCF ou DELF ' + res.next + '), puis remplacez « level » par ' + res.next + '.'
+    : '');
+  return res;
+}
+
+function firstPracticeDay_() {
+  var d = '';
+  sheet_('Practice').getDataRange().getValues().slice(1).forEach(function (r) { var x = r[0] ? cellDate_(r[0]) : ''; if (x && (!d || x < d)) d = x; });
+  return d;
 }

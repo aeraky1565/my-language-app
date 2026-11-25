@@ -8,7 +8,7 @@ const vm = require('vm');
 
 const ctx = {};
 vm.createContext(ctx);
-for (const f of ['Content.js', 'Engine.js']) {
+for (const f of ['Content.js', 'Engine.js', 'Progress.js']) {
   vm.runInContext(fs.readFileSync(path.join(__dirname, '../apps-script', f), 'utf8'), ctx);
 }
 const E = ctx;
